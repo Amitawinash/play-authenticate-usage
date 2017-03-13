@@ -122,7 +122,7 @@ public class Application extends Controller {
 
 					else {
 
-						return ok(unSuccess.render("Order Is already delivered"));
+						return ok(unSuccess.render("Order Is already delivere"));
 
 					}
 
