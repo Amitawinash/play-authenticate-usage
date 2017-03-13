@@ -11,51 +11,43 @@
 @main(userProvider, Messages("playauthenticate.index.title")) {
       <!-- Main jumbotron for a primary marketing message or call to action -->
 
-      <style type="text/css">
+<style type="text/css">
         
 
-          #parent_div_1, #parent_div_2, #parent_div_3{
+  #parent_div_1, #parent_div_2, #parent_div_3{
     float:left;
   }
   .child_div_1{
     float:left;
     margin-right:55px;
   }
-      </style>
-      
+</style>
       <h2 style="border-color: pink ">Welcome to HereThere courier service</h2>
-                   
-
   <div class="jumbotron" id='parent_div_1' style="background-color: #FAEEAF ;width: 100%">
       <div>
         <div id='parent_div_1'>
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
-           <form action="\address"  style="margin: 25px;" >
+           <form action="/address"  style="margin: 25px;" >
              <h5 style="box-shadow: currentColor; ">Send Somthing</h5>
 
             <input class="btn btn-default" type="text-center" name="toPincode" placeholder="Drop off location pincode" required pattern="[0-9]+" maxlength="6"  minlength="6"><br>
             <input class="btn btn-default" type="text-center" name="fromPincode" placeholder="Pick up location pincode" required maxlength="6"  required pattern="[0-9]+" minlength="6"><br>
             <select class="btn btn-default"   name="shipmentType"  required="value" />
-              
-               <option >--item--</option>
                <option value="parcel">Parcel</option>
                <option value="household">Household</option>
                 <option value="food">Food</option>
-               
             </select>
             <br>
-
             <input class="btn btn-default" type="submit" name="" value="Send" >   </form>
           </div>
           <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
-             <form action="\checkAvailability" style="margin: 25px;"  >
+             <form action="/orderStatus" style="margin: 25px;"  >
              <h5 style="box-shadow: currentColor;">Track Your Order</h5>
-
-
-            <input class="btn btn-default" type="text-center" name="toPincode" placeholder="Enter Order Number" required pattern="[0-9]+" maxlength="8"  minlength="8"><br>
-            
+            <input class="btn btn-default" type="text-center" name="orderNumber" placeholder="Enter Order Number" required  maxlength="24"  >
             <br>
-             <br>
+            <br>
+            <br>
+            <br>
             <input class="btn btn-default" type="submit" value="Track">
           </form>
           </div>
@@ -63,16 +55,6 @@
       </div>
       <br/>
       <br/>
-      <div>
-        <div id='parent_div_1'>
-          <div class="child_div_1" style='width:60px'>
-            <button>Test</button>
-          </div>
-          <div class="child_div_1" style='width:60px'>
-            <button>Report</button>
-          </div>
-        </div>
-      </div>
       <br />
       <!-- Example row of columns -->
       <div class="row">

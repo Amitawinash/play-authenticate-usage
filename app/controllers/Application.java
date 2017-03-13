@@ -81,6 +81,107 @@ public class Application extends Controller {
 		return ok(hereThereHomePage.render(this.userProvider));
 	}
 
+	public Result shipment() {
+		return ok(updateOrderStatus.render(this.userProvider));
+	}
+
+	public Result updateOrderStatus() {
+
+		String orderNumber = request().getQueryString("orderNumber");
+		String shipmentStatus = request().getQueryString("shipmentStatus");
+
+		System.out.println("Order Number : " + orderNumber + " Order Status : " + shipmentStatus);
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
+		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
+
+		try {
+			System.out.println("Inside try  : ");
+			MongoCursor<Document> orderStatusCursor = orderStatus.find().iterator();
+
+			while (orderStatusCursor.hasNext()) {
+
+				Document document = orderStatusCursor.next();
+				System.out.println("Inside While :" + document.containsValue(orderNumber));
+				System.out.println("Order Id : " + document.getObjectId("_id"));
+				ObjectId id = document.getObjectId("_id");
+
+				if (id.toString().equals(orderNumber)) {
+
+					if (!document.containsValue("delivered")) {
+						System.out.println("Inside If");
+						Bson arg1 = new Document("_id", document.getObjectId("_id"));
+
+						Bson arg0 = new Document("orderStatus", shipmentStatus);
+
+						Bson updateOpration = new Document("$set", arg0);
+						orderStatus.updateOne(arg1, updateOpration);
+						return ok(success.render("Order Stauts is updated."));
+					}
+
+					else {
+
+						return ok(unSuccess.render("Order Is already delivered"));
+
+					}
+
+				}
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+			return ok(unSuccess.render("Error Occered "));
+		} finally {
+			mongoClient.close();
+		}
+
+		return ok(unSuccess.render("Order Number not found"));
+	}
+
+	public Result orderStatus() {
+
+		String orderNumber = request().getQueryString("orderNumber");
+
+		System.out.println("Order Number : " + orderNumber);
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
+		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
+
+		try {
+			System.out.println("Inside try  : ");
+			MongoCursor<Document> orderStatusCursor = orderStatus.find().iterator();
+
+			while (orderStatusCursor.hasNext()) {
+
+				Document document = orderStatusCursor.next();
+				System.out.println("Inside While :" + document.containsValue(orderNumber));
+				System.out.println("Order Id : " + document.getObjectId("_id"));
+				ObjectId id = document.getObjectId("_id");
+				if (id.toString().equals(orderNumber)) {
+
+					System.out.println("Inside If");
+
+					document.getString("orderStatus");
+					return ok(success.render("Order Status is : " + document.getString("orderStatus")));
+
+				}
+
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+			return ok(unSuccess.render("Error Occered "));
+		} finally {
+			mongoClient.close();
+		}
+
+		return ok(unSuccess.render("To do "));
+	}
+
 	public Result orderAddress() {
 
 		String reciverName = request().getQueryString("reciverName");
@@ -96,6 +197,7 @@ public class Application extends Controller {
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
 		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
 		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
+		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
 		ObjectId orderNumber = null;
 		try {
 			System.out.println("Inside try  : ");
@@ -104,7 +206,10 @@ public class Application extends Controller {
 					.append("street", street).append("houseNumber", houseNumber).append("contactNumber", contactNumber);
 
 			orderAddress.insertOne(document);
+			String status = "Order is registered";
 			System.out.println("_id " + document.getObjectId("_id"));
+			orderStatus.insertOne(new Document("orderStatus", status).append("_id", document.getObjectId("_id")));
+
 			orderNumber = document.getObjectId("_id");
 		}
 
