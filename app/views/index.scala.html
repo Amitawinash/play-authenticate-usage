@@ -1,0 +1,29 @@
+@import service.UserProvider
+@(userProvider: UserProvider)
+
+@main(userProvider, Messages("playauthenticate.index.title")) {
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>@Messages("playauthenticate.index.intro")</h1>
+        <p>@Messages("playauthenticate.index.intro_2") <br/>@Messages("playauthenticate.index.intro_3")</p>
+      </div>
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-xs-6 col-sm-4">
+          <br>
+          <br>
+          <br>
+        </div>
+        <div class="col-xs-6 col-sm-4">
+          <br>
+          <br>
+          <br>
+       </div>
+        <div class="col-xs-6 col-sm-4">
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+    }

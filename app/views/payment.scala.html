@@ -1,0 +1,66 @@
+@*
+ * This template takes a single argument, a String containing a
+ * message to display.
+ *@
+@(message: String)
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Here There</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  .jumbotron {
+      background-color: #f4511e;
+      color: #fff;
+      padding: 200px 25px;
+
+  }
+  .bg-grey {
+      background-color: #f6f6f6;
+  }
+  .container-fluid {
+      padding: 30px 50px;
+  }
+
+
+  </style>
+
+ 
+  </script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+ 
+  <form action="/orderSubmitDetail"> 
+  <h2>@message</h2>
+<h1>Enter Card Details</h1>
+  <input type="text-center" class="form-control" style="color:#191c1a" name="price" size="5" placeholder="Price" required>  
+
+  <input type="text-center" class="form-control" style="color:#191c1a" name="cardNumber" size="5" placeholder="Card Number" required> 
+
+   <input type="text-center" class="form-control" style="color:#191c1a" name="cardNumber" size="5" placeholder="Card Holder Name" required> 
+
+    <input type="text-center" class="form-control" style="color:#191c1a" name="cardNumber" size="5" placeholder="CCV" required> 
+     <input type="text-center" class="form-control" style="color:#191c1a" name="cardNumber" size="5" placeholder="Valid Through" required> 
+
+      <input type="text-center" class="form-control" style="color:#191c1a" name="cardNumber" size="5" placeholder="Visa/master/Rupee" required> 
+
+  <input type="submit" name="Button" value="Make Payment" style="color: #8c449f">     
+  
+  </form>  
+</div>
+
+
+
+</body>
+
+
+</html>
