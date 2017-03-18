@@ -37,60 +37,48 @@ Seq[Any](format.raw/*9.30*/("""
 """),_display_(/*11.2*/main(userProvider, Messages("playauthenticate.index.title"))/*11.62*/ {_display_(Seq[Any](format.raw/*11.64*/("""
       """),format.raw/*12.7*/("""<!-- Main jumbotron for a primary marketing message or call to action -->
 
-      <style type="text/css">
+<style type="text/css">
         
 
-          #parent_div_1, #parent_div_2, #parent_div_3"""),format.raw/*17.54*/("""{"""),format.raw/*17.55*/("""
+  #parent_div_1, #parent_div_2, #parent_div_3"""),format.raw/*17.46*/("""{"""),format.raw/*17.47*/("""
     """),format.raw/*18.5*/("""float:left;
   """),format.raw/*19.3*/("""}"""),format.raw/*19.4*/("""
   """),format.raw/*20.3*/(""".child_div_1"""),format.raw/*20.15*/("""{"""),format.raw/*20.16*/("""
     """),format.raw/*21.5*/("""float:left;
     margin-right:55px;
   """),format.raw/*23.3*/("""}"""),format.raw/*23.4*/("""
-      """),format.raw/*24.7*/("""</style>
-      
+"""),format.raw/*24.1*/("""</style>
       <h2 style="border-color: pink ">Welcome to HereThere courier service</h2>
-                   
-
   <div class="jumbotron" id='parent_div_1' style="background-color: #FAEEAF ;width: 100%">
       <div>
         <div id='parent_div_1'>
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
            <form action="/address"  style="margin: 25px;" >
-             <h5 style="box-shadow: currentColor; ">Send Somthing</h5>
+            <h5 style="box-shadow: currentColor; ">Send Somthing</h5>
 
-            <input class="btn btn-default" type="text-center" name="toPincode" placeholder="Drop off location pincode" required pattern="[0-9]+" maxlength="6"  minlength="6"><br>
-            <input class="btn btn-default" type="text-center" name="fromPincode" placeholder="Pick up location pincode" required maxlength="6"  required pattern="[0-9]+" minlength="6"><br>
-            <select class="btn btn-default"   name="shipmentType"  required="value" />
-              
-               <option value="parcel">Parcel</option>
-               <option value="household">Household</option>
-                <option value="food">Food</option>
-               
+            <input class="form-control" type="text-center" name="toPincode" placeholder="Drop off location pincode"  pattern="[0-9]+" maxlength="6"  minlength="6" required/>
+            <input class="form-control" type="text-center" name="fromPincode" placeholder="Pick up location pincode" maxlength="6"  required pattern="[0-9]+" minlength="6"  required/>
+            <select class="form-control"   name="shipmentType"  required="value" />
+             <option value="parcel">Parcel</option>
+             <option value="household">Household</option>
+             <option value="food">Food</option>
             </select>
-            <br>
-
-            <input class="btn btn-default" type="submit" name="" value="Send" >   </form>
+            <input class="form-control"  id="inputId" type="email" name="emailId" placeholder="Sender email Id"   required/  >
+            <input class="form-control" type="submit" name="" value="Send" >
+          </form>
           </div>
           <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
              <form action="/orderStatus" style="margin: 25px;"  >
-             <h5 style="box-shadow: currentColor;">Track Your Order</h5>
-
-
-            <input class="btn btn-default" type="text-center" name="orderNumber" placeholder="Enter Order Number" required  maxlength="24"  ><br>
-            
-            <br>
-            <br>
-            <br>
-            
-            <input class="btn btn-default" type="submit" value="Track">
+               <h5 style="box-shadow: currentColor;">Track Your Order</h5>
+               <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number"  maxlength="24" required / >
+               <input class="form-control" type="submit" name="action" value="Track">
+               <input class="form-control" type="submit" name="action"  value="Estimated Date">
           </form>
           </div>
         </div>
       </div>
       <br/>
       <br/>
-      
       <br />
       <!-- Example row of columns -->
       <div class="row">
@@ -110,8 +98,7 @@ Seq[Any](format.raw/*9.30*/("""
           <br>
         </div>
       </div>
-    """)))}),format.raw/*87.6*/("""
-"""))
+    """)))}))
       }
     }
   }
@@ -132,11 +119,11 @@ Seq[Any](format.raw/*9.30*/("""
 object hereThereHomePage extends hereThereHomePage_Scope0.hereThereHomePage_Scope1.hereThereHomePage
               /*
                   -- GENERATED --
-                  DATE: Mon Mar 13 22:12:36 IST 2017
+                  DATE: Sat Mar 18 23:24:39 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/hereThereHomePage.scala.html
-                  HASH: 8815da4bd8b6dee05c0f3d93aa6b626f0d41496f
-                  MATRIX: 843->127|966->155|995->158|1064->218|1104->220|1138->227|1334->395|1363->396|1395->401|1436->415|1464->416|1494->419|1534->431|1563->432|1595->437|1659->474|1687->475|1721->482|4040->2771
-                  LINES: 30->9|35->9|37->11|37->11|37->11|38->12|43->17|43->17|44->18|45->19|45->19|46->20|46->20|46->20|47->21|49->23|49->23|50->24|113->87
+                  HASH: 5c029fd928eaa5728742e3e95955175dc80568c4
+                  MATRIX: 843->127|966->155|995->158|1064->218|1104->220|1138->227|1320->381|1349->382|1381->387|1422->401|1450->402|1480->405|1520->417|1549->418|1581->423|1645->460|1673->461|1701->462
+                  LINES: 30->9|35->9|37->11|37->11|37->11|38->12|43->17|43->17|44->18|45->19|45->19|46->20|46->20|46->20|47->21|49->23|49->23|50->24
                   -- GENERATED --
               */
           

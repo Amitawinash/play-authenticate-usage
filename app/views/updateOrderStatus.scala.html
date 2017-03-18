@@ -31,24 +31,25 @@
         <div id='parent_div_1'>
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
            <form action="/updateOrderStatus"  style="margin: 25px;" >
-             <h5 style="box-shadow: currentColor; ">Update Order Status</h5>
-
-           
-            <input class="btn btn-default" type="text-center" name="orderNumber" placeholder="Order Number"    maxlength="24" required >
-            <br>
-            <select class="btn btn-default"   name="shipmentStatus"  required="value" />
-              
+              <h5 style="box-shadow: currentColor; ">Update Order Status</h5>
+              <input class="form-control" type="text-center" name="orderNumber" placeholder="Order Number"    maxlength="24" required >
+              <select class="form-control"   name="shipmentStatus"  required="value" />
                <option value="Airport">Airport</option>
                <option value="warehouse">Warehouse</option>
                <option value="delivered">Delivered</option>
                <option value="addressNotFound">Address Not Found</option>
-               
-            </select>
-            <br>
-
-            <input class="btn btn-default" type="submit" name="" value="Send" >   </form>
+              </select>
+              <input class="form-control" type="submit" name="" value="Send" />
+            </form>
           </div>
-          
+          <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px ">
+             <form action="/orderStatus" style="margin: 25px;"  >
+               <h5 style="box-shadow: currentColor;">Estimated Date Of Shipment</h5>
+               <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number" required  maxlength="24">
+               <input  class="form-control" type="Date" name="estimatedDate" required/>
+               <input class="form-control" type="submit" name="action"  value="Estimated Date">
+          </form>
+          </div>
         </div>
       </div>
       <br/>

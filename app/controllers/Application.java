@@ -46,6 +46,7 @@ import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.util.JSON;
 
+import play.api.mvc.Request;
 import play.core.routing.Param;
 import play.mvc.*;
 
@@ -75,6 +76,54 @@ public class Application extends Controller {
 
 	public Result index() {
 		return ok(index.render(this.userProvider));
+	}
+
+	public Result estimatedDate(play.mvc.Http.Request request) {
+		System.out.println("estimated  Date");
+		return ok(success.render("estimatedDate"));
+	}
+
+	public Result track(play.mvc.Http.Request request) {
+
+		String orderNumber = request().getQueryString("orderNumber");
+
+		System.out.println("Order Number : " + orderNumber);
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
+		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
+
+		try {
+			System.out.println("Inside try  : ");
+			MongoCursor<Document> orderStatusCursor = orderStatus.find().iterator();
+
+			while (orderStatusCursor.hasNext()) {
+
+				Document document = orderStatusCursor.next();
+				System.out.println("Inside While :" + document.containsValue(orderNumber));
+				System.out.println("Order Id : " + document.getObjectId("_id"));
+				ObjectId id = document.getObjectId("_id");
+				if (id.toString().equals(orderNumber)) {
+
+					System.out.println("Inside If");
+
+					document.getString("orderStatus");
+					return ok(success.render("Order Status is : " + document.getString("orderStatus")));
+
+				}
+
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+			return ok(unSuccess.render("Error Occered "));
+		} finally {
+			mongoClient.close();
+		}
+
+		System.out.println("Track");
+		return ok(success.render("tracked"));
 	}
 
 	public Result hereThere() {
@@ -142,44 +191,17 @@ public class Application extends Controller {
 
 	public Result orderStatus() {
 
-		String orderNumber = request().getQueryString("orderNumber");
+		String action = request().getQueryString("action");
 
-		System.out.println("Order Number : " + orderNumber);
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
-		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
-		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
+		if (action.equals("Track")) {
 
-		try {
-			System.out.println("Inside try  : ");
-			MongoCursor<Document> orderStatusCursor = orderStatus.find().iterator();
+			return track(request());
+		} else {
 
-			while (orderStatusCursor.hasNext()) {
-
-				Document document = orderStatusCursor.next();
-				System.out.println("Inside While :" + document.containsValue(orderNumber));
-				System.out.println("Order Id : " + document.getObjectId("_id"));
-				ObjectId id = document.getObjectId("_id");
-				if (id.toString().equals(orderNumber)) {
-
-					System.out.println("Inside If");
-
-					document.getString("orderStatus");
-					return ok(success.render("Order Status is : " + document.getString("orderStatus")));
-
-				}
-
-			}
+			return estimatedDate(request());
 		}
 
-		catch (Exception e) {
-			e.printStackTrace();
-			return ok(unSuccess.render("Error Occered "));
-		} finally {
-			mongoClient.close();
-		}
-
-		return ok(unSuccess.render("To do "));
+		// return ok(unSuccess.render("To do "));
 	}
 
 	public Result orderAddress() {
@@ -227,6 +249,8 @@ public class Application extends Controller {
 
 		String fromPincode = request().getQueryString("fromPincode");
 		String toPincode = request().getQueryString("toPincode");
+		String shipmentType = request().getQueryString("shipmentType");
+		String emailId = request().getQueryString("emailId");
 
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
 		MongoDatabase db = mongoClient.getDatabase("hereThere");

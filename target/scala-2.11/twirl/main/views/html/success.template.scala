@@ -104,7 +104,7 @@ Seq[Any](format.raw/*1.19*/("""
 object success extends success_Scope0.success
               /*
                   -- GENERATED --
-                  DATE: Mon Mar 13 19:24:24 IST 2017
+                  DATE: Fri Mar 17 08:00:55 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/success.scala.html
                   HASH: 7388b07a3d26c29499d43c5d5904cfe370367240
                   MATRIX: 749->1|861->18|893->24|1385->488|1414->489|1451->499|1503->524|1531->525|1566->533|1606->545|1635->546|1671->555|1723->580|1751->581|1786->589|1829->604|1858->605|1894->614|1945->638|1973->639|2008->647|2041->652|2070->653|2106->662|2159->688|2187->689|2218->693|2700->1148|2728->1155|2759->1158

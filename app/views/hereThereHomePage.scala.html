@@ -28,27 +28,25 @@
         <div id='parent_div_1'>
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
            <form action="/address"  style="margin: 25px;" >
-             <h5 style="box-shadow: currentColor; ">Send Somthing</h5>
+            <h5 style="box-shadow: currentColor; ">Send Somthing</h5>
 
-            <input class="btn btn-default" type="text-center" name="toPincode" placeholder="Drop off location pincode" required pattern="[0-9]+" maxlength="6"  minlength="6"><br>
-            <input class="btn btn-default" type="text-center" name="fromPincode" placeholder="Pick up location pincode" required maxlength="6"  required pattern="[0-9]+" minlength="6"><br>
-            <select class="btn btn-default"   name="shipmentType"  required="value" />
-               <option value="parcel">Parcel</option>
-               <option value="household">Household</option>
-                <option value="food">Food</option>
+            <input class="form-control" type="text-center" name="toPincode" placeholder="Drop off location pincode"  pattern="[0-9]+" maxlength="6"  minlength="6" required/>
+            <input class="form-control" type="text-center" name="fromPincode" placeholder="Pick up location pincode" maxlength="6"  required pattern="[0-9]+" minlength="6"  required/>
+            <select class="form-control"   name="shipmentType"  required="value" />
+             <option value="parcel">Parcel</option>
+             <option value="household">Household</option>
+             <option value="food">Food</option>
             </select>
-            <br>
-            <input class="btn btn-default" type="submit" name="" value="Send" >   </form>
+            <input class="form-control"  id="inputId" type="email" name="emailId" placeholder="Sender email Id"   required/  >
+            <input class="form-control" type="submit" name="" value="Send" >
+          </form>
           </div>
           <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
              <form action="/orderStatus" style="margin: 25px;"  >
-             <h5 style="box-shadow: currentColor;">Track Your Order</h5>
-            <input class="btn btn-default" type="text-center" name="orderNumber" placeholder="Enter Order Number" required  maxlength="24"  >
-            <br>
-            <br>
-            <br>
-            <br>
-            <input class="btn btn-default" type="submit" value="Track">
+               <h5 style="box-shadow: currentColor;">Track Your Order</h5>
+               <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number"  maxlength="24" required / >
+               <input class="form-control" type="submit" name="action" value="Track">
+               <input class="form-control" type="submit" name="action"  value="Estimated Date">
           </form>
           </div>
         </div>

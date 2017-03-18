@@ -57,24 +57,25 @@ Seq[Any](format.raw/*9.30*/("""
         <div id='parent_div_1'>
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
            <form action="/updateOrderStatus"  style="margin: 25px;" >
-             <h5 style="box-shadow: currentColor; ">Update Order Status</h5>
-
-           
-            <input class="btn btn-default" type="text-center" name="orderNumber" placeholder="Order Number"    maxlength="24" required >
-            <br>
-            <select class="btn btn-default"   name="shipmentStatus"  required="value" />
-              
+              <h5 style="box-shadow: currentColor; ">Update Order Status</h5>
+              <input class="form-control" type="text-center" name="orderNumber" placeholder="Order Number"    maxlength="24" required >
+              <select class="form-control"   name="shipmentStatus"  required="value" />
                <option value="Airport">Airport</option>
                <option value="warehouse">Warehouse</option>
                <option value="delivered">Delivered</option>
                <option value="addressNotFound">Address Not Found</option>
-               
-            </select>
-            <br>
-
-            <input class="btn btn-default" type="submit" name="" value="Send" >   </form>
+              </select>
+              <input class="form-control" type="submit" name="" value="Send" >  
+            </form>
           </div>
-          
+          <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
+             <form action="/orderStatus" style="margin: 25px;"  >
+               <h5 style="box-shadow: currentColor;">Estimated Date Of Shipment</h5>
+               <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number" required  maxlength="24">
+               <input  class="form-control" type="Date" name="estimatedDate" required/>          
+               <input class="form-control" type="submit" name="action"  value="Estimated Date">
+          </form>
+          </div>
         </div>
       </div>
       <br/>
@@ -102,7 +103,7 @@ Seq[Any](format.raw/*9.30*/("""
           <br>
         </div>
       </div>
-    """)))}),format.raw/*79.6*/("""
+    """)))}),format.raw/*80.6*/("""
 """))
       }
     }
@@ -124,11 +125,11 @@ Seq[Any](format.raw/*9.30*/("""
 object updateOrderStatus extends updateOrderStatus_Scope0.updateOrderStatus_Scope1.updateOrderStatus
               /*
                   -- GENERATED --
-                  DATE: Mon Mar 13 21:55:18 IST 2017
+                  DATE: Sat Mar 18 23:20:21 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/updateOrderStatus.scala.html
-                  HASH: 74cd41c3933893d48ac7fb68e071b5c6fe6c88f4
-                  MATRIX: 843->127|966->155|995->158|1064->218|1104->220|1138->227|1334->395|1363->396|1395->401|1436->415|1464->416|1494->419|1534->431|1563->432|1595->437|1659->474|1687->475|1721->482|3433->2164
-                  LINES: 30->9|35->9|37->11|37->11|37->11|38->12|43->17|43->17|44->18|45->19|45->19|46->20|46->20|46->20|47->21|49->23|49->23|50->24|105->79
+                  HASH: 62338351af975599346363068bb9a57a84e26982
+                  MATRIX: 843->127|966->155|995->158|1064->218|1104->220|1138->227|1334->395|1363->396|1395->401|1436->415|1464->416|1494->419|1534->431|1563->432|1595->437|1659->474|1687->475|1721->482|3968->2699
+                  LINES: 30->9|35->9|37->11|37->11|37->11|38->12|43->17|43->17|44->18|45->19|45->19|46->20|46->20|46->20|47->21|49->23|49->23|50->24|106->80
                   -- GENERATED --
               */
           
