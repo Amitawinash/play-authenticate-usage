@@ -52,6 +52,17 @@ Seq[Any](format.raw/*9.30*/("""
   <div class="jumbotron" id='parent_div_1' style="background-color: #FAEEAF ;width: 100%">
       <div>
         <div id='parent_div_1'>
+
+        <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
+             <form action="/newUser" style="margin: 25px;"  >
+               <h5 style="box-shadow: currentColor;">New user</h5>
+               <input class="form-control" type="email" name="userEmailId" placeholder="Enter user Email Id"  maxlength="29" required / >
+               <input class="form-control" type="password" name="password" placeholder="Enter password"  maxlength="24" required / >
+               <input class="form-control" type="password" name="confirmPassword" placeholder="Enter Confirm Password"  maxlength="24" required / >
+               <br>
+               <input class="form-control" type="submit" name="action" value="Track">
+          </form>
+          </div>
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
            <form action="/address"  style="margin: 25px;" >
             <h5 style="box-shadow: currentColor; ">Send Somthing</h5>
@@ -63,16 +74,27 @@ Seq[Any](format.raw/*9.30*/("""
              <option value="household">Household</option>
              <option value="food">Food</option>
             </select>
-            <input class="form-control"  id="inputId" type="email" name="emailId" placeholder="Sender email Id"   required/  >
-            <input class="form-control" type="submit" name="" value="Send" >
+            <input class="form-control" type="email" name="emailId" placeholder="Sender email Id"   required/  >
+            <input class="form-control" type="password" name="password" placeholder="Enter password"  maxlength="24" required / >
+            
+
+            <input type="text-center" class="form-control" style="color:#191c1a" name="reciverName" maxlength="25" placeholder="Reciver Name" required>
+    <input type="text-center" class="form-control" style="color:#191c1a" name="state" maxlength="25" placeholder="Reciver State" required>
+    <input type="text-center" class="form-control" style="color:#191c1a" name="area" maxlength="20" placeholder="Reciver Area" required>
+    <input type="text-center" class="form-control" style="color:#191c1a" name="street" maxlength="20" placeholder="Reciver Street" required>
+    <input type="text-center" class="form-control" style="color:#191c1a" name="houseNumber" maxlength="15" placeholder="Reciver House Number" required>
+    <input type="text-center" class="form-control" style="color:#191c1a" name="contactNumber" maxlength="10" minlength="10" pattern="[0-9]+" placeholder="Reciver Contact Number" required>
+    <input class="form-control" type="submit" name="" value="Send" >
           </form>
           </div>
           <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
              <form action="/orderStatus" style="margin: 25px;"  >
                <h5 style="box-shadow: currentColor;">Track Your Order</h5>
                <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number"  maxlength="24" required / >
+               <br>
                <input class="form-control" type="submit" name="action" value="Track">
                <input class="form-control" type="submit" name="action"  value="Estimated Date">
+               <input class="form-control" type="submit" name="action"  value="Pay Bill">
           </form>
           </div>
         </div>
@@ -119,9 +141,9 @@ Seq[Any](format.raw/*9.30*/("""
 object hereThereHomePage extends hereThereHomePage_Scope0.hereThereHomePage_Scope1.hereThereHomePage
               /*
                   -- GENERATED --
-                  DATE: Sat Mar 18 23:24:39 IST 2017
+                  DATE: Wed Mar 22 01:14:05 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/hereThereHomePage.scala.html
-                  HASH: 5c029fd928eaa5728742e3e95955175dc80568c4
+                  HASH: 8e660541a0fec9117c14639a3803d2fdd94fc73b
                   MATRIX: 843->127|966->155|995->158|1064->218|1104->220|1138->227|1320->381|1349->382|1381->387|1422->401|1450->402|1480->405|1520->417|1549->418|1581->423|1645->460|1673->461|1701->462
                   LINES: 30->9|35->9|37->11|37->11|37->11|38->12|43->17|43->17|44->18|45->19|45->19|46->20|46->20|46->20|47->21|49->23|49->23|50->24
                   -- GENERATED --

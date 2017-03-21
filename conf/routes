@@ -25,6 +25,8 @@ GET		/payment					controllers.Application.orderAddress
 GET		/orderStatus				controllers.Application.orderStatus
 GET		/updateOrderStatus			controllers.Application.updateOrderStatus
 GET		/shipment					controllers.Application.shipment
+GET		/newUser					controllers.Application.newUser
+
 
 
 

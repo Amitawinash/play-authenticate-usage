@@ -19,7 +19,7 @@
   .jumbotron {
       background-color: #f4511e;
       color: #fff;
-      padding: 100px 25px;
+      padding: 100px 25px ;
 
   }
   .bg-grey {
@@ -28,6 +28,15 @@
   .container-fluid {
       padding: 60px 50px;
   }
+
+
+   #parent_div_1, #parent_div_2, #parent_div_3{
+    float:left;
+  }
+  .child_div_1{
+    float:left;
+    margin-right:55px;
+  }
   </style>
 
  
@@ -35,19 +44,28 @@
 </head>
 <body>
 
+
+
 <div class="jumbotron text-center">
-  
+
+<div id='parent_div_1'>
+
+  <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
+<h5 style="color: black">Princing</h><br>
+<h4 style="color: black">DHL = 100 &#x20B9</h4>
+<h4 style="color: black">DTDC = 200 &#x20B9</h4>
+<h4 style="color: black">AirPost = 300 &#x20B9</h4>
+<h4></h4>
+<h4></h4>
+  </div>
+  </div>
 <form  class="jumbotron text-center" action="/payment" method="GET" >
-    <h3>These are the courier service provider corporate : </h3>
+    <h2>These are the courier service provider corporate : </h2>
     <h1>@message</h1>
-    <input type="radio" name="book">
-    <h1>Enter Order Destination details : </h1>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="reciverName" maxlength="25" placeholder="Reciver Name" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="state" maxlength="25" placeholder="State" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="area" maxlength="20" placeholder="Area" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="street" maxlength="20" placeholder="Street" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="houseNumber" maxlength="15" placeholder="House Number" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="contactNumber" maxlength="10" minlength="10" pattern="[0-9]+" placeholder="Contact Number" required>
+    
+    
+    <input type="text-center" class="form-control" style="color:#191c1a" name="serviceProvider" maxlength="25" placeholder="Enter Service provider Name" required />
+    
 
     <br>
     <input class="btn btn-danger" type="submit" name="submitDetails" placeholder="payment" value="Submit Details">

@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="@lang().code()">
     <head>
-        <title>HereThere</title>
+        <title>@title</title>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,7 +34,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="@routes.Application.index()">HereThere</a>
+                    <a class="navbar-brand" href="@routes.Application.index()">Play! Authenticate</a>
                 </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -57,7 +57,7 @@
                                     <li class="@("active".when(nav == "profile"))"><a href="@routes.Application.profile()">@Messages("playauthenticate.navigation.profile")</a></li>
                                     <li><a href="@routes.Account.link()">@Messages("playauthenticate.navigation.link_more")</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="@com.feth.play.module.pa.controllers.routes.Authenticate.logout()"><i class="icon-off"></i> @Messages("playauthenticate.index.intro_2")</a></li>
+                                    <li><a href="@com.feth.play.module.pa.controllers.routes.Authenticate.logout()"><i class="icon-off"></i> @Messages("playauthenticate.navigation.logout")</a></li>
                                 </ul>
                             </li>
                         }
@@ -90,15 +90,7 @@
 
             <hr>
 
-            <footer>
-                <p>&copy;
-                    2016-2017 HereThere! Authenticate. Version 2.0. View details <a href="https://github.com/Amitawinash/MVCExampleWithAngularAndPlayFramework">
-                        here</a>.</p>
-                <p>
-                    <small>
-                        Provider icons by <a href="https://github.com/Amitawinash" target="_blank">
-                            Amit Kumar</a></small></p>
-            </footer>
+            
         </div> <!-- /container -->
 
     </body>

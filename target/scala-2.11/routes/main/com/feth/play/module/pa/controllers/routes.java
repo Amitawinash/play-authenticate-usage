@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/conf/routes
-// @DATE:Mon Mar 13 22:21:22 IST 2017
+// @DATE:Wed Mar 22 01:01:42 IST 2017
 
 package com.feth.play.module.pa.controllers;
 

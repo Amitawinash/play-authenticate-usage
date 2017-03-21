@@ -49,7 +49,7 @@ Seq[Any](format.raw/*5.19*/("""
   .jumbotron """),format.raw/*19.14*/("""{"""),format.raw/*19.15*/("""
       """),format.raw/*20.7*/("""background-color: #f4511e;
       color: #fff;
-      padding: 100px 25px;
+      padding: 100px 25px ;
 
   """),format.raw/*24.3*/("""}"""),format.raw/*24.4*/("""
   """),format.raw/*25.3*/(""".bg-grey """),format.raw/*25.12*/("""{"""),format.raw/*25.13*/("""
@@ -58,26 +58,44 @@ Seq[Any](format.raw/*5.19*/("""
   """),format.raw/*28.3*/(""".container-fluid """),format.raw/*28.20*/("""{"""),format.raw/*28.21*/("""
       """),format.raw/*29.7*/("""padding: 60px 50px;
   """),format.raw/*30.3*/("""}"""),format.raw/*30.4*/("""
-  """),format.raw/*31.3*/("""</style>
+
+
+   """),format.raw/*33.4*/("""#parent_div_1, #parent_div_2, #parent_div_3"""),format.raw/*33.47*/("""{"""),format.raw/*33.48*/("""
+    """),format.raw/*34.5*/("""float:left;
+  """),format.raw/*35.3*/("""}"""),format.raw/*35.4*/("""
+  """),format.raw/*36.3*/(""".child_div_1"""),format.raw/*36.15*/("""{"""),format.raw/*36.16*/("""
+    """),format.raw/*37.5*/("""float:left;
+    margin-right:55px;
+  """),format.raw/*39.3*/("""}"""),format.raw/*39.4*/("""
+  """),format.raw/*40.3*/("""</style>
 
  
   </script>
 </head>
 <body>
 
+
+
 <div class="jumbotron text-center">
-  
+
+<div id='parent_div_1'>
+
+  <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
+<h5 style="color: black">Princing</h><br>
+<h4 style="color: black">DHL = 100 &#x20B9</h4>
+<h4 style="color: black">DTDC = 200 &#x20B9</h4>
+<h4 style="color: black">AirPost = 300 &#x20B9</h4>
+<h4></h4>
+<h4></h4>
+  </div>
+  </div>
 <form  class="jumbotron text-center" action="/payment" method="GET" >
-    <h3>These are the courier service provider corporate : </h3>
-    <h1>"""),_display_(/*42.10*/message),format.raw/*42.17*/("""</h1>
-    <input type="radio" name="book">
-    <h1>Enter Order Destination details : </h1>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="reciverName" maxlength="25" placeholder="Reciver Name" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="state" maxlength="25" placeholder="State" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="area" maxlength="20" placeholder="Area" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="street" maxlength="20" placeholder="Street" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="houseNumber" maxlength="15" placeholder="House Number" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="contactNumber" maxlength="10" minlength="10" pattern="[0-9]+" placeholder="Contact Number" required>
+    <h2>These are the courier service provider corporate : </h2>
+    <h1>"""),_display_(/*64.10*/message),format.raw/*64.17*/("""</h1>
+    
+    
+    <input type="text-center" class="form-control" style="color:#191c1a" name="serviceProvider" maxlength="25" placeholder="Enter Service provider Name" required />
+    
 
     <br>
     <input class="btn btn-danger" type="submit" name="submitDetails" placeholder="payment" value="Submit Details">
@@ -113,11 +131,11 @@ Seq[Any](format.raw/*5.19*/("""
 object selectCourierService extends selectCourierService_Scope0.selectCourierService
               /*
                   -- GENERATED --
-                  DATE: Mon Mar 13 12:32:16 IST 2017
+                  DATE: Wed Mar 22 01:41:24 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/selectCourierService.scala.html
-                  HASH: 771c571a1b2764d17954f629a05a34dc6998b4ce
-                  MATRIX: 864->95|976->112|1005->115|1566->648|1595->649|1629->656|1732->732|1760->733|1790->736|1827->745|1856->746|1890->753|1946->782|1974->783|2004->786|2049->803|2078->804|2112->811|2161->833|2189->834|2219->837|2469->1060|2497->1067
-                  LINES: 30->5|35->5|38->8|49->19|49->19|50->20|54->24|54->24|55->25|55->25|55->25|56->26|57->27|57->27|58->28|58->28|58->28|59->29|60->30|60->30|61->31|72->42|72->42
+                  HASH: 95e4b6dee4e5f09b86a48ffc14f16a0b4e5cee49
+                  MATRIX: 864->95|976->112|1005->115|1566->648|1595->649|1629->656|1733->733|1761->734|1791->737|1828->746|1857->747|1891->754|1947->783|1975->784|2005->787|2050->804|2079->805|2113->812|2162->834|2190->835|2223->841|2294->884|2323->885|2355->890|2396->904|2424->905|2454->908|2494->920|2523->921|2555->926|2619->963|2647->964|2677->967|3266->1529|3294->1536
+                  LINES: 30->5|35->5|38->8|49->19|49->19|50->20|54->24|54->24|55->25|55->25|55->25|56->26|57->27|57->27|58->28|58->28|58->28|59->29|60->30|60->30|63->33|63->33|63->33|64->34|65->35|65->35|66->36|66->36|66->36|67->37|69->39|69->39|70->40|94->64|94->64
                   -- GENERATED --
               */
           

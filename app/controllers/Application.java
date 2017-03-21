@@ -78,9 +78,65 @@ public class Application extends Controller {
 		return ok(index.render(this.userProvider));
 	}
 
+	public Result newUser() {
+		String userEmailId = request().getQueryString("userEmailId");
+		String password = request().getQueryString("password");
+		String confirmPassword = request().getQueryString("confirmPassword");
+
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+
+		MongoCollection<Document> senderDetails = hereThere.getCollection("senderDetails");
+
+		try {
+			MongoCursor<Document> cursor = null;
+			cursor = senderDetails.find(new Document("userEmailId", userEmailId)).iterator();
+			System.out.println("Inside try  : " + cursor.toString());
+
+			while (cursor.hasNext()) {
+
+				Document article = cursor.next();
+				System.out.println("inside While loop ::: " + article);
+				if (article.containsValue(userEmailId)) {
+
+					System.out.println("Id exists");
+
+					return ok(unSuccess.render("User Email ID " + userEmailId + " is already exists."));
+
+				}
+
+			}
+			if (password.equals(confirmPassword)) {
+				Document document = new Document("userEmailId", userEmailId).append("password", password);
+
+				senderDetails.insertOne(document);
+
+			}
+			else {
+				return ok(unSuccess.render("Passwords did not match."));
+				
+			}
+			cursor.close();
+
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			mongoClient.close();
+		}
+
+		return ok(success.render("Email id : "+userEmailId+" is added."));
+	}
+
 	public Result estimatedDate(play.mvc.Http.Request request) {
 		System.out.println("estimated  Date");
 		return ok(success.render("estimatedDate"));
+	}
+
+	public Result payBill(play.mvc.Http.Request request) {
+		System.out.println("Pay Bill");
+		return ok(success.render("Pay Bill"));
 	}
 
 	public Result track(play.mvc.Http.Request request) {
@@ -127,6 +183,7 @@ public class Application extends Controller {
 	}
 
 	public Result hereThere() {
+
 		return ok(hereThereHomePage.render(this.userProvider));
 	}
 
@@ -196,6 +253,9 @@ public class Application extends Controller {
 		if (action.equals("Track")) {
 
 			return track(request());
+		} else if (action.equals("Pay Bill")) {
+			return payBill(request());
+
 		} else {
 
 			return estimatedDate(request());
@@ -221,27 +281,41 @@ public class Application extends Controller {
 		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
 		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
 		ObjectId orderNumber = null;
+
+		MongoCursor<Document> orderAddresssCursor = orderAddress.find().iterator();
+
 		try {
-			System.out.println("Inside try  : ");
 
-			Document document = new Document("reciverName", reciverName).append("state", state).append("area", area)
-					.append("street", street).append("houseNumber", houseNumber).append("contactNumber", contactNumber);
+			while (orderAddresssCursor.hasNext()) {
 
-			orderAddress.insertOne(document);
-			String status = "Order is registered";
-			System.out.println("_id " + document.getObjectId("_id"));
-			orderStatus.insertOne(new Document("orderStatus", status).append("_id", document.getObjectId("_id")));
+				Document document = orderAddresssCursor.next();
+				ObjectId id = document.getObjectId("_id");
 
-			orderNumber = document.getObjectId("_id");
+				if (!document.containsValue("delivered")) {
+
+					System.out.println("Order Id : " + document.getObjectId("_id"));
+
+					System.out.println("Inside If");
+					Bson arg1 = new Document("_id", document.getObjectId("_id"));
+
+					Bson arg0 = new Document("reciverName", reciverName).append("state", state).append("area", area)
+							.append("street", street).append("houseNumber", houseNumber)
+							.append("contactNumber", contactNumber);
+
+					Bson updateOpration = new Document("$set", arg0);
+					orderAddress.updateOne(arg1, updateOpration);
+					return ok(payment.render("your Order id : " + document.getObjectId("_id").toString()));
+
+				}
+			}
 		}
 
 		catch (Exception e) {
 			e.printStackTrace();
-			return ok(unSuccess.render("Error Occered "));
 		} finally {
+			orderAddresssCursor.close();
 			mongoClient.close();
 		}
-
 		return ok(payment.render("your Order id : " + orderNumber));
 	}
 
@@ -253,9 +327,13 @@ public class Application extends Controller {
 		String emailId = request().getQueryString("emailId");
 
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase db = mongoClient.getDatabase("hereThere");
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
 
-		MongoCollection<Document> pinCodes = db.getCollection("pincodes");
+		MongoCollection<Document> pinCodes = hereThere.getCollection("pincodes");
+		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
+		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
+		MongoCollection<Document> senderDetails = hereThere.getCollection("senderDetails");
+		ObjectId orderNumber = null;
 
 		BsonDocument queryJson = new BsonDocument();
 		queryJson.append("pincode", new BsonString(fromPincode));
@@ -307,6 +385,24 @@ public class Application extends Controller {
 
 			}
 
+		}
+		try {
+			System.out.println("Inside try  : ");
+
+			Document document = new Document("shipmentType", shipmentType).append("emailId", emailId)
+					.append("toPincode", toPincode);
+
+			orderAddress.insertOne(document);
+			String status = "Order is registered";
+			System.out.println("_id " + document.getObjectId("_id"));
+			orderStatus.insertOne(new Document("orderStatus", status).append("_id", document.getObjectId("_id")));
+			senderDetails.insertOne(new Document("emailId", emailId));
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			mongoClient.close();
 		}
 
 		System.out.println("productList : " + list);

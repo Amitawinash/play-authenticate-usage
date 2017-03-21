@@ -26,6 +26,17 @@
   <div class="jumbotron" id='parent_div_1' style="background-color: #FAEEAF ;width: 100%">
       <div>
         <div id='parent_div_1'>
+
+        <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
+             <form action="/newUser" style="margin: 25px;"  >
+               <h5 style="box-shadow: currentColor;">New user</h5>
+               <input class="form-control" type="email" name="userEmailId" placeholder="Enter user Email Id"  maxlength="29" required / >
+               <input class="form-control" type="password" name="password" placeholder="Enter password"  maxlength="24" required / >
+               <input class="form-control" type="password" name="confirmPassword" placeholder="Enter Confirm Password"  maxlength="24" required / >
+               <br>
+               <input class="form-control" type="submit" name="action" value="Track">
+          </form>
+          </div>
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
            <form action="/address"  style="margin: 25px;" >
             <h5 style="box-shadow: currentColor; ">Send Somthing</h5>
@@ -37,16 +48,27 @@
              <option value="household">Household</option>
              <option value="food">Food</option>
             </select>
-            <input class="form-control"  id="inputId" type="email" name="emailId" placeholder="Sender email Id"   required/  >
-            <input class="form-control" type="submit" name="" value="Send" >
+            <input class="form-control" type="email" name="emailId" placeholder="Sender email Id"   required/  >
+            <input class="form-control" type="password" name="password" placeholder="Enter password"  maxlength="24" required / >
+            
+
+            <input type="text-center" class="form-control" style="color:#191c1a" name="reciverName" maxlength="25" placeholder="Reciver Name" required>
+    <input type="text-center" class="form-control" style="color:#191c1a" name="state" maxlength="25" placeholder="Reciver State" required>
+    <input type="text-center" class="form-control" style="color:#191c1a" name="area" maxlength="20" placeholder="Reciver Area" required>
+    <input type="text-center" class="form-control" style="color:#191c1a" name="street" maxlength="20" placeholder="Reciver Street" required>
+    <input type="text-center" class="form-control" style="color:#191c1a" name="houseNumber" maxlength="15" placeholder="Reciver House Number" required>
+    <input type="text-center" class="form-control" style="color:#191c1a" name="contactNumber" maxlength="10" minlength="10" pattern="[0-9]+" placeholder="Reciver Contact Number" required>
+    <input class="form-control" type="submit" name="" value="Send" >
           </form>
           </div>
           <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
              <form action="/orderStatus" style="margin: 25px;"  >
                <h5 style="box-shadow: currentColor;">Track Your Order</h5>
                <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number"  maxlength="24" required / >
+               <br>
                <input class="form-control" type="submit" name="action" value="Track">
                <input class="form-control" type="submit" name="action"  value="Estimated Date">
+               <input class="form-control" type="submit" name="action"  value="Pay Bill">
           </form>
           </div>
         </div>
