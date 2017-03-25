@@ -21,18 +21,18 @@ import play.data._
 import play.api.data.Field
 import play.mvc.Http.Context.Implicit._
 
-class selectCourierService extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template1[String,play.twirl.api.HtmlFormat.Appendable] {
+class selectCourierService extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template2[String,String,play.twirl.api.HtmlFormat.Appendable] {
 
   /*
  * This template takes a single argument, a String containing a
  * message to display.
  */
-  def apply/*5.2*/(message: String):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*5.2*/(message: String , orderId: String):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 
 
-Seq[Any](format.raw/*5.19*/("""
+Seq[Any](format.raw/*5.37*/("""
 
 
 """),format.raw/*8.1*/("""<!DOCTYPE html>
@@ -92,13 +92,18 @@ Seq[Any](format.raw/*5.19*/("""
 <form  class="jumbotron text-center" action="/payment" method="GET" >
     <h2>These are the courier service provider corporate : </h2>
     <h1>"""),_display_(/*64.10*/message),format.raw/*64.17*/("""</h1>
-    
-    
-    <input type="text-center" class="form-control" style="color:#191c1a" name="serviceProvider" maxlength="25" placeholder="Enter Service provider Name" required />
+    <select class="form-control"   name="shipmentType"  required="value" />
+             <option value="DHL">DHL</option>
+             <option value="DTDC">DTDC</option>
+             <option value="AirPost">AirPost</option>
+    </select>
+
+    <h1>Your order number is : """),_display_(/*71.33*/orderId),format.raw/*71.40*/("""</h1>
     
 
     <br>
-    <input class="btn btn-danger" type="submit" name="submitDetails" placeholder="payment" value="Submit Details">
+    <button class="btn btn-danger" value=""""),_display_(/*75.44*/orderId),format.raw/*75.51*/("""" name="orderId">Next</button>
+   
   </form>
   
 </div>
@@ -113,9 +118,9 @@ Seq[Any](format.raw/*5.19*/("""
     }
   }
 
-  def render(message:String): play.twirl.api.HtmlFormat.Appendable = apply(message)
+  def render(message:String,orderId:String): play.twirl.api.HtmlFormat.Appendable = apply(message,orderId)
 
-  def f:((String) => play.twirl.api.HtmlFormat.Appendable) = (message) => apply(message)
+  def f:((String,String) => play.twirl.api.HtmlFormat.Appendable) = (message,orderId) => apply(message,orderId)
 
   def ref: this.type = this
 
@@ -131,11 +136,11 @@ Seq[Any](format.raw/*5.19*/("""
 object selectCourierService extends selectCourierService_Scope0.selectCourierService
               /*
                   -- GENERATED --
-                  DATE: Wed Mar 22 01:41:24 IST 2017
+                  DATE: Fri Mar 24 22:57:33 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/selectCourierService.scala.html
-                  HASH: 95e4b6dee4e5f09b86a48ffc14f16a0b4e5cee49
-                  MATRIX: 864->95|976->112|1005->115|1566->648|1595->649|1629->656|1733->733|1761->734|1791->737|1828->746|1857->747|1891->754|1947->783|1975->784|2005->787|2050->804|2079->805|2113->812|2162->834|2190->835|2223->841|2294->884|2323->885|2355->890|2396->904|2424->905|2454->908|2494->920|2523->921|2555->926|2619->963|2647->964|2677->967|3266->1529|3294->1536
-                  LINES: 30->5|35->5|38->8|49->19|49->19|50->20|54->24|54->24|55->25|55->25|55->25|56->26|57->27|57->27|58->28|58->28|58->28|59->29|60->30|60->30|63->33|63->33|63->33|64->34|65->35|65->35|66->36|66->36|66->36|67->37|69->39|69->39|70->40|94->64|94->64
+                  HASH: d64f1de6280448b519b940059c2d64f7f5f3aed2
+                  MATRIX: 871->95|1001->130|1030->133|1591->666|1620->667|1654->674|1758->751|1786->752|1816->755|1853->764|1882->765|1916->772|1972->801|2000->802|2030->805|2075->822|2104->823|2138->830|2187->852|2215->853|2248->859|2319->902|2348->903|2380->908|2421->922|2449->923|2479->926|2519->938|2548->939|2580->944|2644->981|2672->982|2702->985|3291->1547|3319->1554|3623->1831|3651->1838|3742->1902|3770->1909
+                  LINES: 30->5|35->5|38->8|49->19|49->19|50->20|54->24|54->24|55->25|55->25|55->25|56->26|57->27|57->27|58->28|58->28|58->28|59->29|60->30|60->30|63->33|63->33|63->33|64->34|65->35|65->35|66->36|66->36|66->36|67->37|69->39|69->39|70->40|94->64|94->64|101->71|101->71|105->75|105->75
                   -- GENERATED --
               */
           

@@ -21,18 +21,18 @@ import play.data._
 import play.api.data.Field
 import play.mvc.Http.Context.Implicit._
 
-class payment extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template1[String,play.twirl.api.HtmlFormat.Appendable] {
+class payment extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template2[String,String,play.twirl.api.HtmlFormat.Appendable] {
 
   /*
  * This template takes a single argument, a String containing a
  * message to display.
  */
-  def apply/*5.2*/(message: String):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*5.2*/(orderId: String , cost: String):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 
 
-Seq[Any](format.raw/*5.19*/("""
+Seq[Any](format.raw/*5.34*/("""
 
 
 """),format.raw/*8.1*/("""<!DOCTYPE html>
@@ -69,21 +69,16 @@ Seq[Any](format.raw/*5.19*/("""
 
 <div class="jumbotron text-center">
  
-  <form action="/orderSubmitDetail"> 
-  <h2>"""),_display_(/*43.8*/message),format.raw/*43.15*/("""</h2>
-<h1>Enter Card Details</h1>
-  <input type="text-center" class="form-control" style="color:#191c1a" name="price" size="5" placeholder="Price" required>  
-
-  <input type="text-center" class="form-control" style="color:#191c1a" name="cardNumber" size="5" placeholder="Card Number" required> 
-
-   <input type="text-center" class="form-control" style="color:#191c1a" name="cardNumber" size="5" placeholder="Card Holder Name" required> 
-
-    <input type="text-center" class="form-control" style="color:#191c1a" name="cardNumber" size="5" placeholder="CCV" required> 
-     <input type="text-center" class="form-control" style="color:#191c1a" name="cardNumber" size="5" placeholder="Valid Through" required> 
-
-      <input type="text-center" class="form-control" style="color:#191c1a" name="cardNumber" size="5" placeholder="Visa/master/Rupee" required> 
-
-  <input type="submit" name="Button" value="Make Payment" style="color: #8c449f">     
+  <form action="/transactions"> 
+  <h4>Total cost for order id """),_display_(/*43.32*/orderId),format.raw/*43.39*/(""" """),format.raw/*43.40*/("""</h4>
+  
+  <h1>"""),_display_(/*45.8*/cost),format.raw/*45.12*/(""" """),format.raw/*45.13*/("""&#x20B9</h1>
+  <h4>accept terms and conditions</h4>
+  <br>
+  <input type="checkbox" name="orderId" value=""""),_display_(/*48.49*/orderId),format.raw/*48.56*/("""" required/>
+  <br>
+  <button class="btn btn-danger" name="action" data-value3="value3" data-value="value2" value="Make Payment">Make Payment</button>
+  <button  class="btn btn-danger" name="action" data-value3="value3" data-value="value2" value="Cancle Order">Cancle Order</button> 
   
   </form>  
 </div>
@@ -98,9 +93,9 @@ Seq[Any](format.raw/*5.19*/("""
     }
   }
 
-  def render(message:String): play.twirl.api.HtmlFormat.Appendable = apply(message)
+  def render(orderId:String,cost:String): play.twirl.api.HtmlFormat.Appendable = apply(orderId,cost)
 
-  def f:((String) => play.twirl.api.HtmlFormat.Appendable) = (message) => apply(message)
+  def f:((String,String) => play.twirl.api.HtmlFormat.Appendable) = (orderId,cost) => apply(orderId,cost)
 
   def ref: this.type = this
 
@@ -116,11 +111,11 @@ Seq[Any](format.raw/*5.19*/("""
 object payment extends payment_Scope0.payment
               /*
                   -- GENERATED --
-                  DATE: Mon Mar 13 17:27:58 IST 2017
+                  DATE: Fri Mar 24 22:24:32 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/payment.scala.html
-                  HASH: 62918cab7777a9bb8af0ba53f25a38814e095ce1
-                  MATRIX: 838->95|950->112|979->115|1540->648|1569->649|1603->656|1706->732|1734->733|1764->736|1801->745|1830->746|1864->753|1920->782|1948->783|1978->786|2023->803|2052->804|2086->811|2135->833|2163->834|2195->839|2344->962|2372->969
-                  LINES: 30->5|35->5|38->8|49->19|49->19|50->20|54->24|54->24|55->25|55->25|55->25|56->26|57->27|57->27|58->28|58->28|58->28|59->29|60->30|60->30|63->33|73->43|73->43
+                  HASH: 339fdbdb5b5b4c0be8ca04aacf01cea07093eb2d
+                  MATRIX: 845->95|972->127|1001->130|1562->663|1591->664|1625->671|1728->747|1756->748|1786->751|1823->760|1852->761|1886->768|1942->797|1970->798|2000->801|2045->818|2074->819|2108->826|2157->848|2185->849|2217->854|2386->996|2414->1003|2443->1004|2485->1020|2510->1024|2539->1025|2673->1132|2701->1139
+                  LINES: 30->5|35->5|38->8|49->19|49->19|50->20|54->24|54->24|55->25|55->25|55->25|56->26|57->27|57->27|58->28|58->28|58->28|59->29|60->30|60->30|63->33|73->43|73->43|73->43|75->45|75->45|75->45|78->48|78->48
                   -- GENERATED --
               */
           

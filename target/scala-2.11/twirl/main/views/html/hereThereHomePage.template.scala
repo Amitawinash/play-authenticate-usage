@@ -49,22 +49,29 @@ Seq[Any](format.raw/*9.30*/("""
   """),format.raw/*23.3*/("""}"""),format.raw/*23.4*/("""
 """),format.raw/*24.1*/("""</style>
       <h2 style="border-color: pink ">Welcome to HereThere courier service</h2>
-  <div class="jumbotron" id='parent_div_1' style="background-color: #FAEEAF ;width: 100%">
-      <div>
+  <div class="jumbotron" id='parent_div_1' style="background-color: #FAEEAF ;width: 100%;">
+      
         <div id='parent_div_1'>
 
         <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
-             <form action="/newUser" style="margin: 25px;"  >
+             <form action="/newUser" style="margin: 25px; margin-bottom: 0%"  >
                <h5 style="box-shadow: currentColor;">New user</h5>
-               <input class="form-control" type="email" name="userEmailId" placeholder="Enter user Email Id"  maxlength="29" required / >
+               <input class="form-control" type="email" name="userEmailId" placeholder="Enter User Email Id"  maxlength="29" required / >
                <input class="form-control" type="password" name="password" placeholder="Enter password"  maxlength="24" required / >
                <input class="form-control" type="password" name="confirmPassword" placeholder="Enter Confirm Password"  maxlength="24" required / >
+               <h6 style="color: red">Sequrity Question</h6>
+               <h6>In which year you were born ?</h6>
+               <input class="form-control" type="password" name="sequrityAnswer" placeholder="Enter Answer"  maxlength="4" required / >
                <br>
-               <input class="form-control" type="submit" name="action" value="Track">
+               <input class="form-control" style="background-color: #9FB0F9;" type="submit" name="action" value="Register">
           </form>
+          <div>
+          <form action="/forgetPassword" style="margin: 25px; margin-top: 0%">
+                 <input class="form-control" type="submit" name="action" value="Forget Password">
+               </form></div>
           </div>
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
-           <form action="/address"  style="margin: 25px;" >
+           <form action="/checkAvailability"  style="margin: 25px;" >
             <h5 style="box-shadow: currentColor; ">Send Somthing</h5>
 
             <input class="form-control" type="text-center" name="toPincode" placeholder="Drop off location pincode"  pattern="[0-9]+" maxlength="6"  minlength="6" required/>
@@ -94,8 +101,17 @@ Seq[Any](format.raw/*9.30*/("""
                <br>
                <input class="form-control" type="submit" name="action" value="Track">
                <input class="form-control" type="submit" name="action"  value="Estimated Date">
-               <input class="form-control" type="submit" name="action"  value="Pay Bill">
+               
           </form>
+          <div class="child_div_1" style="background-color: #BFD3F0;border-radius: 10px;margin: 15px;">
+             <form action="/findOrderId" style="margin: 25px;"  >
+               <h5 style="box-shadow: currentColor;">Find order Id</h5>
+               
+               <input class="form-control" type="email" name="userEmailId" placeholder="Enter User Email Id"  maxlength="29" required / >
+              
+               <input class="form-control" type="submit" name="action"  value="Get all order Id">
+          </form>
+          </div>
           </div>
         </div>
       </div>
@@ -141,9 +157,9 @@ Seq[Any](format.raw/*9.30*/("""
 object hereThereHomePage extends hereThereHomePage_Scope0.hereThereHomePage_Scope1.hereThereHomePage
               /*
                   -- GENERATED --
-                  DATE: Wed Mar 22 01:14:05 IST 2017
+                  DATE: Sat Mar 25 01:43:27 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/hereThereHomePage.scala.html
-                  HASH: 8e660541a0fec9117c14639a3803d2fdd94fc73b
+                  HASH: cd80a870ea4cf19807814454d4260766d33f98b5
                   MATRIX: 843->127|966->155|995->158|1064->218|1104->220|1138->227|1320->381|1349->382|1381->387|1422->401|1450->402|1480->405|1520->417|1549->418|1581->423|1645->460|1673->461|1701->462
                   LINES: 30->9|35->9|37->11|37->11|37->11|38->12|43->17|43->17|44->18|45->19|45->19|46->20|46->20|46->20|47->21|49->23|49->23|50->24
                   -- GENERATED --

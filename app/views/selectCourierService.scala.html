@@ -2,7 +2,7 @@
  * This template takes a single argument, a String containing a
  * message to display.
  *@
-@(message: String)
+@(message: String , orderId: String)
 
 
 <!DOCTYPE html>
@@ -62,13 +62,18 @@
 <form  class="jumbotron text-center" action="/payment" method="GET" >
     <h2>These are the courier service provider corporate : </h2>
     <h1>@message</h1>
-    
-    
-    <input type="text-center" class="form-control" style="color:#191c1a" name="serviceProvider" maxlength="25" placeholder="Enter Service provider Name" required />
+    <select class="form-control"   name="shipmentType"  required="value" />
+             <option value="DHL">DHL</option>
+             <option value="DTDC">DTDC</option>
+             <option value="AirPost">AirPost</option>
+    </select>
+
+    <h1>Your order number is : @orderId</h1>
     
 
     <br>
-    <input class="btn btn-danger" type="submit" name="submitDetails" placeholder="payment" value="Submit Details">
+    <button class="btn btn-danger" value="@orderId" name="orderId">Next</button>
+   
   </form>
   
 </div>

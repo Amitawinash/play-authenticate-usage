@@ -17,10 +17,11 @@ import views.html.*;
 import javax.inject.Inject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
 
@@ -45,6 +46,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.util.JSON;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_EXCLUSIONPeer;
 
 import play.api.mvc.Request;
 import play.core.routing.Param;
@@ -76,6 +78,106 @@ public class Application extends Controller {
 
 	public Result index() {
 		return ok(index.render(this.userProvider));
+	}
+	
+	public Result success() {
+		return ok(successUser.render("Password Has changed."));
+	}
+	
+	public Result newPassword() {
+		return ok(changePassword.render("yoo"));
+	}
+	
+	
+	
+	public Result forgetPassword() {
+		return ok(forgetPassword.render(this.userProvider));
+	}
+
+
+	public Result transactionDetails(play.mvc.Http.Request request) {
+		String orderId = request().getQueryString("orderId");
+
+		System.out.println("Order Number : " + orderId);
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoCollection<Document> orderStatusTable = hereThere.getCollection("orderStatus");
+		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
+
+		try {
+			System.out.println("Inside try  : ");
+			MongoCursor<Document> orderStatusCursor = orderStatusTable.find().iterator();
+			MongoCursor<Document> orderAddressCursor = orderAddress.find().iterator();
+
+			while (orderStatusCursor.hasNext()) {
+
+				Document document = orderStatusCursor.next();
+				Document documentorderAddress = orderAddressCursor.next();
+				System.out.println("Inside While :" + document.containsValue(orderId));
+				System.out.println("Order Id : " + document.getObjectId("_id"));
+				ObjectId id = document.getObjectId("_id");
+				if (id.toString().equals(orderId)) {
+
+					System.out.println("id : " + orderId);
+					Bson findArgument = new Document("_id", document.getObjectId("_id"));
+					String updatedValue = "Payment has done";
+					Bson updateArgument = new Document("statusOfOrder", updatedValue);
+					Bson updateOpration = new Document("$set", updateArgument);
+					orderStatusTable.updateOne(findArgument, updateOpration);
+
+					System.out.println("Inside If");
+					String fromPincode = documentorderAddress.getString("fromPincode");
+					String toPincode = documentorderAddress.getString("toPincode");
+					String shipmentType = documentorderAddress.getString("shipmentType");
+					String emailId = documentorderAddress.getString("emailId");
+					String reciverName = documentorderAddress.getString("reciverName");
+					String state = documentorderAddress.getString("state");
+					String area = documentorderAddress.getString("area");
+					String street = documentorderAddress.getString("street");
+					String houseNumber = documentorderAddress.getString("houseNumber");
+					String contactNumber = documentorderAddress.getString("contactNumber");
+					String orderStatus = document.getString("orderStatus");
+					return ok(transactions.render(document.getString("statusOfOrder"), fromPincode, toPincode,
+							shipmentType));
+
+				}
+
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+			return ok(unSuccessUser.render("Error Occered "));
+		} finally {
+			mongoClient.close();
+		}
+
+		System.out.println("Track");
+		return ok(unSuccessUser.render("Order Id is wrong."));
+	}
+
+	public Result transactionCancle(play.mvc.Http.Request request) {
+		return ok(successUser.render("transactionCancle"));
+	}
+
+	public Result transactions() {
+		String action = request().getQueryString("action");
+		System.out.println("action value : " + action);
+		if (action.equals("Make Payment")) {
+
+			return transactionDetails(request());
+		} else if (action.equals("Cancle Order")) {
+			return transactionCancle(request());
+
+		} else {
+
+			return getEstimatedDate(request());
+		}
+
+	}
+
+	public Result findOrderId() {
+		return ok(findOrderId.render("yoo", "noo"));
 	}
 
 	public Result newUser() {
@@ -111,10 +213,9 @@ public class Application extends Controller {
 
 				senderDetails.insertOne(document);
 
-			}
-			else {
+			} else {
 				return ok(unSuccess.render("Passwords did not match."));
-				
+
 			}
 			cursor.close();
 
@@ -126,27 +227,16 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 
-		return ok(success.render("Email id : "+userEmailId+" is added."));
+		return ok(success.render("Email id : " + userEmailId + " is added."));
 	}
 
-	public Result estimatedDate(play.mvc.Http.Request request) {
-		System.out.println("estimated  Date");
-		return ok(success.render("estimatedDate"));
-	}
-
-	public Result payBill(play.mvc.Http.Request request) {
-		System.out.println("Pay Bill");
-		return ok(success.render("Pay Bill"));
-	}
-
-	public Result track(play.mvc.Http.Request request) {
+	public Result getEstimatedDate(play.mvc.Http.Request request) {
 
 		String orderNumber = request().getQueryString("orderNumber");
 
 		System.out.println("Order Number : " + orderNumber);
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
 		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
-		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
 		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
 
 		try {
@@ -164,10 +254,65 @@ public class Application extends Controller {
 					System.out.println("Inside If");
 
 					document.getString("orderStatus");
-					return ok(success.render("Order Status is : " + document.getString("orderStatus")));
+					return ok(successUser
+							.render("Estimated Date of Delivery is : " + document.getString("estimatedDate")));
 
 				}
 
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+			return ok(unSuccessUser.render("Error Occered "));
+		} finally {
+			mongoClient.close();
+		}
+
+		System.out.println("Track");
+		return ok(unSuccessUser.render("Order Id is wrong."));
+	}
+
+	public Result estimatedDate() {
+		String orderNumber = request().getQueryString("orderNumber");
+		String estimatedDate = request().getQueryString("estimatedDate");
+
+		System.out.println("Order Number : " + orderNumber);
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
+
+		try {
+			System.out.println("Inside try  : ");
+			MongoCursor<Document> orderStatusCursor = orderStatus.find().iterator();
+
+			while (orderStatusCursor.hasNext()) {
+
+				Document document = orderStatusCursor.next();
+				System.out.println("Inside While :" + document.containsValue(orderNumber));
+				System.out.println("Order Id : " + document.getObjectId("_id"));
+				ObjectId id = document.getObjectId("_id");
+
+				if (id.toString().equals(orderNumber)) {
+
+					if (!document.containsValue("delivered")) {
+						System.out.println("Inside If");
+						Bson arg1 = new Document("_id", document.getObjectId("_id"));
+
+						Bson arg0 = new Document("estimatedDate", estimatedDate);
+
+						Bson updateOpration = new Document("$set", arg0);
+						orderStatus.updateOne(arg1, updateOpration);
+						return ok(success.render("Order estimated date is updated."));
+					}
+
+					else {
+
+						return ok(unSuccess.render("Order Is already delivered"));
+
+					}
+
+				}
 			}
 		}
 
@@ -178,8 +323,54 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 
+		return ok(unSuccess.render("Order Number not found"));
+	}
+
+	public Result payBill(play.mvc.Http.Request request) {
+		System.out.println("Pay Bill");
+		return ok(successUser.render("Pay Bill"));
+	}
+
+	public Result track(play.mvc.Http.Request request) {
+
+		String orderNumber = request().getQueryString("orderNumber");
+
+		System.out.println("Order Number : " + orderNumber);
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
+
+		try {
+			System.out.println("Inside try  : ");
+			MongoCursor<Document> orderStatusCursor = orderStatus.find().iterator();
+
+			while (orderStatusCursor.hasNext()) {
+
+				Document document = orderStatusCursor.next();
+				System.out.println("Inside While :" + document.containsValue(orderNumber));
+				System.out.println("Order Id : " + document.getObjectId("_id"));
+				ObjectId id = document.getObjectId("_id");
+				if (id.toString().equals(orderNumber)) {
+
+					System.out.println("Inside If");
+
+					document.getString("orderStatus");
+					return ok(successUser.render("Order Status is : " + document.getString("statusOfOrder")));
+
+				}
+
+			}
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+			return ok(unSuccessUser.render("Error Occered "));
+		} finally {
+			mongoClient.close();
+		}
+
 		System.out.println("Track");
-		return ok(success.render("tracked"));
+		return ok(unSuccessUser.render("Order Id is wrong."));
 	}
 
 	public Result hereThere() {
@@ -188,7 +379,7 @@ public class Application extends Controller {
 	}
 
 	public Result shipment() {
-		return ok(updateOrderStatus.render(this.userProvider));
+		return ok(shipment.render(this.userProvider));
 	}
 
 	public Result updateOrderStatus() {
@@ -219,7 +410,7 @@ public class Application extends Controller {
 						System.out.println("Inside If");
 						Bson arg1 = new Document("_id", document.getObjectId("_id"));
 
-						Bson arg0 = new Document("orderStatus", shipmentStatus);
+						Bson arg0 = new Document("statusOfOrder", shipmentStatus);
 
 						Bson updateOpration = new Document("$set", arg0);
 						orderStatus.updateOne(arg1, updateOpration);
@@ -258,23 +449,30 @@ public class Application extends Controller {
 
 		} else {
 
-			return estimatedDate(request());
+			return getEstimatedDate(request());
 		}
 
 		// return ok(unSuccess.render("To do "));
 	}
 
-	public Result orderAddress() {
+	public Result payment() {
 
-		String reciverName = request().getQueryString("reciverName");
-		String state = request().getQueryString("state");
-		String area = request().getQueryString("area");
-		String street = request().getQueryString("street");
-		String houseNumber = request().getQueryString("houseNumber");
-		String contactNumber = request().getQueryString("contactNumber");
-
-		System.out.println("value of ID " + "reciverName " + reciverName + "state " + state + "area " + area + "street "
-				+ street + "houseNumber " + houseNumber + "  contactNumber " + contactNumber);
+		String shipmentType = request().getQueryString("shipmentType");
+		String orderId = request().getQueryString("orderId");
+		String price = null;
+		if (shipmentType.equals("DHL")) {
+			System.out.println(shipmentType == "DHL");
+			price = "100";
+		}
+		if (shipmentType.equals("DTDC")) {
+			System.out.println(shipmentType == "DTDC");
+			price = "200";
+		}
+		if (shipmentType.equals("AirPost")) {
+			System.out.println(shipmentType == "AirPost");
+			price = "300";
+		}
+		System.out.println("value of ID " + " shipmentType: " + shipmentType);
 
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
 		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
@@ -298,13 +496,11 @@ public class Application extends Controller {
 					System.out.println("Inside If");
 					Bson arg1 = new Document("_id", document.getObjectId("_id"));
 
-					Bson arg0 = new Document("reciverName", reciverName).append("state", state).append("area", area)
-							.append("street", street).append("houseNumber", houseNumber)
-							.append("contactNumber", contactNumber);
+					Bson arg0 = new Document("reciverName", shipmentType);
 
 					Bson updateOpration = new Document("$set", arg0);
 					orderAddress.updateOne(arg1, updateOpration);
-					return ok(payment.render("your Order id : " + document.getObjectId("_id").toString()));
+					return ok(payment.render(orderId, price));
 
 				}
 			}
@@ -316,15 +512,23 @@ public class Application extends Controller {
 			orderAddresssCursor.close();
 			mongoClient.close();
 		}
-		return ok(payment.render("your Order id : " + orderNumber));
+		return ok(payment.render(orderId, price));
 	}
 
+	@SuppressWarnings("unchecked")
 	public Result checkAvailability() {
 
 		String fromPincode = request().getQueryString("fromPincode");
 		String toPincode = request().getQueryString("toPincode");
 		String shipmentType = request().getQueryString("shipmentType");
 		String emailId = request().getQueryString("emailId");
+		String password = request().getQueryString("password");
+		String reciverName = request().getQueryString("reciverName");
+		String state = request().getQueryString("state");
+		String area = request().getQueryString("area");
+		String street = request().getQueryString("street");
+		String houseNumber = request().getQueryString("houseNumber");
+		String contactNumber = request().getQueryString("contactNumber");
 
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
 		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
@@ -386,17 +590,89 @@ public class Application extends Controller {
 			}
 
 		}
+
+		if (list.equals(null) || list.isEmpty()) {
+
+			return ok(unSuccessUser.render("No Service For Given Pincode."));
+		}
+		String orderId = null;
 		try {
-			System.out.println("Inside try  : ");
 
-			Document document = new Document("shipmentType", shipmentType).append("emailId", emailId)
-					.append("toPincode", toPincode);
+			MongoCursor<Document> cursor = null;
+			cursor = senderDetails.find(new Document("userEmailId", emailId)).iterator();
+			System.out.println("Inside try  : " + cursor);
 
-			orderAddress.insertOne(document);
-			String status = "Order is registered";
-			System.out.println("_id " + document.getObjectId("_id"));
-			orderStatus.insertOne(new Document("orderStatus", status).append("_id", document.getObjectId("_id")));
-			senderDetails.insertOne(new Document("emailId", emailId));
+			List<String> listOfOrderId = new LinkedList<>();
+			while (cursor.hasNext()) {
+
+				Document article = cursor.next();
+				System.out.println("inside While loop ::: " + article.containsValue(emailId));
+				if (article.containsValue(emailId) && article.containsValue(password)) {
+
+					System.out.println("Id exists " + article.containsValue(emailId));
+
+					System.out.println("Inside try  : ");
+
+					Document document = new Document("fromPincode", fromPincode).append("toPincode", toPincode)
+							.append("shipmentType", shipmentType).append("emailId", emailId)
+							.append("reciverName", reciverName).append("state", state).append("area", area)
+							.append("street", street).append("houseNumber", houseNumber)
+							.append("contactNumber", contactNumber);
+
+					orderAddress.insertOne(document);
+					String statusOfOrder = "Payment has not completed";
+					System.out.println("_id " + document.getObjectId("_id"));
+					orderStatus.insertOne(
+							new Document("_id", document.getObjectId("_id")).append("statusOfOrder", statusOfOrder));
+
+					if (!article.containsKey("listOfOrder")) {
+						System.out.println("Inside 2nd if ::" + article.containsKey("listOfOrder"));
+						listOfOrderId.add(document.getObjectId("_id").toString());
+						System.out.println("Id value ::" + document.getObjectId("_id").toString());
+						Bson arg1 = new Document("userEmailId", emailId);
+
+						Bson arg0 = new Document("listOfOrder", listOfOrderId);
+						System.out.println("value of listOfOrderId " + listOfOrderId);
+						Bson updateOpration = new Document("$set", arg0);
+						senderDetails.updateOne(arg1, updateOpration);
+
+					}
+
+					else {
+
+						List<String> vals = (List<String>) article.get("listOfOrder");
+
+						// List<String> vals = new ArrayList<>();
+						// vals.add(article.get("listOfOrder"));
+						System.out.println("inside Else Value of vals ::  " + vals);
+
+						listOfOrderId.add(document.getObjectId("_id").toString());
+						vals.addAll(listOfOrderId);
+						System.out.println("Number Of Order ::" + listOfOrderId.size());
+
+						Bson arg0 = new Document("userEmailId", emailId);
+						Bson arg1 = new Document("listOfOrder", vals);
+						System.out.println("Final value of vals:: " + vals);
+						Bson updateOpration = new Document("$set", arg1);
+
+						senderDetails.updateOne(arg0, updateOpration);
+
+					}
+
+					orderId = document.getObjectId("_id").toString();
+
+					System.out.println("productList : " + list);
+
+					Gson gson = new GsonBuilder().create();
+					JsonElement jsonTree = gson.toJsonTree(list);
+
+					JsonArray productListToJsonArray = jsonTree.getAsJsonArray();
+					return ok(selectCourierService.render(productListToJsonArray.toString(), orderId));
+
+				}
+
+			}
+
 		}
 
 		catch (Exception e) {
@@ -412,7 +688,7 @@ public class Application extends Controller {
 
 		JsonArray productListToJsonArray = jsonTree.getAsJsonArray();
 
-		return ok(selectCourierService.render(productListToJsonArray.toString()));
+		return ok(unSuccessUser.render("Your email id is not registered."));
 
 	}
 

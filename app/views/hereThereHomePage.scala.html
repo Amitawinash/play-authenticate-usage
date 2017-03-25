@@ -23,22 +23,29 @@
   }
 </style>
       <h2 style="border-color: pink ">Welcome to HereThere courier service</h2>
-  <div class="jumbotron" id='parent_div_1' style="background-color: #FAEEAF ;width: 100%">
-      <div>
+  <div class="jumbotron" id='parent_div_1' style="background-color: #FAEEAF ;width: 100%;">
+      
         <div id='parent_div_1'>
 
         <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
-             <form action="/newUser" style="margin: 25px;"  >
+             <form action="/newUser" style="margin: 25px; margin-bottom: 0%"  >
                <h5 style="box-shadow: currentColor;">New user</h5>
-               <input class="form-control" type="email" name="userEmailId" placeholder="Enter user Email Id"  maxlength="29" required / >
+               <input class="form-control" type="email" name="userEmailId" placeholder="Enter User Email Id"  maxlength="29" required / >
                <input class="form-control" type="password" name="password" placeholder="Enter password"  maxlength="24" required / >
                <input class="form-control" type="password" name="confirmPassword" placeholder="Enter Confirm Password"  maxlength="24" required / >
+               <h6 style="color: red">Sequrity Question</h6>
+               <h6>In which year you were born ?</h6>
+               <input class="form-control" type="password" name="sequrityAnswer" placeholder="Enter Answer"  maxlength="4" required / >
                <br>
-               <input class="form-control" type="submit" name="action" value="Track">
+               <input class="form-control" style="background-color: #9FB0F9;" type="submit" name="action" value="Register">
           </form>
+          <div>
+          <form action="/forgetPassword" style="margin: 25px; margin-top: 0%">
+                 <input class="form-control" type="submit" name="action" value="Forget Password">
+               </form></div>
           </div>
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
-           <form action="/address"  style="margin: 25px;" >
+           <form action="/checkAvailability"  style="margin: 25px;" >
             <h5 style="box-shadow: currentColor; ">Send Somthing</h5>
 
             <input class="form-control" type="text-center" name="toPincode" placeholder="Drop off location pincode"  pattern="[0-9]+" maxlength="6"  minlength="6" required/>
@@ -68,8 +75,17 @@
                <br>
                <input class="form-control" type="submit" name="action" value="Track">
                <input class="form-control" type="submit" name="action"  value="Estimated Date">
-               <input class="form-control" type="submit" name="action"  value="Pay Bill">
+               
           </form>
+          <div class="child_div_1" style="background-color: #BFD3F0;border-radius: 10px;margin: 15px;">
+             <form action="/findOrderId" style="margin: 25px;"  >
+               <h5 style="box-shadow: currentColor;">Find order Id</h5>
+               
+               <input class="form-control" type="email" name="userEmailId" placeholder="Enter User Email Id"  maxlength="29" required / >
+              
+               <input class="form-control" type="submit" name="action"  value="Get all order Id">
+          </form>
+          </div>
           </div>
         </div>
       </div>

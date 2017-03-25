@@ -1,4 +1,4 @@
-[0m[[31merror[0m] [0m/home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/main.scala.html:70: Not parsed?[0m
-[0m[[31merror[0m] [0m    }[0m
-[0m[[31merror[0m] [0m    ^[0m
+[0m[[31merror[0m] [0m/home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/findOrderId.scala.html:1: Invalid '@' symbol[0m
+[0m[[31merror[0m] [0m@(orderId: String , cost: String)*@[0m
+[0m[[31merror[0m] [0m                                  ^[0m
 [0m[[31merror[0m] [0m(compile:[31mtwirlCompileTemplates[0m) Twirl compilation failed[0m

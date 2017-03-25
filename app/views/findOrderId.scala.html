@@ -1,14 +1,4 @@
-@*
- * This template takes a single argument, a String containing a
- * message to display.
- *@
-
-
-
-@import service.UserProvider
-@(userProvider: UserProvider)
-
-@main(userProvider, Messages("playauthenticate.index.title")) {
+@(orderId: String , cost: String)
       <!-- Main jumbotron for a primary marketing message or call to action -->
 
       <style type="text/css">
@@ -50,6 +40,14 @@
                <input class="form-control" type="submit" name="action"  value="Estimated Date">
           </form>
           </div>
+          <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
+             <form action="/orderStatus" style="margin: 25px;"  >
+               <h5 style="box-shadow: currentColor;">Get all order Id</h5>
+               
+              
+               <input class="form-control" type="submit" name="action"  value="Get all order Id">
+          </form>
+          </div>
         </div>
       </div>
       <br/>
@@ -77,4 +75,3 @@
           <br>
         </div>
       </div>
-    }

@@ -39,7 +39,7 @@ Seq[Any](format.raw/*1.19*/("""
 <html ng-app>
 <head>
   <meta charset="utf-8">
-  <title>Restaurant Management</title>
+  <title>Here There</title>
   <script>
       document.write('<base href="' + document.location + '" />');
     </script>
@@ -71,7 +71,7 @@ Seq[Any](format.raw/*1.19*/("""
 <body  >
   <div class="well" style="margin-top: 2%; size: 50%; width: 55%; height: 50%; overflow: hidden; margin-right:  10%; margin-left: 10%;  float:left;  "   >
     <div  class="well" style="margin-top: 10px; width: 50%%; overflow: hidden; margin-left: 1%; background: #CAA3CE  ;  float:left; margin-right:5px;  ">
-      <form class="form-search" style="margin-left: 10px;" action="/hereThere"> 
+      <form class="form-search" style="margin-left: 10px;" action="/shipment"> 
           
 
           <h1  id="h1" >  """),_display_(/*46.28*/message),format.raw/*46.35*/("""   """),format.raw/*46.38*/("""</h1>
@@ -104,10 +104,10 @@ Seq[Any](format.raw/*1.19*/("""
 object success extends success_Scope0.success
               /*
                   -- GENERATED --
-                  DATE: Fri Mar 17 08:00:55 IST 2017
+                  DATE: Fri Mar 24 17:49:41 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/success.scala.html
-                  HASH: 7388b07a3d26c29499d43c5d5904cfe370367240
-                  MATRIX: 749->1|861->18|893->24|1385->488|1414->489|1451->499|1503->524|1531->525|1566->533|1606->545|1635->546|1671->555|1723->580|1751->581|1786->589|1829->604|1858->605|1894->614|1945->638|1973->639|2008->647|2041->652|2070->653|2106->662|2159->688|2187->689|2218->693|2700->1148|2728->1155|2759->1158
+                  HASH: 3e7b6f8a9aca4481c2f68f58dc799629e91b1521
+                  MATRIX: 749->1|861->18|893->24|1374->477|1403->478|1440->488|1492->513|1520->514|1555->522|1595->534|1624->535|1660->544|1712->569|1740->570|1775->578|1818->593|1847->594|1883->603|1934->627|1962->628|1997->636|2030->641|2059->642|2095->651|2148->677|2176->678|2207->682|2688->1136|2716->1143|2747->1146
                   LINES: 27->1|32->1|38->7|51->20|51->20|53->22|54->23|54->23|56->25|56->25|56->25|57->26|58->27|58->27|60->29|60->29|60->29|61->30|62->31|62->31|64->33|64->33|64->33|65->34|67->36|67->36|69->38|77->46|77->46|77->46
                   -- GENERATED --
               */

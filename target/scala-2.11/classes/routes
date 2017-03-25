@@ -3,7 +3,8 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET     /                           controllers.Application.hereThere
+GET     /temp                           controllers.Application.index
 GET     /restricted                 controllers.Application.restricted
 GET     /assets/javascript/routes.js    controllers.Application.jsRoutes
 
@@ -20,12 +21,22 @@ POST    /signup                     controllers.Application.doSignup
 
 
 GET     /hereThere                  controllers.Application.hereThere
-GET     /address					controllers.Application.checkAvailability
-GET		/payment					controllers.Application.orderAddress
+GET     /checkAvailability 			controllers.Application.checkAvailability
+GET		/payment					controllers.Application.payment
 GET		/orderStatus				controllers.Application.orderStatus
 GET		/updateOrderStatus			controllers.Application.updateOrderStatus
 GET		/shipment					controllers.Application.shipment
+GET		/estimatedDate				controllers.Application.estimatedDate
 GET		/newUser					controllers.Application.newUser
+GET		/transactions				controllers.Application.transactions
+GET		/findOrderId				controllers.Application.findOrderId
+GET		/forgetPassword				controllers.Application.forgetPassword
+GET		/newPassword				controllers.Application.newPassword
+GET		/success					controllers.Application.success
+
+
+
+
 
 
 
