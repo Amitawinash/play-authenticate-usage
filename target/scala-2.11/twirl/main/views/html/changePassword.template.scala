@@ -67,10 +67,10 @@ Seq[Any](format.raw/*1.19*/("""
 <body  >
   <div class="well" style="margin-top: 2%; size: 50%; width: 55%; height: 50%; overflow: hidden; margin-right:  10%; margin-left: 10%;  float:left;  "   >
     <div  class="well" style="margin-top: 10px; width: 50%%; overflow: hidden; margin-left: 1%; background: white ;  float:left; margin-right:5px;  ">
-      <form class="form-search" style="margin-left: 10px;" action="/hereThere"> 
+      <form class="form-search" style="margin-left: 10px;" action="/success"> 
           
 
-          <h1 style="color: #ECF0F1  " id="h1" >  """),_display_(/*42.52*/message),format.raw/*42.59*/("""   """),format.raw/*42.62*/("""</h1>
+          <h1 style="color: black  " id="h1" >  """),_display_(/*42.50*/message),format.raw/*42.57*/("""   """),format.raw/*42.60*/("""</h1>
 
        
       <input   type="password" style="color:#191c1a" name="employeeNewPin"  placeholder="Enter Employee new Pin" required pattern="[0-9]+" minlength="5"   maxlength="5"><br>
@@ -102,10 +102,10 @@ Seq[Any](format.raw/*1.19*/("""
 object changePassword extends changePassword_Scope0.changePassword
               /*
                   -- GENERATED --
-                  DATE: Sat Mar 25 10:33:50 IST 2017
+                  DATE: Sat Mar 25 19:40:43 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/changePassword.scala.html
-                  HASH: 5c2b2aa4ea71ba63a0c641b8caa8e9c69f35b50f
-                  MATRIX: 763->1|875->18|908->25|1463->552|1492->553|1529->563|1581->588|1609->589|1644->597|1684->609|1713->610|1749->619|1801->644|1829->645|1864->653|1907->668|1936->669|1972->678|2023->702|2051->703|2086->711|2119->716|2148->717|2184->726|2237->752|2265->753|2296->757|2799->1233|2827->1240|2858->1243
+                  HASH: cfae840d9086ec2866af286cd972b74d853f5885
+                  MATRIX: 763->1|875->18|908->25|1463->552|1492->553|1529->563|1581->588|1609->589|1644->597|1684->609|1713->610|1749->619|1801->644|1829->645|1864->653|1907->668|1936->669|1972->678|2023->702|2051->703|2086->711|2119->716|2148->717|2184->726|2237->752|2265->753|2296->757|2795->1229|2823->1236|2854->1239
                   LINES: 27->1|32->1|33->2|47->16|47->16|49->18|50->19|50->19|52->21|52->21|52->21|53->22|54->23|54->23|56->25|56->25|56->25|57->26|58->27|58->27|60->29|60->29|60->29|61->30|63->32|63->32|65->34|73->42|73->42|73->42
                   -- GENERATED --
               */

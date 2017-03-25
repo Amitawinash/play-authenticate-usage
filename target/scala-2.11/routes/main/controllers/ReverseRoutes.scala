@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/conf/routes
-// @DATE:Sat Mar 25 10:28:29 IST 2017
+// @DATE:Sat Mar 25 19:49:19 IST 2017
 
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
 import play.core.routing.{ HandlerDef, ReverseRouteContext, queryString, dynamicString }
@@ -13,56 +13,56 @@ import _root_.play.libs.F
 // @LINE:6
 package controllers {
 
-  // @LINE:47
+  // @LINE:49
   class ReverseSignup(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:51
+    // @LINE:53
     def exists(): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "accounts/exists")
     }
   
-    // @LINE:50
+    // @LINE:52
     def verify(token:String): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "accounts/verify/" + implicitly[PathBindable[String]].unbind("token", dynamicString(token)))
     }
   
-    // @LINE:47
+    // @LINE:49
     def unverified(): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "accounts/unverified")
     }
   
-    // @LINE:48
+    // @LINE:50
     def oAuthDenied(provider:String): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "authenticate/" + implicitly[PathBindable[String]].unbind("provider", dynamicString(provider)) + "/denied")
     }
   
-    // @LINE:53
+    // @LINE:55
     def resetPassword(token:String): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "accounts/password/reset/" + implicitly[PathBindable[String]].unbind("token", dynamicString(token)))
     }
   
-    // @LINE:54
+    // @LINE:56
     def doResetPassword(): Call = {
       import ReverseRouteContext.empty
       Call("POST", _prefix + { _defaultPrefix } + "accounts/password/reset")
     }
   
-    // @LINE:70
+    // @LINE:72
     def doForgotPassword(): Call = {
       import ReverseRouteContext.empty
       Call("POST", _prefix + { _defaultPrefix } + "login/password/forgot")
     }
   
-    // @LINE:69
+    // @LINE:71
     def forgotPassword(email:String = ""): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "login/password/forgot" + queryString(List(if(email == "") None else Some(implicitly[QueryStringBindable[String]].unbind("email", email)))))
@@ -70,14 +70,14 @@ package controllers {
   
   }
 
-  // @LINE:73
+  // @LINE:75
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:73
+    // @LINE:75
     def versioned(file:Asset): Call = {
       implicit val _rrc = new ReverseRouteContext(Map(("path", "/public")))
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[PathBindable[Asset]].unbind("file", file))
@@ -85,56 +85,56 @@ package controllers {
   
   }
 
-  // @LINE:56
+  // @LINE:58
   class ReverseAccount(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:66
+    // @LINE:68
     def askMerge(): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "accounts/merge")
     }
   
-    // @LINE:67
+    // @LINE:69
     def doMerge(): Call = {
       import ReverseRouteContext.empty
       Call("POST", _prefix + { _defaultPrefix } + "accounts/merge")
     }
   
-    // @LINE:59
+    // @LINE:61
     def verifyEmail(): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "accounts/verify")
     }
   
-    // @LINE:63
+    // @LINE:65
     def askLink(): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "accounts/link")
     }
   
-    // @LINE:64
+    // @LINE:66
     def doLink(): Call = {
       import ReverseRouteContext.empty
       Call("POST", _prefix + { _defaultPrefix } + "accounts/link")
     }
   
-    // @LINE:56
+    // @LINE:58
     def changePassword(): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "accounts/password/change")
     }
   
-    // @LINE:61
+    // @LINE:63
     def link(): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "accounts/add")
     }
   
-    // @LINE:57
+    // @LINE:59
     def doChangePassword(): Call = {
       import ReverseRouteContext.empty
       Call("POST", _prefix + { _defaultPrefix } + "accounts/password/change")
@@ -148,6 +148,12 @@ package controllers {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
+  
+    // @LINE:36
+    def getAllOrderId(): Call = {
+      import ReverseRouteContext.empty
+      Call("GET", _prefix + { _defaultPrefix } + "getAllOrderId")
+    }
   
     // @LINE:20
     def doSignup(): Call = {

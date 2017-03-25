@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/conf/routes
-// @DATE:Sat Mar 25 10:28:29 IST 2017
+// @DATE:Sat Mar 25 19:49:19 IST 2017
 
 
 package router {

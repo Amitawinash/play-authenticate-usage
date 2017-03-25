@@ -79,21 +79,71 @@ public class Application extends Controller {
 	public Result index() {
 		return ok(index.render(this.userProvider));
 	}
-	
+
+	public Result getAllOrderId() {
+		String userEmailId = request().getQueryString("userEmailId");
+
+		System.out.println("Value from UI :" + "  userEmailId " + userEmailId);
+
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+
+		MongoCollection<Document> senderDetails = hereThere.getCollection("senderDetails");
+
+		System.out.println("Outside try  : ");
+		MongoCursor<Document> cursor = null;
+		cursor = senderDetails.find(new Document("userEmailId", userEmailId)).iterator();
+		List<String> listOfOrders = new LinkedList<>();
+
+		try {
+
+			while (cursor.hasNext()) {
+
+				Document article = cursor.next();
+				List<String> orderId = (List<String>) article.get("listOfOrder");
+				if (!article.containsValue(userEmailId)) {
+
+					return ok(unSuccessUser.render(userEmailId + " is not correct."));
+
+				}
+
+				System.out.println(" Inside else :: " + article.getString("userEmailId"));
+
+				// List<String> vals = (List<String>)
+				// article.get("dateOfAttendedClasses");
+				System.out.println("val :: " + orderId);
+				listOfOrders.clear();
+				listOfOrders.addAll(orderId);
+				System.out.println("Number Of Orders ::" + listOfOrders.size());
+
+				// String numberOfPresentday =
+				// Integer.toString(dateOfAttendedClasses.size());
+
+			}
+
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			mongoClient.close();
+		}
+
+		String numberOfOrders = Integer.toString(listOfOrders.size());
+		return ok(getAllOrderId.render(userEmailId, numberOfOrders, listOfOrders.toString()));
+	}
+
 	public Result success() {
 		return ok(successUser.render("Password Has changed."));
 	}
-	
+
 	public Result newPassword() {
-		return ok(changePassword.render("yoo"));
+		return ok(changePassword.render("Change Password"));
 	}
-	
-	
-	
+
 	public Result forgetPassword() {
 		return ok(forgetPassword.render(this.userProvider));
 	}
-
 
 	public Result transactionDetails(play.mvc.Http.Request request) {
 		String orderId = request().getQueryString("orderId");

@@ -80,7 +80,7 @@ Seq[Any](format.raw/*5.37*/("""
 
 <div id='parent_div_1'>
 
-  <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
+  <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px ;margin-right: 0%" >
 <h5 style="color: black">Princing</h><br>
 <h4 style="color: black">DHL = 100 &#x20B9</h4>
 <h4 style="color: black">DTDC = 200 &#x20B9</h4>
@@ -89,20 +89,22 @@ Seq[Any](format.raw/*5.37*/("""
 <h4></h4>
   </div>
   </div>
-<form  class="jumbotron text-center" action="/payment" method="GET" >
-    <h2>These are the courier service provider corporate : </h2>
-    <h1>"""),_display_(/*64.10*/message),format.raw/*64.17*/("""</h1>
+<form   action="/payment" method="GET" >
+
+    <h4>These are the courier service provider corporate : </h4>
+    <h3>"""),_display_(/*65.10*/message),format.raw/*65.17*/("""</h2>
+    <h6 style="color: red">Please select courier service provider </h6>
     <select class="form-control"   name="shipmentType"  required="value" />
              <option value="DHL">DHL</option>
              <option value="DTDC">DTDC</option>
              <option value="AirPost">AirPost</option>
     </select>
 
-    <h1>Your order number is : """),_display_(/*71.33*/orderId),format.raw/*71.40*/("""</h1>
+    <h3>Your order number is : """),_display_(/*73.33*/orderId),format.raw/*73.40*/("""</h3>
     
 
     <br>
-    <button class="btn btn-danger" value=""""),_display_(/*75.44*/orderId),format.raw/*75.51*/("""" name="orderId">Next</button>
+    <button class="btn btn-danger" value=""""),_display_(/*77.44*/orderId),format.raw/*77.51*/("""" name="orderId">Next</button>
    
   </form>
   
@@ -136,11 +138,11 @@ Seq[Any](format.raw/*5.37*/("""
 object selectCourierService extends selectCourierService_Scope0.selectCourierService
               /*
                   -- GENERATED --
-                  DATE: Fri Mar 24 22:57:33 IST 2017
+                  DATE: Sat Mar 25 20:27:04 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/selectCourierService.scala.html
-                  HASH: d64f1de6280448b519b940059c2d64f7f5f3aed2
-                  MATRIX: 871->95|1001->130|1030->133|1591->666|1620->667|1654->674|1758->751|1786->752|1816->755|1853->764|1882->765|1916->772|1972->801|2000->802|2030->805|2075->822|2104->823|2138->830|2187->852|2215->853|2248->859|2319->902|2348->903|2380->908|2421->922|2449->923|2479->926|2519->938|2548->939|2580->944|2644->981|2672->982|2702->985|3291->1547|3319->1554|3623->1831|3651->1838|3742->1902|3770->1909
-                  LINES: 30->5|35->5|38->8|49->19|49->19|50->20|54->24|54->24|55->25|55->25|55->25|56->26|57->27|57->27|58->28|58->28|58->28|59->29|60->30|60->30|63->33|63->33|63->33|64->34|65->35|65->35|66->36|66->36|66->36|67->37|69->39|69->39|70->40|94->64|94->64|101->71|101->71|105->75|105->75
+                  HASH: 78885d9f84cd5aba181bb5cbe1b9d84a33acd8c7
+                  MATRIX: 871->95|1001->130|1030->133|1591->666|1620->667|1654->674|1758->751|1786->752|1816->755|1853->764|1882->765|1916->772|1972->801|2000->802|2030->805|2075->822|2104->823|2138->830|2187->852|2215->853|2248->859|2319->902|2348->903|2380->908|2421->922|2449->923|2479->926|2519->938|2548->939|2580->944|2644->981|2672->982|2702->985|3280->1536|3308->1543|3684->1892|3712->1899|3803->1963|3831->1970
+                  LINES: 30->5|35->5|38->8|49->19|49->19|50->20|54->24|54->24|55->25|55->25|55->25|56->26|57->27|57->27|58->28|58->28|58->28|59->29|60->30|60->30|63->33|63->33|63->33|64->34|65->35|65->35|66->36|66->36|66->36|67->37|69->39|69->39|70->40|95->65|95->65|103->73|103->73|107->77|107->77
                   -- GENERATED --
               */
           
