@@ -33,7 +33,9 @@ GET		/findOrderId				controllers.Application.findOrderId
 GET		/forgetPassword				controllers.Application.forgetPassword
 GET		/newPassword				controllers.Application.newPassword
 GET		/success					controllers.Application.success
-GET		/getAllOrderId					controllers.Application.getAllOrderId
+GET		/getAllOrderId				controllers.Application.getAllOrderId
+GET		/sendSomething				controllers.Application.sendSomething
+
 
 
 

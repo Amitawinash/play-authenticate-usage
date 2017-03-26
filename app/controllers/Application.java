@@ -79,6 +79,9 @@ public class Application extends Controller {
 	public Result index() {
 		return ok(index.render(this.userProvider));
 	}
+	public Result sendSomething() {
+		return ok(sendSomething.render("yooo","noo"));
+	}
 
 	public Result getAllOrderId() {
 		String userEmailId = request().getQueryString("userEmailId");

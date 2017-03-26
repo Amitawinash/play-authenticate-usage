@@ -974,3 +974,73 @@ Howdy Mithlesh,
 2017-03-26 16:36:01,588 [DEBUG] from application in application-akka.actor.default-dispatcher-2 - Registered AuthProvider 'openid'
 2017-03-26 16:36:01,588 [DEBUG] from application in application-akka.actor.default-dispatcher-2 - Registered AuthProvider 'basic'
 2017-03-26 16:36:01,614 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-2 - Application started (Dev)
+2017-03-26 16:43:09,875 [DEBUG] from application in application-akka.actor.default-dispatcher-14 - Path where we are coming from (/restricted) is different than the login URL (/login)
+2017-03-26 16:47:44,873 [ERROR] from application in netty-event-loop-5 - 
+
+! @73f0icdff - Internal server error, for (GET) [/shipment] ->
+ 
+play.sbt.PlayExceptions$CompilationException: Compilation error[value sendSomething is not a member of controllers.Application]
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
+	at play.sbt.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27)
+	at scala.Option.map(Option.scala:145)
+	at play.sbt.run.PlayReload$$anonfun$taskFailureHandler$1.apply(PlayReload.scala:49)
+	at play.sbt.run.PlayReload$$anonfun$taskFailureHandler$1.apply(PlayReload.scala:44)
+	at scala.Option.map(Option.scala:145)
+	at play.sbt.run.PlayReload$.taskFailureHandler(PlayReload.scala:44)
+	at play.sbt.run.PlayReload$.compileFailure(PlayReload.scala:40)
+	at play.sbt.run.PlayReload$$anonfun$compile$1.apply(PlayReload.scala:17)
+	at play.sbt.run.PlayReload$$anonfun$compile$1.apply(PlayReload.scala:17)
+	at scala.util.Either$LeftProjection.map(Either.scala:377)
+	at play.sbt.run.PlayReload$.compile(PlayReload.scala:17)
+	at play.sbt.run.PlayRun$$anonfun$playRunTask$1$$anonfun$apply$2$$anonfun$apply$3$$anonfun$2.apply(PlayRun.scala:61)
+	at play.sbt.run.PlayRun$$anonfun$playRunTask$1$$anonfun$apply$2$$anonfun$apply$3$$anonfun$2.apply(PlayRun.scala:61)
+	at play.runsupport.Reloader$$anonfun$reload$1.apply(Reloader.scala:338)
+	at play.runsupport.Reloader$$anon$3.run(Reloader.scala:43)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at play.runsupport.Reloader$.play$runsupport$Reloader$$withReloaderContextClassLoader(Reloader.scala:39)
+	at play.runsupport.Reloader.reload(Reloader.scala:336)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$get$1.apply(DevServerStart.scala:118)
+	at play.core.server.DevServerStart$$anonfun$mainDev$1$$anon$1$$anonfun$get$1.apply(DevServerStart.scala:116)
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24)
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24)
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:39)
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:405)
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260)
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339)
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979)
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107)
+2017-03-26 16:50:24,738 [INFO] from application in application-akka.actor.default-dispatcher-12 - Shutting down connection pool.
+2017-03-26 16:50:24,858 [INFO] from application in application-akka.actor.default-dispatcher-12 - Creating Pool for datasource 'default'
+2017-03-26 16:50:24,863 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-12 - Database [default] connected at jdbc:h2:mem:play
+2017-03-26 16:50:24,962 [DEBUG] from application in application-akka.actor.default-dispatcher-12 - Registered AuthProvider 'password'
+2017-03-26 16:50:25,016 [DEBUG] from application in application-akka.actor.default-dispatcher-12 - Registered AuthProvider 'openid'
+2017-03-26 16:50:25,017 [DEBUG] from application in application-akka.actor.default-dispatcher-12 - Registered AuthProvider 'basic'
+2017-03-26 16:50:25,055 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-12 - Application started (Dev)
+2017-03-26 16:55:20,850 [INFO] from application in application-akka.actor.default-dispatcher-3 - Shutting down connection pool.
+2017-03-26 16:55:20,963 [INFO] from application in application-akka.actor.default-dispatcher-3 - Creating Pool for datasource 'default'
+2017-03-26 16:55:20,965 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-3 - Database [default] connected at jdbc:h2:mem:play
+2017-03-26 16:55:21,076 [DEBUG] from application in application-akka.actor.default-dispatcher-3 - Registered AuthProvider 'password'
+2017-03-26 16:55:21,120 [DEBUG] from application in application-akka.actor.default-dispatcher-3 - Registered AuthProvider 'openid'
+2017-03-26 16:55:21,121 [DEBUG] from application in application-akka.actor.default-dispatcher-3 - Registered AuthProvider 'basic'
+2017-03-26 16:55:21,165 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-3 - Application started (Dev)
+2017-03-26 16:55:23,279 [INFO] from application in application-akka.actor.default-dispatcher-8 - Shutting down connection pool.
+2017-03-26 16:55:23,442 [INFO] from application in application-akka.actor.default-dispatcher-8 - Creating Pool for datasource 'default'
+2017-03-26 16:55:23,444 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-8 - Database [default] connected at jdbc:h2:mem:play
+2017-03-26 16:55:23,541 [DEBUG] from application in application-akka.actor.default-dispatcher-8 - Registered AuthProvider 'password'
+2017-03-26 16:55:23,579 [DEBUG] from application in application-akka.actor.default-dispatcher-8 - Registered AuthProvider 'openid'
+2017-03-26 16:55:23,579 [DEBUG] from application in application-akka.actor.default-dispatcher-8 - Registered AuthProvider 'basic'
+2017-03-26 16:55:23,626 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-8 - Application started (Dev)
+2017-03-26 16:58:30,222 [INFO] from application in application-akka.actor.default-dispatcher-6 - Shutting down connection pool.
+2017-03-26 16:58:30,329 [INFO] from application in application-akka.actor.default-dispatcher-6 - Creating Pool for datasource 'default'
+2017-03-26 16:58:30,334 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-6 - Database [default] connected at jdbc:h2:mem:play
+2017-03-26 16:58:30,406 [DEBUG] from application in application-akka.actor.default-dispatcher-6 - Registered AuthProvider 'password'
+2017-03-26 16:58:30,427 [DEBUG] from application in application-akka.actor.default-dispatcher-6 - Registered AuthProvider 'openid'
+2017-03-26 16:58:30,428 [DEBUG] from application in application-akka.actor.default-dispatcher-6 - Registered AuthProvider 'basic'
+2017-03-26 16:58:30,457 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-6 - Application started (Dev)
+2017-03-26 16:58:55,239 [INFO] from application in application-akka.actor.default-dispatcher-4 - Shutting down connection pool.
+2017-03-26 16:58:55,322 [INFO] from application in application-akka.actor.default-dispatcher-4 - Creating Pool for datasource 'default'
+2017-03-26 16:58:55,323 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-4 - Database [default] connected at jdbc:h2:mem:play
+2017-03-26 16:58:55,384 [DEBUG] from application in application-akka.actor.default-dispatcher-4 - Registered AuthProvider 'password'
+2017-03-26 16:58:55,410 [DEBUG] from application in application-akka.actor.default-dispatcher-4 - Registered AuthProvider 'openid'
+2017-03-26 16:58:55,411 [DEBUG] from application in application-akka.actor.default-dispatcher-4 - Registered AuthProvider 'basic'
+2017-03-26 16:58:55,437 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-4 - Application started (Dev)

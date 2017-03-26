@@ -45,27 +45,11 @@
                </form></div>
           </div>
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
-           <form action="/checkAvailability"  style="margin: 25px;" >
-            <h5 style="box-shadow: currentColor; ">Send Something</h5>
-
-            <input class="form-control" type="text-center" name="toPincode" placeholder="Drop off location pincode"  pattern="[0-9]+" maxlength="6"  minlength="6" required/>
-            <input class="form-control" type="text-center" name="fromPincode" placeholder="Pick up location pincode" maxlength="6"  required pattern="[0-9]+" minlength="6"  required/>
-            <select class="form-control"   name="shipmentType"  required="value" />
-             <option value="parcel">Parcel</option>
-             <option value="household">Household</option>
-             <option value="food">Food</option>
-            </select>
+           <form action="/sendSomething"  style="margin: 25px;" >
+            <h5 style="box-shadow: currentColor; ">Login</h5>
             <input class="form-control" type="email" name="emailId" placeholder="Sender email Id"   required/  >
             <input class="form-control" type="password" name="password" placeholder="Enter password"  maxlength="24" required / >
-            
-
-            <input type="text-center" class="form-control" style="color:#191c1a" name="reciverName" maxlength="25" placeholder="Reciver Name" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="state" maxlength="25" placeholder="Reciver State" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="area" maxlength="20" placeholder="Reciver Area" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="street" maxlength="20" placeholder="Reciver Street" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="houseNumber" maxlength="15" placeholder="Reciver House Number" required>
-    <input type="text-center" class="form-control" style="color:#191c1a" name="contactNumber" maxlength="10" minlength="10" pattern="[0-9]+" placeholder="Reciver Contact Number" required>
-    <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="" value="Send" >
+            <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="" value="Send" >
           </form>
           </div>
           <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
