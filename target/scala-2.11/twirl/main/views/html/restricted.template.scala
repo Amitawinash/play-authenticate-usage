@@ -35,12 +35,91 @@ class restricted extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,
 Seq[Any](format.raw/*2.61*/("""
 
 """),_display_(/*4.2*/main(userProvider, Messages("playauthenticate.navigation.restricted"), "restricted")/*4.86*/ {_display_(Seq[Any](format.raw/*4.88*/("""
-    
-    """),format.raw/*6.5*/("""<h1>"""),_display_(/*6.10*/Messages("playauthenticate.navigation.restricted")),format.raw/*6.60*/("""</h1>
-    <p>
-        """),_display_(/*8.10*/Messages("playauthenticate.restricted.secrets")),format.raw/*8.57*/("""
-    """),format.raw/*9.5*/("""</p>
-""")))}),format.raw/*10.2*/("""
+      """),format.raw/*5.7*/("""<style type="text/css">
+     #parent_div_1, #parent_div_2, #parent_div_3"""),format.raw/*6.49*/("""{"""),format.raw/*6.50*/("""
+    """),format.raw/*7.5*/("""float:left;
+  """),format.raw/*8.3*/("""}"""),format.raw/*8.4*/("""
+  """),format.raw/*9.3*/(""".child_div_1"""),format.raw/*9.15*/("""{"""),format.raw/*9.16*/("""
+    """),format.raw/*10.5*/("""float:left;
+    margin-right:55px;
+  """),format.raw/*12.3*/("""}"""),format.raw/*12.4*/("""
+      """),format.raw/*13.7*/("""</style>
+      
+      <h2 style="border-color: pink ">Welcome to HereThere courier service</h2>
+                   
+
+  <div class="jumbotron" id='parent_div_1' style="background-color: #FAEEAF ;width: 100%">
+      <div>
+        <div id='parent_div_1'>
+        <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
+             <form action="/findOrderId" style="margin: 25px;"  >
+               <h5 style="box-shadow: currentColor;">Find order Id</h5>
+               <select class="form-control"   name="findByKey"  required="value" />
+               <option value="findByEmail">Find By Email</option>
+               <option value="findByState">Find By State</option>
+               <option value="findByPincode">Find By Pincode</option>
+              </select>
+               <input class="form-control" type="text-center" name="value" placeholder="Enter Email/State/Pincode"    maxlength="24" required >
+              
+               <input class="form-control" type="submit" name="action"  value="Get all order Id">
+          </form>
+          </div>
+          <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
+           <form action="/updateOrderStatus"  style="margin: 25px;" >
+              <h5 style="box-shadow: currentColor; ">Update Order Status</h5>
+              <input class="form-control" type="text-center" name="orderNumber" placeholder="Order Number"    maxlength="24" required >
+              <select class="form-control"   name="shipmentStatus"  required="value" />
+               <option value="Airport">Airport</option>
+               <option value="warehouse">Warehouse</option>
+               <option value="delivered">Delivered</option>
+               <option value="addressNotFound">Address Not Found</option>
+              </select>
+              <input class="form-control" type="submit" name="" value="Send" />
+            </form>
+          </div>
+          <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px ">
+             <form action="/estimatedDate" style="margin: 25px;"  >
+               <h5 style="box-shadow: currentColor;">Estimated Date Of Shipment</h5>
+               <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number" required  maxlength="24">
+               <input  class="form-control" type="Date" name="estimatedDate" required/>
+               <input class="form-control" type="submit" name="action"  value="Estimated Date">
+          </form>
+          </div>
+           
+        </div>
+      </div>
+      <br/>
+      <br/>
+      
+      <br />
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-xs-6 col-sm-4">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+        <div class="col-xs-6 col-sm-4">
+          <br>
+          <br>
+          <br>
+       </div>
+        <div class="col-xs-6 col-sm-4">
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
+
+
+
+
+
+
+""")))}),format.raw/*89.2*/("""
 """))
       }
     }
@@ -62,11 +141,11 @@ Seq[Any](format.raw/*2.61*/("""
 object restricted extends restricted_Scope0.restricted_Scope1.restricted
               /*
                   -- GENERATED --
-                  DATE: Sun Mar 05 11:59:47 IST 2017
+                  DATE: Sun Mar 26 20:11:57 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/restricted.scala.html
-                  HASH: 90fae99a0d07dcf8baa9dd611bc6708eac9c307f
-                  MATRIX: 834->30|988->89|1016->92|1108->176|1147->178|1183->188|1214->193|1284->243|1333->266|1400->313|1431->318|1467->324
-                  LINES: 30->2|35->2|37->4|37->4|37->4|39->6|39->6|39->6|41->8|41->8|42->9|43->10
+                  HASH: c8f5a3a1b8a6b429ddfb227474581a72b510a2c2
+                  MATRIX: 834->30|988->89|1016->92|1108->176|1147->178|1180->185|1279->257|1307->258|1338->263|1378->277|1405->278|1434->281|1473->293|1501->294|1533->299|1597->336|1625->337|1659->344|4740->3395
+                  LINES: 30->2|35->2|37->4|37->4|37->4|38->5|39->6|39->6|40->7|41->8|41->8|42->9|42->9|42->9|43->10|45->12|45->12|46->13|122->89
                   -- GENERATED --
               */
           

@@ -69,8 +69,8 @@ Seq[Any](format.raw/*1.19*/("""
     <div  class="well" style="margin-top: 10px; width: 50%%; overflow: hidden; margin-left: 1%; background: white ;  float:left; margin-right:5px;  ">
       <form class="form-search" style="margin-left: 10px;" action="/success"> 
           <h3 style="color: black  " id="h1" >To """),_display_(/*40.51*/message),format.raw/*40.58*/(""" """),format.raw/*40.59*/("""Password</h3> 
-      <input   type="password" style="color:#191c1a" name="newPassword"  placeholder="Enter New Password" required pattern="[0-9]+" minlength="5"   maxlength="10"><br>
-      <input   type="password"  style="color:#191c1a" name="confirmPassword"  placeholder="Confirm Password" required pattern="[0-9]+" minlength="5"   maxlength="10">
+      <input   type="password" style="color:#191c1a" name="newPassword"  placeholder="Enter New Password" required pattern="[0-9]+" minlength="8"   maxlength="10"><br>
+      <input   type="password"  style="color:#191c1a" name="confirmPassword"  placeholder="Confirm Password" required pattern="[0-9]+" minlength="8"   maxlength="10">
       <br>
       <button  class="btn btn-danger" style="background-color: lightblue"  type="submit" value=""""),_display_(/*44.98*/message),format.raw/*44.105*/("""" name="userEmailId" style="color: #8c449f">Change Password</button>
       </form>
@@ -97,9 +97,9 @@ Seq[Any](format.raw/*1.19*/("""
 object changePassword extends changePassword_Scope0.changePassword
               /*
                   -- GENERATED --
-                  DATE: Sun Mar 26 05:00:39 IST 2017
+                  DATE: Sun Mar 26 21:42:20 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/changePassword.scala.html
-                  HASH: 58512a4f18aca8e99f6d7926fc2ca1df109cb5ef
+                  HASH: 806681e29a5412a96592711211d48f0e6efd2572
                   MATRIX: 763->1|875->18|908->25|1463->552|1492->553|1529->563|1581->588|1609->589|1644->597|1684->609|1713->610|1749->619|1801->644|1829->645|1864->653|1907->668|1936->669|1972->678|2023->702|2051->703|2086->711|2119->716|2148->717|2184->726|2237->752|2265->753|2296->757|2782->1216|2810->1223|2839->1224|3324->1682|3353->1689
                   LINES: 27->1|32->1|33->2|47->16|47->16|49->18|50->19|50->19|52->21|52->21|52->21|53->22|54->23|54->23|56->25|56->25|56->25|57->26|58->27|58->27|60->29|60->29|60->29|61->30|63->32|63->32|65->34|71->40|71->40|71->40|75->44|75->44
                   -- GENERATED --

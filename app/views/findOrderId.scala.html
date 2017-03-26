@@ -1,4 +1,4 @@
-@(orderId: String , cost: String)
+@(key: String , numberOfOrders: String , listOfOrders: String)
       <!-- Main jumbotron for a primary marketing message or call to action -->
  <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,6 +35,18 @@
       <div>
         <div id='parent_div_1'>
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
+            <form action="/findOrderId" style="margin: 25px;"  >
+                <h5 style="box-shadow: currentColor;">Get all order Id</h5>
+                <select class="form-control"   name="findByKey"  required="value" />
+                <option value="findByEmail">Find By Email</option>
+                <option value="findByState">Find By State</option>
+                <option value="findByPincode">Find By Pincode</option>
+                </select>
+                <input class="form-control" type="text-center" name="value" placeholder="Enter Email/State/Pincode"    maxlength="24" required >
+                <input class="form-control" type="submit" name="action"  value="Get all order Id">
+            </form>
+        </div>
+          <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
            <form action="/updateOrderStatus"  style="margin: 25px;" >
               <h5 style="box-shadow: currentColor; ">Update Order Status</h5>
               <input class="form-control" type="text-center" name="orderNumber" placeholder="Order Number"    maxlength="24" required >
@@ -55,17 +67,13 @@
                <input class="form-control" type="submit" name="action"  value="Estimated Date">
           </form>
           </div>
-          <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
-             <form action="/orderStatus" style="margin: 25px;"  >
-               <h5 style="box-shadow: currentColor;">Get all order Id</h5>
-               <select class="form-control"   name="shipmentStatus"  required="value" />
-               <option value="findByEmail">Find By Email</option>
-               <option value="findByState">Find By State</option>
-               <option value="delivered">Find By Pincode</option>
-              </select>
-              <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Email/State/Pincode"    maxlength="24" required >
-               <input class="form-control" type="submit" name="action"  value="Get all order Id">
-          </form>
+          <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px;margin-top: 5%">
+            <form action="/findOrderId" style="margin: 25px;"  >
+
+            <h3 style="color: black  " id="h1" > Value  " @key " has Ordered @numberOfOrders  orders </h3>
+            <h4>They are :- </h4>
+            <h6>@listOfOrders</h6>
+            </form>
           </div>
         </div>
       </div>

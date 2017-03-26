@@ -31,6 +31,7 @@ GET		/newUser					controllers.Application.newUser
 GET		/transactions				controllers.Application.transactions
 GET		/findOrderId				controllers.Application.findOrderId
 GET		/forgetPassword				controllers.Application.forgetPassword
+GET		/changePassword				controllers.Application.changePassword
 GET		/newPassword				controllers.Application.newPassword
 GET		/success					controllers.Application.success
 GET		/getAllOrderId				controllers.Application.getAllOrderId

@@ -57,10 +57,8 @@ Seq[Any](format.raw/*9.30*/("""
           <form action="/newPassword" style="margin: 25px;"  >
             <h2>Recover Password</h2>
             <input class="form-control" type="email" name="userEmailId" placeholder="Enter your email Id"  maxlength="29" required  >
-            <input class="form-control" type="password" name="oldPassword" placeholder="Enter old password"  maxlength="24">
-            <h3 style="margin-bottom: 0%;margin-top: 0%;">Or</h3>
             <h6 style="margin-bottom: 0%; color: red">In which year you were born ?</h6>
-            <input class="form-control" type="password" name="sequrityAnswer" placeholder="Enter Answer"  maxlength="4">
+            <input class="form-control" type="password" name="sequrityAnswer" placeholder="Enter Answer" pattern="[0-9]+" maxlength="4">
             <input class="form-control" type="submit" name="action" value="Recover Password">
           </form>
           
@@ -109,9 +107,9 @@ Seq[Any](format.raw/*9.30*/("""
 object forgetPassword extends forgetPassword_Scope0.forgetPassword_Scope1.forgetPassword
               /*
                   -- GENERATED --
-                  DATE: Sun Mar 26 04:37:11 IST 2017
+                  DATE: Sun Mar 26 22:18:57 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/forgetPassword.scala.html
-                  HASH: 4d24efe348efe2ccef6095af76e9023bece82c3b
+                  HASH: 7660dd30328433f997f96494192f30f30f5792dc
                   MATRIX: 834->127|957->155|986->158|1055->218|1095->220|1129->227|1311->381|1340->382|1372->387|1413->401|1441->402|1471->405|1511->417|1540->418|1572->423|1636->460|1664->461|1692->462
                   LINES: 30->9|35->9|37->11|37->11|37->11|38->12|43->17|43->17|44->18|45->19|45->19|46->20|46->20|46->20|47->21|49->23|49->23|50->24
                   -- GENERATED --

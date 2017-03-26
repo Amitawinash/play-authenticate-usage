@@ -21,15 +21,15 @@ import play.data._
 import play.api.data.Field
 import play.mvc.Http.Context.Implicit._
 
-class findOrderId extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template2[String,String,play.twirl.api.HtmlFormat.Appendable] {
+class findOrderId extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template3[String,String,String,play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*1.2*/(orderId: String , cost: String):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*1.2*/(key: String , numberOfOrders: String , listOfOrders: String):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 
 
-Seq[Any](format.raw/*1.34*/("""
+Seq[Any](format.raw/*1.63*/("""
       """),format.raw/*2.7*/("""<!-- Main jumbotron for a primary marketing message or call to action -->
  <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -66,6 +66,18 @@ Seq[Any](format.raw/*1.34*/("""
       <div>
         <div id='parent_div_1'>
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
+            <form action="/findOrderId" style="margin: 25px;"  >
+                <h5 style="box-shadow: currentColor;">Get all order Id</h5>
+                <select class="form-control"   name="findByKey"  required="value" />
+                <option value="findByEmail">Find By Email</option>
+                <option value="findByState">Find By State</option>
+                <option value="findByPincode">Find By Pincode</option>
+                </select>
+                <input class="form-control" type="text-center" name="value" placeholder="Enter Email/State/Pincode"    maxlength="24" required >
+                <input class="form-control" type="submit" name="action"  value="Get all order Id">
+            </form>
+        </div>
+          <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
            <form action="/updateOrderStatus"  style="margin: 25px;" >
               <h5 style="box-shadow: currentColor; ">Update Order Status</h5>
               <input class="form-control" type="text-center" name="orderNumber" placeholder="Order Number"    maxlength="24" required >
@@ -86,17 +98,13 @@ Seq[Any](format.raw/*1.34*/("""
                <input class="form-control" type="submit" name="action"  value="Estimated Date">
           </form>
           </div>
-          <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
-             <form action="/orderStatus" style="margin: 25px;"  >
-               <h5 style="box-shadow: currentColor;">Get all order Id</h5>
-               <select class="form-control"   name="shipmentStatus"  required="value" />
-               <option value="findByEmail">Find By Email</option>
-               <option value="findByState">Find By State</option>
-               <option value="delivered">Find By Pincode</option>
-              </select>
-              <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Email/State/Pincode"    maxlength="24" required >
-               <input class="form-control" type="submit" name="action"  value="Get all order Id">
-          </form>
+          <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px;margin-top: 5%">
+            <form action="/findOrderId" style="margin: 25px;"  >
+
+            <h3 style="color: black  " id="h1" > Value  " """),_display_(/*73.60*/key),format.raw/*73.63*/(""" """),format.raw/*73.64*/("""" has Ordered """),_display_(/*73.79*/numberOfOrders),format.raw/*73.93*/("""  """),format.raw/*73.95*/("""orders </h3>
+            <h4>They are :- </h4>
+            <h6>"""),_display_(/*75.18*/listOfOrders),format.raw/*75.30*/("""</h6>
+            </form>
           </div>
         </div>
       </div>
@@ -130,9 +138,9 @@ Seq[Any](format.raw/*1.34*/("""
     }
   }
 
-  def render(orderId:String,cost:String): play.twirl.api.HtmlFormat.Appendable = apply(orderId,cost)
+  def render(key:String,numberOfOrders:String,listOfOrders:String): play.twirl.api.HtmlFormat.Appendable = apply(key,numberOfOrders,listOfOrders)
 
-  def f:((String,String) => play.twirl.api.HtmlFormat.Appendable) = (orderId,cost) => apply(orderId,cost)
+  def f:((String,String,String) => play.twirl.api.HtmlFormat.Appendable) = (key,numberOfOrders,listOfOrders) => apply(key,numberOfOrders,listOfOrders)
 
   def ref: this.type = this
 
@@ -145,11 +153,11 @@ Seq[Any](format.raw/*1.34*/("""
 object findOrderId extends findOrderId_Scope0.findOrderId
               /*
                   -- GENERATED --
-                  DATE: Sun Mar 26 04:16:38 IST 2017
+                  DATE: Sun Mar 26 20:12:58 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/findOrderId.scala.html
-                  HASH: 83275a60c60deb07541c10213fdfbe7736a88318
-                  MATRIX: 764->1|891->33|924->40|1282->372|1296->378|1357->419|1440->476|1454->482|1525->532|1609->589|1624->595|1666->616|1789->711|1818->712|1850->717|1891->731|1919->732|1949->735|1989->747|2018->748|2050->753|2114->790|2142->791|2170->792|2236->831|2251->837|2324->889|2367->905|2382->911|2436->944
-                  LINES: 27->1|32->1|33->2|39->8|39->8|39->8|40->9|40->9|40->9|41->10|41->10|41->10|43->12|43->12|44->13|45->14|45->14|46->15|46->15|46->15|47->16|49->18|49->18|50->19|51->20|51->20|51->20|52->21|52->21|52->21
+                  HASH: 9ea947881f7bb93bfb984d0047aab7847f483812
+                  MATRIX: 771->1|927->62|960->69|1318->401|1332->407|1393->448|1476->505|1490->511|1561->561|1645->618|1660->624|1702->645|1825->740|1854->741|1886->746|1927->760|1955->761|1985->764|2025->776|2054->777|2086->782|2150->819|2178->820|2206->821|2272->860|2287->866|2360->918|2403->934|2418->940|2472->973|5801->4275|5825->4278|5854->4279|5896->4294|5931->4308|5961->4310|6052->4374|6085->4386
+                  LINES: 27->1|32->1|33->2|39->8|39->8|39->8|40->9|40->9|40->9|41->10|41->10|41->10|43->12|43->12|44->13|45->14|45->14|46->15|46->15|46->15|47->16|49->18|49->18|50->19|51->20|51->20|51->20|52->21|52->21|52->21|104->73|104->73|104->73|104->73|104->73|104->73|106->75|106->75
                   -- GENERATED --
               */
           

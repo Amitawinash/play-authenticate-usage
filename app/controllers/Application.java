@@ -79,8 +79,157 @@ public class Application extends Controller {
 	public Result index() {
 		return ok(index.render(this.userProvider));
 	}
+
 	public Result sendSomething() {
-		return ok(sendSomething.render("yooo","noo"));
+
+		String emailId = request().getQueryString("emailId");
+		String password = request().getQueryString("password");
+		System.out.println("Value from UI :" + "  userEmailId : " + emailId);
+
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+
+		MongoCollection<Document> senderDetails = hereThere.getCollection("senderDetails");
+		try {
+
+			MongoCursor<Document> cursor = null;
+			cursor = senderDetails.find(new Document("userEmailId", emailId)).iterator();
+			System.out.println("Inside try  : " + cursor);
+
+			List<String> listOfOrderId = new LinkedList<>();
+			while (cursor.hasNext()) {
+
+				Document article = cursor.next();
+				System.out.println("inside While loop ::: " + article.containsValue(emailId));
+				if (article.containsValue(emailId) && article.containsValue(password)) {
+
+					return ok(sendSomething.render(emailId, password));
+
+				}
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			mongoClient.close();
+		}
+
+		return ok(successUser.render("Email or passord did not matched."));
+	}
+
+	public Result findByEmail(play.mvc.Http.Request request) {
+
+		String userEmailId = request().getQueryString("value");
+
+		System.out.println("Value from UI :" + "  userEmailId " + userEmailId);
+
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+
+		MongoCollection<Document> senderDetails = hereThere.getCollection("senderDetails");
+
+		System.out.println("Outside try  : ");
+		MongoCursor<Document> cursor = null;
+		cursor = senderDetails.find(new Document("userEmailId", userEmailId)).iterator();
+		List<String> listOfOrders = new LinkedList<>();
+
+		try {
+			while (cursor.hasNext()) {
+				Document article = cursor.next();
+				List<String> orderId = (List<String>) article.get("listOfOrder");
+				if (!article.containsValue(userEmailId)) {
+					return ok(unSuccess.render(userEmailId + " is not correct."));
+				}
+				System.out.println(" Inside else :: " + article.getString("userEmailId"));
+
+				System.out.println("val :: " + orderId);
+				listOfOrders.clear();
+				listOfOrders.addAll(orderId);
+				System.out.println("Number Of Orders ::" + listOfOrders.size());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			mongoClient.close();
+		}
+
+		String numberOfOrders = Integer.toString(listOfOrders.size());
+		return ok(findOrderId.render(userEmailId, numberOfOrders, listOfOrders.toString()));
+	}
+
+	public Result findByState(play.mvc.Http.Request request) {
+
+		String state = request().getQueryString("value");
+
+		System.out.println("Value from UI :" + "  state " + state);
+
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+
+		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
+
+		System.out.println("Outside try  : ");
+		MongoCursor<Document> cursor = null;
+		cursor = orderAddress.find(new Document("state", state)).iterator();
+		List<String> orderId = new LinkedList<>();
+		try {
+
+			while (cursor.hasNext()) {
+
+				Document article = cursor.next();
+				if (article.containsValue(state)) {
+					orderId.add(article.getObjectId("_id").toString());
+
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			mongoClient.close();
+		}
+		if (orderId.equals(null) || orderId.isEmpty()) {
+			return ok(unSuccess.render("Pincode" + state + " is not correct."));
+		}
+		String numberOfOrders = Integer.toString(orderId.size());
+		return ok(findOrderId.render(state, numberOfOrders, orderId.toString()));
+
+	}
+
+	public Result findByPincode(play.mvc.Http.Request request) {
+
+		String pincode = request().getQueryString("value");
+
+		System.out.println("Value from UI :" + "  pincode:  " + pincode);
+
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+
+		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
+
+		System.out.println("Outside try  : ");
+		MongoCursor<Document> cursor = null;
+		cursor = orderAddress.find(new Document("toPincode", pincode)).iterator();
+		List<String> orderId = new LinkedList<>();
+		try {
+
+			while (cursor.hasNext()) {
+
+				Document article = cursor.next();
+				if (article.containsValue(pincode)) {
+					orderId.add(article.getObjectId("_id").toString());
+
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			mongoClient.close();
+		}
+		if (orderId.equals(null) || orderId.isEmpty()) {
+			return ok(unSuccess.render("Pincode" + pincode + " is not correct."));
+		}
+		String numberOfOrders = Integer.toString(orderId.size());
+		return ok(findOrderId.render(pincode, numberOfOrders, orderId.toString()));
 	}
 
 	public Result getAllOrderId() {
@@ -226,6 +375,11 @@ public class Application extends Controller {
 		return ok(forgetPassword.render(this.userProvider));
 	}
 
+	public Result changePassword() {
+
+		return ok(changePassword2.render(this.userProvider));
+	}
+
 	public Result transactionDetails(play.mvc.Http.Request request) {
 		String orderId = request().getQueryString("orderId");
 
@@ -308,7 +462,17 @@ public class Application extends Controller {
 	}
 
 	public Result findOrderId() {
-		return ok(findOrderId.render("yoo", "noo"));
+		String findByKey = request().getQueryString("findByKey");
+		if (findByKey.equals("findByEmail")) {
+
+			return findByEmail(request());
+		} else if (findByKey.equals("findByState")) {
+			return findByState(request());
+		} else if (findByKey.equals("findByPincode")) {
+			return findByPincode(request());
+		}
+		return ok(findOrderId.render("yoo", "noo", "poo"));
+
 	}
 
 	public Result newUser() {
@@ -511,6 +675,7 @@ public class Application extends Controller {
 		return ok(hereThereHomePage.render(this.userProvider));
 	}
 
+	@Restrict(@Group(Application.USER_ROLE))
 	public Result shipment() {
 		return ok(shipment.render(this.userProvider));
 	}

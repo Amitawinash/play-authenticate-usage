@@ -71,7 +71,7 @@ Seq[Any](format.raw/*1.19*/("""
 <body  >
   <div class="well" style="margin-top: 2%; size: 50%; width: 55%; height: 50%; overflow: hidden; margin-right:  10%; margin-left: 10%;  float:left;  "   >
     <div  class="well" style="margin-top: 10px; width: 50%%; overflow: hidden; margin-left: 1%; background: #CAA3CE  ;  float:left; margin-right:5px;  ">
-      <form class="form-search" style="margin-left: 10px;" action="/shipment"> 
+      <form class="form-search" style="margin-left: 10px;" action="/restricted"> 
           
 
           <h1  id="h1" >  """),_display_(/*46.28*/message),format.raw/*46.35*/("""   """),format.raw/*46.38*/("""</h1>
@@ -104,10 +104,10 @@ Seq[Any](format.raw/*1.19*/("""
 object success extends success_Scope0.success
               /*
                   -- GENERATED --
-                  DATE: Fri Mar 24 17:49:41 IST 2017
+                  DATE: Sun Mar 26 21:39:57 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/success.scala.html
-                  HASH: 3e7b6f8a9aca4481c2f68f58dc799629e91b1521
-                  MATRIX: 749->1|861->18|893->24|1374->477|1403->478|1440->488|1492->513|1520->514|1555->522|1595->534|1624->535|1660->544|1712->569|1740->570|1775->578|1818->593|1847->594|1883->603|1934->627|1962->628|1997->636|2030->641|2059->642|2095->651|2148->677|2176->678|2207->682|2688->1136|2716->1143|2747->1146
+                  HASH: c1d20f8b8b38217112732ca2334d8210db41065c
+                  MATRIX: 749->1|861->18|893->24|1374->477|1403->478|1440->488|1492->513|1520->514|1555->522|1595->534|1624->535|1660->544|1712->569|1740->570|1775->578|1818->593|1847->594|1883->603|1934->627|1962->628|1997->636|2030->641|2059->642|2095->651|2148->677|2176->678|2207->682|2690->1138|2718->1145|2749->1148
                   LINES: 27->1|32->1|38->7|51->20|51->20|53->22|54->23|54->23|56->25|56->25|56->25|57->26|58->27|58->27|60->29|60->29|60->29|61->30|62->31|62->31|64->33|64->33|64->33|65->34|67->36|67->36|69->38|77->46|77->46|77->46
                   -- GENERATED --
               */
