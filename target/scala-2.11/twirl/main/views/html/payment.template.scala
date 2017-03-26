@@ -73,12 +73,12 @@ Seq[Any](format.raw/*5.34*/("""
   <h4>Total cost for order id """),_display_(/*43.32*/orderId),format.raw/*43.39*/(""" """),format.raw/*43.40*/("""</h4>
   
   <h1>"""),_display_(/*45.8*/cost),format.raw/*45.12*/(""" """),format.raw/*45.13*/("""&#x20B9</h1>
-  <h4>accept terms and conditions</h4>
+  <a href="/home/amit/reversScript.html" style="color: white">please accept terms and condition <input type="checkbox" name="orderId" value=""""),_display_(/*46.143*/orderId),format.raw/*46.150*/("""" required/></a>
   <br>
-  <input type="checkbox" name="orderId" value=""""),_display_(/*48.49*/orderId),format.raw/*48.56*/("""" required/>
+  
   <br>
   <button class="btn btn-danger" name="action" value="Make Payment">Make Payment</button>
-  <button  class="btn btn-danger" name="action"  value="Cancle Order">Cancle Order</button> 
+  <button  class="btn btn-danger" name="action"  value="Cancle Order">Cancel Order</button> 
   
   </form>  
 </div>
@@ -111,11 +111,11 @@ Seq[Any](format.raw/*5.34*/("""
 object payment extends payment_Scope0.payment
               /*
                   -- GENERATED --
-                  DATE: Sun Mar 26 04:33:36 IST 2017
+                  DATE: Sun Mar 26 16:35:59 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/payment.scala.html
-                  HASH: 465c0c39d0c2f431f360b95eee0e05fb3cb947c1
-                  MATRIX: 845->95|972->127|1001->130|1562->663|1591->664|1625->671|1728->747|1756->748|1786->751|1823->760|1852->761|1886->768|1942->797|1970->798|2000->801|2045->818|2074->819|2108->826|2157->848|2185->849|2217->854|2386->996|2414->1003|2443->1004|2485->1020|2510->1024|2539->1025|2673->1132|2701->1139
-                  LINES: 30->5|35->5|38->8|49->19|49->19|50->20|54->24|54->24|55->25|55->25|55->25|56->26|57->27|57->27|58->28|58->28|58->28|59->29|60->30|60->30|63->33|73->43|73->43|73->43|75->45|75->45|75->45|78->48|78->48
+                  HASH: a15d3dacf08173c4695d5abb21c4f762cab9d942
+                  MATRIX: 845->95|972->127|1001->130|1562->663|1591->664|1625->671|1728->747|1756->748|1786->751|1823->760|1852->761|1886->768|1942->797|1970->798|2000->801|2045->818|2074->819|2108->826|2157->848|2185->849|2217->854|2386->996|2414->1003|2443->1004|2485->1020|2510->1024|2539->1025|2722->1180|2751->1187
+                  LINES: 30->5|35->5|38->8|49->19|49->19|50->20|54->24|54->24|55->25|55->25|55->25|56->26|57->27|57->27|58->28|58->28|58->28|59->29|60->30|60->30|63->33|73->43|73->43|73->43|75->45|75->45|75->45|76->46|76->46
                   -- GENERATED --
               */
           

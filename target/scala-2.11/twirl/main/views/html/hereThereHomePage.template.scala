@@ -63,16 +63,16 @@ Seq[Any](format.raw/*9.30*/("""
                <h6>In which year you were born ?</h6>
                <input class="form-control" type="password" name="sequrityAnswer" placeholder="Enter Answer"  minlength="4" maxlength="4" required / >
                <br>
-               <input class="form-control" style="background-color: #9FB0F9;" type="submit" name="action" value="Register">
+               <input class="form-control" style="background-color: #F3EC97  " type="submit" name="action" value="Register">
           </form>
           <div>
           <form action="/forgetPassword" style="margin: 25px; margin-top: 0%">
-                 <input class="form-control" type="submit" name="action" value="Forget Password">
+                 <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="action" value="Forget Password">
                </form></div>
           </div>
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
            <form action="/checkAvailability"  style="margin: 25px;" >
-            <h5 style="box-shadow: currentColor; ">Send Somthing</h5>
+            <h5 style="box-shadow: currentColor; ">Send Something</h5>
 
             <input class="form-control" type="text-center" name="toPincode" placeholder="Drop off location pincode"  pattern="[0-9]+" maxlength="6"  minlength="6" required/>
             <input class="form-control" type="text-center" name="fromPincode" placeholder="Pick up location pincode" maxlength="6"  required pattern="[0-9]+" minlength="6"  required/>
@@ -91,7 +91,7 @@ Seq[Any](format.raw/*9.30*/("""
     <input type="text-center" class="form-control" style="color:#191c1a" name="street" maxlength="20" placeholder="Reciver Street" required>
     <input type="text-center" class="form-control" style="color:#191c1a" name="houseNumber" maxlength="15" placeholder="Reciver House Number" required>
     <input type="text-center" class="form-control" style="color:#191c1a" name="contactNumber" maxlength="10" minlength="10" pattern="[0-9]+" placeholder="Reciver Contact Number" required>
-    <input class="form-control" type="submit" name="" value="Send" >
+    <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="" value="Send" >
           </form>
           </div>
           <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
@@ -99,17 +99,17 @@ Seq[Any](format.raw/*9.30*/("""
                <h5 style="box-shadow: currentColor;">Track Your Order</h5>
                <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number"  maxlength="24" required / >
                <br>
-               <input class="form-control" type="submit" name="action" value="Track">
-               <input class="form-control" type="submit" name="action"  value="Estimated Date">
+               <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="action" value="Track">
+               <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="action"  value="Estimated Date">
                
           </form>
           <div class="child_div_1" style="background-color: #BFD3F0;border-radius: 10px;margin: 15px;">
              <form action="getAllOrderId" style="margin: 25px;"  >
-               <h5 style="box-shadow: currentColor;">Find order Id</h5>
+               <h5 style="box-shadow: currentColor;">Find order Number</h5>
                
                <input class="form-control" type="email" name="userEmailId" placeholder="Enter User Email Id"  maxlength="29" required / >
               
-               <input class="form-control" type="submit" name="action"  value="Get all order Id">
+               <input class="form-control" style="background-color: #F3EC97  " type="submit" name="action"  value="Get all order Id">
           </form>
           </div>
           </div>
@@ -157,9 +157,9 @@ Seq[Any](format.raw/*9.30*/("""
 object hereThereHomePage extends hereThereHomePage_Scope0.hereThereHomePage_Scope1.hereThereHomePage
               /*
                   -- GENERATED --
-                  DATE: Sun Mar 26 04:50:26 IST 2017
+                  DATE: Sun Mar 26 16:29:45 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/hereThereHomePage.scala.html
-                  HASH: dfcd5a89b2d2454f2249347c8c12bac2ca38af88
+                  HASH: d7d8c98380c6812c53bcceff50fb36f22c443857
                   MATRIX: 843->127|966->155|995->158|1064->218|1104->220|1138->227|1320->381|1349->382|1381->387|1422->401|1450->402|1480->405|1520->417|1549->418|1581->423|1645->460|1673->461|1701->462
                   LINES: 30->9|35->9|37->11|37->11|37->11|38->12|43->17|43->17|44->18|45->19|45->19|46->20|46->20|46->20|47->21|49->23|49->23|50->24
                   -- GENERATED --
