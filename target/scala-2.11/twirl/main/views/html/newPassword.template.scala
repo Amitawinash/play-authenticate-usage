@@ -21,22 +21,27 @@ import play.data._
 import play.api.data.Field
 import play.mvc.Http.Context.Implicit._
 
-     object newPassword_Scope1 {
-import service.UserProvider
-
-class newPassword extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template1[UserProvider,play.twirl.api.HtmlFormat.Appendable] {
+class newPassword extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template1[String,play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*9.2*/(userProvider: UserProvider):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*1.2*/(message: String):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 
 
-Seq[Any](format.raw/*9.30*/("""
+Seq[Any](format.raw/*1.19*/("""
+      """),format.raw/*2.7*/("""<!-- Main jumbotron for a primary marketing message or call to action -->
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="This page is for User">
+        <meta name="author" content="Amit">
 
-"""),_display_(/*11.2*/main(userProvider, Messages("playauthenticate.index.title"))/*11.62*/ {_display_(Seq[Any](format.raw/*11.64*/("""
-      """),format.raw/*12.7*/("""<!-- Main jumbotron for a primary marketing message or call to action -->
-
+        <script type="text/javascript" src=""""),_display_(/*8.46*/routes/*8.52*/.Assets.versioned("lib/jquery/jquery.js")),format.raw/*8.93*/(""""></script>
+        <script type="text/javascript" src=""""),_display_(/*9.46*/routes/*9.52*/.Assets.versioned("lib/bootstrap/js/bootstrap.js")),format.raw/*9.102*/(""""></script>
+        <script type="text/javascript" src=""""),_display_(/*10.46*/routes/*10.52*/.Application.jsRoutes),format.raw/*10.73*/("""" defer="defer"></script>
+        <link rel="stylesheet" href=""""),_display_(/*11.39*/routes/*11.45*/.Assets.versioned("lib/bootstrap/css/bootstrap.css")),format.raw/*11.97*/("""">
+        <link href=""""),_display_(/*12.22*/routes/*12.28*/.Assets.versioned("css/main.css")),format.raw/*12.61*/("""" rel="stylesheet">
+</head>
 <style type="text/css">
         
 
@@ -88,14 +93,14 @@ Seq[Any](format.raw/*9.30*/("""
           <br>
         </div>
       </div>
-    """)))}))
+"""))
       }
     }
   }
 
-  def render(userProvider:UserProvider): play.twirl.api.HtmlFormat.Appendable = apply(userProvider)
+  def render(message:String): play.twirl.api.HtmlFormat.Appendable = apply(message)
 
-  def f:((UserProvider) => play.twirl.api.HtmlFormat.Appendable) = (userProvider) => apply(userProvider)
+  def f:((String) => play.twirl.api.HtmlFormat.Appendable) = (message) => apply(message)
 
   def ref: this.type = this
 
@@ -103,17 +108,16 @@ Seq[Any](format.raw/*9.30*/("""
 
 
 }
-}
 
 /**/
-object newPassword extends newPassword_Scope0.newPassword_Scope1.newPassword
+object newPassword extends newPassword_Scope0.newPassword
               /*
                   -- GENERATED --
-                  DATE: Sat Mar 25 00:52:37 IST 2017
+                  DATE: Sun Mar 26 04:33:36 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/newPassword.scala.html
-                  HASH: 12a46135f76a7a0e5d81798e56934564592a2597
-                  MATRIX: 825->127|948->155|977->158|1046->218|1086->220|1120->227|1302->381|1331->382|1363->387|1404->401|1432->402|1462->405|1502->417|1531->418|1563->423|1627->460|1655->461|1683->462
-                  LINES: 30->9|35->9|37->11|37->11|37->11|38->12|43->17|43->17|44->18|45->19|45->19|46->20|46->20|46->20|47->21|49->23|49->23|50->24
+                  HASH: cf169c7d0a549a1f68268b62686af79d25f1aa3b
+                  MATRIX: 757->1|869->18|902->25|1236->333|1250->339|1311->380|1394->437|1408->443|1479->493|1563->550|1578->556|1620->577|1711->641|1726->647|1799->699|1850->723|1865->729|1919->762|2054->869|2083->870|2115->875|2156->889|2184->890|2214->893|2254->905|2283->906|2315->911|2379->948|2407->949|2435->950
+                  LINES: 27->1|32->1|33->2|39->8|39->8|39->8|40->9|40->9|40->9|41->10|41->10|41->10|42->11|42->11|42->11|43->12|43->12|43->12|48->17|48->17|49->18|50->19|50->19|51->20|51->20|51->20|52->21|54->23|54->23|55->24
                   -- GENERATED --
               */
           

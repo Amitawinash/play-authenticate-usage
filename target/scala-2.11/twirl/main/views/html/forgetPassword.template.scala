@@ -109,7 +109,7 @@ Seq[Any](format.raw/*9.30*/("""
 object forgetPassword extends forgetPassword_Scope0.forgetPassword_Scope1.forgetPassword
               /*
                   -- GENERATED --
-                  DATE: Sat Mar 25 00:56:04 IST 2017
+                  DATE: Sun Mar 26 04:37:11 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/forgetPassword.scala.html
                   HASH: 4d24efe348efe2ccef6095af76e9023bece82c3b
                   MATRIX: 834->127|957->155|986->158|1055->218|1095->220|1129->227|1311->381|1340->382|1372->387|1413->401|1441->402|1471->405|1511->417|1540->418|1572->423|1636->460|1664->461|1692->462

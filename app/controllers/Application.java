@@ -134,14 +134,92 @@ public class Application extends Controller {
 	}
 
 	public Result success() {
-		return ok(successUser.render("Password Has changed."));
+
+		String userEmailId = request().getQueryString("userEmailId");
+		String newPassword = request().getQueryString("newPassword");
+		String confirmPassword = request().getQueryString("confirmPassword");
+
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoCollection<Document> senderDetails = hereThere.getCollection("senderDetails");
+
+		try {
+			MongoCursor<Document> cursor = null;
+			cursor = senderDetails.find().iterator();
+			System.out.println("Inside try  : " + cursor.toString());
+
+			while (cursor.hasNext()) {
+
+				Document article = cursor.next();
+				System.out.println("inside While loop ::: " + article);
+				if (article.containsValue(userEmailId)) {
+					if (newPassword.equals(confirmPassword)) {
+						System.out.println("Id exists");
+
+						Bson arg0 = new Document("userEmailId", userEmailId);
+
+						Bson arg1 = new Document("password", newPassword);
+
+						Bson updateOpration = new Document("$set", arg1);
+
+						senderDetails.updateOne(arg0, updateOpration);
+						return ok(successUser.render("Password has changed for email id : " + userEmailId));
+					}
+				}
+			}
+			cursor.close();
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			mongoClient.close();
+		}
+		return ok(successUser.render("Password has not changed.Kindly check your email Id."));
 	}
 
 	public Result newPassword() {
-		return ok(changePassword.render("Change Password"));
+		String userEmailId = request().getQueryString("userEmailId");
+		String oldPassword = request().getQueryString("oldPassword");
+		String sequrityAnswer = request().getQueryString("sequrityAnswer");
+
+		MongoClient mongoClient = new MongoClient("localhost", 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoCollection<Document> senderDetails = hereThere.getCollection("senderDetails");
+
+		try {
+			MongoCursor<Document> cursor = null;
+			cursor = senderDetails.find(new Document("userEmailId", userEmailId)).iterator();
+			System.out.println("Inside try  : " + cursor.toString());
+
+			while (cursor.hasNext()) {
+
+				Document article = cursor.next();
+				System.out.println("inside While loop ::: " + article);
+				if (article.containsValue(userEmailId) && article.containsValue(oldPassword)) {
+					System.out.println("Id exists");
+					return ok(changePassword.render(userEmailId));
+				}
+				if (article.containsValue(userEmailId) && article.containsValue(sequrityAnswer)) {
+					System.out.println("Id exists");
+					return ok(changePassword.render(userEmailId));
+				}
+			}
+
+			cursor.close();
+
+		}
+
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			mongoClient.close();
+		}
+		return ok(unSuccessUser.render("Email or Password or Answer did not match the requirement."));
 	}
 
 	public Result forgetPassword() {
+
 		return ok(forgetPassword.render(this.userProvider));
 	}
 
@@ -234,6 +312,7 @@ public class Application extends Controller {
 		String userEmailId = request().getQueryString("userEmailId");
 		String password = request().getQueryString("password");
 		String confirmPassword = request().getQueryString("confirmPassword");
+		String sequrityAnswer = request().getQueryString("sequrityAnswer");
 
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
 		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
@@ -259,7 +338,8 @@ public class Application extends Controller {
 
 			}
 			if (password.equals(confirmPassword)) {
-				Document document = new Document("userEmailId", userEmailId).append("password", password);
+				Document document = new Document("userEmailId", userEmailId).append("password", password)
+						.append("sequrityAnswer", sequrityAnswer);
 
 				senderDetails.insertOne(document);
 
@@ -671,9 +751,10 @@ public class Application extends Controller {
 
 					orderAddress.insertOne(document);
 					String statusOfOrder = "Payment has not completed";
+					String estimatedDate = "under process";
 					System.out.println("_id " + document.getObjectId("_id"));
-					orderStatus.insertOne(
-							new Document("_id", document.getObjectId("_id")).append("statusOfOrder", statusOfOrder));
+					orderStatus.insertOne(new Document("_id", document.getObjectId("_id"))
+							.append("statusOfOrder", statusOfOrder).append("estimatedDate", estimatedDate));
 
 					if (!article.containsKey("listOfOrder")) {
 						System.out.println("Inside 2nd if ::" + article.containsKey("listOfOrder"));
