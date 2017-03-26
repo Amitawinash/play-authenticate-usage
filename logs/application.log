@@ -855,3 +855,9 @@ play.sbt.PlayExceptions$CompilationException: Compilation error[cannot find symb
 2017-03-26 05:09:06,292 [DEBUG] from application in application-akka.actor.default-dispatcher-9 - Registered AuthProvider 'openid'
 2017-03-26 05:09:06,292 [DEBUG] from application in application-akka.actor.default-dispatcher-9 - Registered AuthProvider 'basic'
 2017-03-26 05:09:06,322 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-9 - Application started (Dev)
+2017-03-26 16:05:22,841 [INFO] from application in application-akka.actor.default-dispatcher-57 - Creating Pool for datasource 'default'
+2017-03-26 16:05:22,843 [INFO] from play.api.db.DefaultDBApi in application-akka.actor.default-dispatcher-57 - Database [default] connected at jdbc:h2:mem:play
+2017-03-26 16:05:22,926 [DEBUG] from application in application-akka.actor.default-dispatcher-57 - Registered AuthProvider 'password'
+2017-03-26 16:05:22,957 [DEBUG] from application in application-akka.actor.default-dispatcher-57 - Registered AuthProvider 'openid'
+2017-03-26 16:05:22,957 [DEBUG] from application in application-akka.actor.default-dispatcher-57 - Registered AuthProvider 'basic'
+2017-03-26 16:05:22,992 [INFO] from play.api.Play in application-akka.actor.default-dispatcher-57 - Application started (Dev)

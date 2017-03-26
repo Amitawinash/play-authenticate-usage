@@ -138,7 +138,7 @@ Seq[Any](format.raw/*5.37*/("""
 object selectCourierService extends selectCourierService_Scope0.selectCourierService
               /*
                   -- GENERATED --
-                  DATE: Sat Mar 25 20:27:04 IST 2017
+                  DATE: Sun Mar 26 16:05:18 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/selectCourierService.scala.html
                   HASH: 78885d9f84cd5aba181bb5cbe1b9d84a33acd8c7
                   MATRIX: 871->95|1001->130|1030->133|1591->666|1620->667|1654->674|1758->751|1786->752|1816->755|1853->764|1882->765|1916->772|1972->801|2000->802|2030->805|2075->822|2104->823|2138->830|2187->852|2215->853|2248->859|2319->902|2348->903|2380->908|2421->922|2449->923|2479->926|2519->938|2548->939|2580->944|2644->981|2672->982|2702->985|3280->1536|3308->1543|3684->1892|3712->1899|3803->1963|3831->1970
