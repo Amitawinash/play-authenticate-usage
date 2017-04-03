@@ -57,8 +57,10 @@ Seq[Any](format.raw/*1.63*/("""
  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/">Home</a></li>
-                        <li class=""><a href="/restricted">Restricted page</a></li>
+                        <li class=""><a href="/restricted">Admin page</a></li>
                         <li class=""><a href="/signup">Sign up</a></li>
+                        <li class=""><a href="/restricted">Contact Us</a></li>
+                        <li class=""><a href="/restricted">About Us</a></li>
                     </ul>
                         <a href="/login" class=" navbar-right btn btn-default navbar-btn ">Log in</a>
                 </div>
@@ -101,9 +103,9 @@ Seq[Any](format.raw/*1.63*/("""
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px;margin-top: 5%">
             <form action="/findOrderId" style="margin: 25px;"  >
 
-            <h3 style="color: black  " id="h1" > Value  " """),_display_(/*73.60*/key),format.raw/*73.63*/(""" """),format.raw/*73.64*/("""" has Ordered """),_display_(/*73.79*/numberOfOrders),format.raw/*73.93*/("""  """),format.raw/*73.95*/("""orders </h3>
+            <h3 style="color: black  " id="h1" > Value  " """),_display_(/*75.60*/key),format.raw/*75.63*/(""" """),format.raw/*75.64*/("""" has Ordered """),_display_(/*75.79*/numberOfOrders),format.raw/*75.93*/("""  """),format.raw/*75.95*/("""orders </h3>
             <h4>They are :- </h4>
-            <h6>"""),_display_(/*75.18*/listOfOrders),format.raw/*75.30*/("""</h6>
+            <h6>"""),_display_(/*77.18*/listOfOrders),format.raw/*77.30*/("""</h6>
             </form>
           </div>
         </div>
@@ -153,11 +155,11 @@ Seq[Any](format.raw/*1.63*/("""
 object findOrderId extends findOrderId_Scope0.findOrderId
               /*
                   -- GENERATED --
-                  DATE: Sun Mar 26 20:12:58 IST 2017
+                  DATE: Tue Mar 28 16:24:30 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/findOrderId.scala.html
-                  HASH: 9ea947881f7bb93bfb984d0047aab7847f483812
-                  MATRIX: 771->1|927->62|960->69|1318->401|1332->407|1393->448|1476->505|1490->511|1561->561|1645->618|1660->624|1702->645|1825->740|1854->741|1886->746|1927->760|1955->761|1985->764|2025->776|2054->777|2086->782|2150->819|2178->820|2206->821|2272->860|2287->866|2360->918|2403->934|2418->940|2472->973|5801->4275|5825->4278|5854->4279|5896->4294|5931->4308|5961->4310|6052->4374|6085->4386
-                  LINES: 27->1|32->1|33->2|39->8|39->8|39->8|40->9|40->9|40->9|41->10|41->10|41->10|43->12|43->12|44->13|45->14|45->14|46->15|46->15|46->15|47->16|49->18|49->18|50->19|51->20|51->20|51->20|52->21|52->21|52->21|104->73|104->73|104->73|104->73|104->73|104->73|106->75|106->75
+                  HASH: ef844cf8ee2f71296d380274f12f3698dd040ea3
+                  MATRIX: 771->1|927->62|960->69|1318->401|1332->407|1393->448|1476->505|1490->511|1561->561|1645->618|1660->624|1702->645|1825->740|1854->741|1886->746|1927->760|1955->761|1985->764|2025->776|2054->777|2086->782|2150->819|2178->820|2206->821|2272->860|2287->866|2360->918|2403->934|2418->940|2472->973|5952->4426|5976->4429|6005->4430|6047->4445|6082->4459|6112->4461|6203->4525|6236->4537
+                  LINES: 27->1|32->1|33->2|39->8|39->8|39->8|40->9|40->9|40->9|41->10|41->10|41->10|43->12|43->12|44->13|45->14|45->14|46->15|46->15|46->15|47->16|49->18|49->18|50->19|51->20|51->20|51->20|52->21|52->21|52->21|106->75|106->75|106->75|106->75|106->75|106->75|108->77|108->77
                   -- GENERATED --
               */
           

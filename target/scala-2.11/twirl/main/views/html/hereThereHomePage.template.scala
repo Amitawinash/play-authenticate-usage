@@ -61,6 +61,7 @@ Seq[Any](format.raw/*9.30*/("""
                <input class="form-control" type="password" name="confirmPassword" placeholder="Enter Confirm Password" minlength="8" maxlength="10" required / >
                <h6 style="color: red">Sequrity Question</h6>
                <h6>In which year you were born ?</h6>
+               
                <input class="form-control" type="password" name="sequrityAnswer" placeholder="Enter Answer" pattern="[0-9]+" minlength="4" maxlength="4" required / >
                <br>
                <input class="form-control" style="background-color: #9FB0F9  " type="submit" name="action" value="Register">
@@ -147,9 +148,9 @@ Seq[Any](format.raw/*9.30*/("""
 object hereThereHomePage extends hereThereHomePage_Scope0.hereThereHomePage_Scope1.hereThereHomePage
               /*
                   -- GENERATED --
-                  DATE: Sun Mar 26 22:17:29 IST 2017
+                  DATE: Mon Mar 27 12:53:36 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/hereThereHomePage.scala.html
-                  HASH: 6da322f4995893e7981e80a0c6bf4605b5dfcf6e
+                  HASH: ca3afb97d277e72465f4202a80e105627bef4977
                   MATRIX: 843->127|966->155|995->158|1064->218|1104->220|1138->227|1320->381|1349->382|1381->387|1422->401|1450->402|1480->405|1520->417|1549->418|1581->423|1645->460|1673->461|1701->462
                   LINES: 30->9|35->9|37->11|37->11|37->11|38->12|43->17|43->17|44->18|45->19|45->19|46->20|46->20|46->20|47->21|49->23|49->23|50->24
                   -- GENERATED --

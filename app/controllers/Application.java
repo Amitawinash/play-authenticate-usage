@@ -499,7 +499,7 @@ public class Application extends Controller {
 
 					System.out.println("Id exists");
 
-					return ok(unSuccess.render("User Email ID " + userEmailId + " is already exists."));
+					return ok(unSuccessUser.render("User Email ID " + userEmailId + " is already exists."));
 
 				}
 
@@ -511,7 +511,7 @@ public class Application extends Controller {
 				senderDetails.insertOne(document);
 
 			} else {
-				return ok(unSuccess.render("Passwords did not match."));
+				return ok(unSuccessUser.render("Passwords did not match."));
 
 			}
 			cursor.close();
@@ -524,7 +524,7 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 
-		return ok(success.render("Email id : " + userEmailId + " is added."));
+		return ok(successUser.render("Email id : " + userEmailId + " is added."));
 	}
 
 	public Result getEstimatedDate(play.mvc.Http.Request request) {

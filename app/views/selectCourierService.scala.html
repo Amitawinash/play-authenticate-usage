@@ -1,56 +1,37 @@
-@*
- * This template takes a single argument, a String containing a
- * message to display.
- *@
 @(message: String , orderId: String)
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+ <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="This page is for Admin">
+        <meta name="author" content="Amit">
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Here There</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <style>
-  .jumbotron {
-      background-color: #f4511e;
-      color: #fff;
-      padding: 100px 25px ;
-
-  }
-  .bg-grey {
-      background-color: #f6f6f6;
-  }
-  .container-fluid {
-      padding: 60px 50px;
-  }
-
-
-   #parent_div_1, #parent_div_2, #parent_div_3{
+        <script type="text/javascript" src="@routes.Assets.versioned("lib/jquery/jquery.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("lib/bootstrap/js/bootstrap.js")"></script>
+        <script type="text/javascript" src="@routes.Application.jsRoutes" defer="defer"></script>
+<style type="text/css">
+  #parent_div_1, #parent_div_2, #parent_div_3{
     float:left;
   }
   .child_div_1{
     float:left;
     margin-right:55px;
   }
-  </style>
-
- 
-  </script>
-</head>
+</style>
+<link rel="stylesheet" href="@routes.Assets.versioned("lib/bootstrap/css/bootstrap.css")">
+<link href="@routes.Assets.versioned("css/main.css")" rel="stylesheet">
+      
+      <h2 style="border-color: pink ">Welcome to HereThere courier service</h2>
+                   
 <body>
-
-
-
-<div class="jumbotron text-center">
-
-<div id='parent_div_1'>
-
-  <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px ;margin-right: 0%" >
+ <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        
+                        
+                    </ul>
+                        
+                </div>
+  <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px ;margin-right: 0%">
 <h5 style="color: black">Princing</h><br>
 <h4 style="color: black">DHL = 100 &#x20B9</h4>
 <h4 style="color: black">DTDC = 200 &#x20B9</h4>
@@ -62,7 +43,7 @@
 <form   action="/payment" method="GET" >
 
     <h4>These are the courier service provider corporate : </h4>
-    <h3>@message</h2>
+    <h3 id="message"  >  @message </h2>
     <h6 style="color: red">Please select courier service provider </h6>
     <select class="form-control"   name="shipmentType"  required="value" />
              <option value="DHL">DHL</option>
@@ -79,10 +60,30 @@
   </form>
   
 </div>
-
-
-
+  
+      <br/>
+      <br/>
+      
+      <br />
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-xs-6 col-sm-4">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
+        <div class="col-xs-6 col-sm-4">
+          <br>
+          <br>
+          <br>
+       </div>
+        <div class="col-xs-6 col-sm-4">
+          <br>
+          <br>
+          <br>
+        </div>
+      </div>
 </body>
-
-
-</html>

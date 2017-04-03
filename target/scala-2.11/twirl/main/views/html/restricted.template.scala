@@ -36,7 +36,7 @@ Seq[Any](format.raw/*2.61*/("""
 
 """),_display_(/*4.2*/main(userProvider, Messages("playauthenticate.navigation.restricted"), "restricted")/*4.86*/ {_display_(Seq[Any](format.raw/*4.88*/("""
       """),format.raw/*5.7*/("""<style type="text/css">
-     #parent_div_1, #parent_div_2, #parent_div_3"""),format.raw/*6.49*/("""{"""),format.raw/*6.50*/("""
+     #parent_div_1, #parent_div_s, #parent_div_3"""),format.raw/*6.49*/("""{"""),format.raw/*6.50*/("""
     """),format.raw/*7.5*/("""float:left;
   """),format.raw/*8.3*/("""}"""),format.raw/*8.4*/("""
   """),format.raw/*9.3*/(""".child_div_1"""),format.raw/*9.15*/("""{"""),format.raw/*9.16*/("""
@@ -59,7 +59,7 @@ Seq[Any](format.raw/*2.61*/("""
                <option value="findByState">Find By State</option>
                <option value="findByPincode">Find By Pincode</option>
               </select>
-               <input class="form-control" type="text-center" name="value" placeholder="Enter Email/State/Pincode"    maxlength="24" required >
+               <input class="form-control" type="text-center" name="value" placeholder="Enter Email/State/Pincode"    maxlength="50" required >
               
                <input class="form-control" type="submit" name="action"  value="Get all order Id">
           </form>
@@ -67,7 +67,7 @@ Seq[Any](format.raw/*2.61*/("""
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
            <form action="/updateOrderStatus"  style="margin: 25px;" >
               <h5 style="box-shadow: currentColor; ">Update Order Status</h5>
-              <input class="form-control" type="text-center" name="orderNumber" placeholder="Order Number"    maxlength="24" required >
+              <input class="form-control" type="text-center" name="orderNumber" placeholder="Order Number"    maxlength="50" required >
               <select class="form-control"   name="shipmentStatus"  required="value" />
                <option value="Airport">Airport</option>
                <option value="warehouse">Warehouse</option>
@@ -80,7 +80,7 @@ Seq[Any](format.raw/*2.61*/("""
           <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px ">
              <form action="/estimatedDate" style="margin: 25px;"  >
                <h5 style="box-shadow: currentColor;">Estimated Date Of Shipment</h5>
-               <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number" required  maxlength="24">
+               <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number" required  maxlength="50">
                <input  class="form-control" type="Date" name="estimatedDate" required/>
                <input class="form-control" type="submit" name="action"  value="Estimated Date">
           </form>
@@ -141,9 +141,9 @@ Seq[Any](format.raw/*2.61*/("""
 object restricted extends restricted_Scope0.restricted_Scope1.restricted
               /*
                   -- GENERATED --
-                  DATE: Sun Mar 26 20:11:57 IST 2017
+                  DATE: Sat Apr 01 14:37:23 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/restricted.scala.html
-                  HASH: c8f5a3a1b8a6b429ddfb227474581a72b510a2c2
+                  HASH: 2268489b394f64bd5c3c0b0337dcd0ebd2b407c3
                   MATRIX: 834->30|988->89|1016->92|1108->176|1147->178|1180->185|1279->257|1307->258|1338->263|1378->277|1405->278|1434->281|1473->293|1501->294|1533->299|1597->336|1625->337|1659->344|4740->3395
                   LINES: 30->2|35->2|37->4|37->4|37->4|38->5|39->6|39->6|40->7|41->8|41->8|42->9|42->9|42->9|43->10|45->12|45->12|46->13|122->89
                   -- GENERATED --
