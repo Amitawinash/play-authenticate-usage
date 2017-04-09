@@ -135,6 +135,8 @@ public class User extends AppModel implements Subject {
 		final User user = new User();
 		user.roles = Collections.singletonList(SecurityRole
 				.findByRoleName(controllers.Application.USER_ROLE));
+//		user.roles.add(SecurityRole.findByRoleName(controllers.Application.ADMIN_ROLE));
+		
 		// user.permissions = new ArrayList<UserPermission>();
 		// user.permissions.add(UserPermission.findByValue("printers.edit"));
 		user.active = true;

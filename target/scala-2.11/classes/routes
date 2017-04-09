@@ -21,6 +21,7 @@ POST    /signup                     controllers.Application.doSignup
 
 
 GET     /hereThere                  controllers.Application.hereThere
+POST	/sendSomething				controllers.Application.sendSomething
 GET     /checkAvailability 			controllers.Application.checkAvailability
 GET		/payment					controllers.Application.payment
 GET		/orderStatus				controllers.Application.orderStatus
@@ -35,7 +36,7 @@ GET		/changePassword				controllers.Application.changePassword
 GET		/newPassword				controllers.Application.newPassword
 GET		/success					controllers.Application.success
 GET		/getAllOrderId				controllers.Application.getAllOrderId
-GET		/sendSomething				controllers.Application.sendSomething
+
 
 
 

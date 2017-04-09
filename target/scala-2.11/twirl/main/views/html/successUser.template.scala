@@ -76,7 +76,6 @@ Seq[Any](format.raw/*1.19*/("""
 
           <h1  id="h1" >  """),_display_(/*46.28*/message),format.raw/*46.35*/("""   """),format.raw/*46.38*/("""</h1>
 
-
           <input id="submitButtonId"  type="submit" value="Back To Home Main Page" name="workerDetailButton" >
       </form>
     </div>
@@ -104,9 +103,9 @@ Seq[Any](format.raw/*1.19*/("""
 object successUser extends successUser_Scope0.successUser
               /*
                   -- GENERATED --
-                  DATE: Fri Mar 24 17:46:27 IST 2017
+                  DATE: Mon Apr 03 21:26:26 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/successUser.scala.html
-                  HASH: 1c4d79fcfb4a2dcb1a85190eed468132878d16f8
+                  HASH: 314c7522f43301213a5842ceb41a989cf51a649d
                   MATRIX: 757->1|869->18|901->24|1382->477|1411->478|1448->488|1500->513|1528->514|1563->522|1603->534|1632->535|1668->544|1720->569|1748->570|1783->578|1826->593|1855->594|1891->603|1942->627|1970->628|2005->636|2038->641|2067->642|2103->651|2156->677|2184->678|2215->682|2697->1137|2725->1144|2756->1147
                   LINES: 27->1|32->1|38->7|51->20|51->20|53->22|54->23|54->23|56->25|56->25|56->25|57->26|58->27|58->27|60->29|60->29|60->29|61->30|62->31|62->31|64->33|64->33|64->33|65->34|67->36|67->36|69->38|77->46|77->46|77->46
                   -- GENERATED --

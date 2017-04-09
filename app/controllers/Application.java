@@ -57,6 +57,7 @@ public class Application extends Controller {
 	public static final String FLASH_MESSAGE_KEY = "message";
 	public static final String FLASH_ERROR_KEY = "error";
 	public static final String USER_ROLE = "user";
+	public static final String ADMIN_ROLE = "admin";
 
 	private final PlayAuthenticate auth;
 
@@ -80,10 +81,11 @@ public class Application extends Controller {
 		return ok(index.render(this.userProvider));
 	}
 
+	// @Restrict(@Group({Application.USER_ROLE, Application.ADMIN_ROLE}))
 	public Result sendSomething() {
 
-		String emailId = request().getQueryString("emailId");
-		String password = request().getQueryString("password");
+		String emailId = request().body().asFormUrlEncoded().get("emailId")[0];
+		String password = request().body().asFormUrlEncoded().get("password")[0];
 		System.out.println("Value from UI :" + "  userEmailId : " + emailId);
 
 		MongoClient mongoClient = new MongoClient("localhost", 27017);
@@ -114,7 +116,7 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 
-		return ok(successUser.render("Email or passord did not matched."));
+		return ok(hereThereHomePageError.render("Email or passord did not matched."));
 	}
 
 	public Result findByEmail(play.mvc.Http.Request request) {
@@ -244,8 +246,8 @@ public class Application extends Controller {
 
 		System.out.println("Outside try  : ");
 		MongoCursor<Document> cursor = null;
-		cursor = senderDetails.find(new Document("userEmailId", userEmailId)).iterator();
-		List<String> listOfOrders = new LinkedList<>();
+		cursor = senderDetails.find().iterator();
+		List<String> listOfOrders = new ArrayList<>();
 
 		try {
 
@@ -253,20 +255,19 @@ public class Application extends Controller {
 
 				Document article = cursor.next();
 				List<String> orderId = (List<String>) article.get("listOfOrder");
-				if (!article.containsValue(userEmailId)) {
+				if (article.containsValue(userEmailId)) {
+					System.out.println(" Inside else :: " + article.getString("userEmailId"));
 
-					return ok(unSuccessUser.render(userEmailId + " is not correct."));
+					// List<String> vals = (List<String>)
+					// article.get("dateOfAttendedClasses");
+					System.out.println("val :: " + orderId);
+					listOfOrders.clear();
+					listOfOrders.addAll(orderId);
+					System.out.println("Number Of Orders ::" + listOfOrders.size());
+					String numberOfOrders = Integer.toString(listOfOrders.size());
+					return ok(getAllOrderId.render(userEmailId, numberOfOrders, listOfOrders));
 
 				}
-
-				System.out.println(" Inside else :: " + article.getString("userEmailId"));
-
-				// List<String> vals = (List<String>)
-				// article.get("dateOfAttendedClasses");
-				System.out.println("val :: " + orderId);
-				listOfOrders.clear();
-				listOfOrders.addAll(orderId);
-				System.out.println("Number Of Orders ::" + listOfOrders.size());
 
 				// String numberOfPresentday =
 				// Integer.toString(dateOfAttendedClasses.size());
@@ -280,9 +281,7 @@ public class Application extends Controller {
 		} finally {
 			mongoClient.close();
 		}
-
-		String numberOfOrders = Integer.toString(listOfOrders.size());
-		return ok(getAllOrderId.render(userEmailId, numberOfOrders, listOfOrders.toString()));
+		return ok(hereThereHomePageError.render(userEmailId + " is not correct."));
 	}
 
 	public Result success() {
@@ -661,13 +660,13 @@ public class Application extends Controller {
 
 		catch (Exception e) {
 			e.printStackTrace();
-			return ok(unSuccessUser.render("Error Occered "));
+			return ok(hereThereHomePageError.render("Error Occered "));
 		} finally {
 			mongoClient.close();
 		}
 
 		System.out.println("Track");
-		return ok(unSuccessUser.render("Order Id is wrong."));
+		return ok(hereThereHomePageError.render("Order Id " + orderNumber + " is wrong."));
 	}
 
 	public Result hereThere() {
@@ -966,7 +965,7 @@ public class Application extends Controller {
 					JsonElement jsonTree = gson.toJsonTree(list);
 
 					JsonArray productListToJsonArray = jsonTree.getAsJsonArray();
-					return ok(selectCourierService.render(productListToJsonArray.toString(), orderId));
+					return ok(selectCourierService.render(list, orderId));
 
 				}
 

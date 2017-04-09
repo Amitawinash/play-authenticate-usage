@@ -1,4 +1,4 @@
-@(message: String , orderId: String)
+@(listOfcourier: List[String] , orderId: String)
       <!-- Main jumbotron for a primary marketing message or call to action -->
  <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,9 +20,10 @@
 <link rel="stylesheet" href="@routes.Assets.versioned("lib/bootstrap/css/bootstrap.css")">
 <link href="@routes.Assets.versioned("css/main.css")" rel="stylesheet">
       
-      <h2 style="border-color: pink ">Welcome to HereThere courier service</h2>
+     
                    
-<body>
+<body style="background-color: #f4511e">
+ <h2 style="border-color: pink ">Welcome to HereThere courier service</h2>
  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/">Home</a></li>
@@ -31,59 +32,82 @@
                     </ul>
                         
                 </div>
-  <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px ;margin-right: 0%">
-<h5 style="color: black">Princing</h><br>
-<h4 style="color: black">DHL = 100 &#x20B9</h4>
-<h4 style="color: black">DTDC = 200 &#x20B9</h4>
-<h4 style="color: black">AirPost = 300 &#x20B9</h4>
-<h4></h4>
-<h4></h4>
-  </div>
-  </div>
-<form   action="/payment" method="GET" >
 
-    <h4>These are the courier service provider corporate : </h4>
-    <h3 id="message"  >  @message </h2>
-    <h6 style="color: red">Please select courier service provider </h6>
-    <select class="form-control"   name="shipmentType"  required="value" />
-             <option value="DHL">DHL</option>
-             <option value="DTDC">DTDC</option>
-             <option value="AirPost">AirPost</option>
-    </select>
+  <div class="parent_div_1">
+    <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px ;margin-right: 0%">
+        <h5 style="color: black">Princing</h><br>
+        <h4 style="color: black">DHL = 100 &#x20B9</h4>
+        <h4 style="color: black">DTDC = 200 &#x20B9</h4>
+        <h4 style="color: black">AirPost = 300 &#x20B9</h4>
+        <h4></h4>
+        <h4></h4>
+    </div>
+        <div class="child_div_1" style="margin-left: 15%;background-color: skyblue">
+        <center>
+          <form   action="/payment" method="GET" >
 
-    <h3>Your order number is : @orderId</h3>
-    
+            <h4>These are the courier service provider corporate : </h4>
+           <table id="list" border="1px">
+        <thead>
+          <tr>
+            
+            <td>courier service provider</td>
+          </tr>
+        </thead>
 
-    <br>
-    <button class="btn btn-danger" value="@orderId" name="orderId">Next</button>
-   
-  </form>
-  
-</div>
-  
-      <br/>
-      <br/>
-      
-      <br />
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-xs-6 col-sm-4">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
+        <tbody >
+
+          @for(listOfOrder <- listOfcourier) {
+          <center>
+            <tr>
+              <td>@listOfOrder</td> 
+            </tr>
+            </center>
+          }
+        </tbody>
+      </table>
+
+            <h6 style="color: red">Please select courier service provider </h6>
+            <select class="btn btn-danger" name="shipmentType"  required="value" />
+              <option value="DHL">DHL</option>
+              <option value="DTDC">DTDC</option>
+              <option value="AirPost">AirPost</option>
+            </select>
+
+            <h3>Your order number is : @orderId</h3>
+            
+
+            <br>
+            <button class="btn btn-danger" value="@orderId" name="orderId">Next</button>
+           
+          </form>
+          </center>
+
         </div>
-        <div class="col-xs-6 col-sm-4">
-          <br>
-          <br>
-          <br>
-       </div>
-        <div class="col-xs-6 col-sm-4">
-          <br>
-          <br>
-          <br>
-        </div>
-      </div>
+
+            <br/>
+            <br/>
+            
+            <br />
+            <!-- Example row of columns -->
+            <div class="row">
+              <div class="col-xs-6 col-sm-4">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+              </div>
+              <div class="col-xs-6 col-sm-4">
+                <br>
+                <br>
+                <br>
+             </div>
+              <div class="col-xs-6 col-sm-4">
+                <br>
+                <br>
+                <br>
+              </div>
+            </div>
 </body>
