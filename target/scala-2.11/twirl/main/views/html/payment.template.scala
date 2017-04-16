@@ -73,7 +73,7 @@ Seq[Any](format.raw/*5.34*/("""
   <h4>Total cost for order id """),_display_(/*43.32*/orderId),format.raw/*43.39*/(""" """),format.raw/*43.40*/("""</h4>
   
   <h1>"""),_display_(/*45.8*/cost),format.raw/*45.12*/(""" """),format.raw/*45.13*/("""&#x20B9</h1>
-  <a href="/home/amit/reversScript.html" style="color: white">please accept terms and condition <input type="checkbox" name="orderId" value=""""),_display_(/*46.143*/orderId),format.raw/*46.150*/("""" required/></a>
+  <a href=""""),_display_(/*46.13*/routes/*46.19*/.Application.termsAndCondition()),format.raw/*46.51*/("""" style="color: white">please accept terms and condition <input type="checkbox" name="orderId" value=""""),_display_(/*46.154*/orderId),format.raw/*46.161*/("""" required/></a>
   <br>
   
   <br>
@@ -111,11 +111,11 @@ Seq[Any](format.raw/*5.34*/("""
 object payment extends payment_Scope0.payment
               /*
                   -- GENERATED --
-                  DATE: Sun Mar 26 16:35:59 IST 2017
+                  DATE: Sun Apr 16 14:22:27 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/payment.scala.html
-                  HASH: a15d3dacf08173c4695d5abb21c4f762cab9d942
-                  MATRIX: 845->95|972->127|1001->130|1562->663|1591->664|1625->671|1728->747|1756->748|1786->751|1823->760|1852->761|1886->768|1942->797|1970->798|2000->801|2045->818|2074->819|2108->826|2157->848|2185->849|2217->854|2386->996|2414->1003|2443->1004|2485->1020|2510->1024|2539->1025|2722->1180|2751->1187
-                  LINES: 30->5|35->5|38->8|49->19|49->19|50->20|54->24|54->24|55->25|55->25|55->25|56->26|57->27|57->27|58->28|58->28|58->28|59->29|60->30|60->30|63->33|73->43|73->43|73->43|75->45|75->45|75->45|76->46|76->46
+                  HASH: 5328cce3e6a1e759f336296978d0b83c645acdbc
+                  MATRIX: 845->95|972->127|1001->130|1562->663|1591->664|1625->671|1728->747|1756->748|1786->751|1823->760|1852->761|1886->768|1942->797|1970->798|2000->801|2045->818|2074->819|2108->826|2157->848|2185->849|2217->854|2386->996|2414->1003|2443->1004|2485->1020|2510->1024|2539->1025|2591->1050|2606->1056|2659->1088|2790->1191|2819->1198
+                  LINES: 30->5|35->5|38->8|49->19|49->19|50->20|54->24|54->24|55->25|55->25|55->25|56->26|57->27|57->27|58->28|58->28|58->28|59->29|60->30|60->30|63->33|73->43|73->43|73->43|75->45|75->45|75->45|76->46|76->46|76->46|76->46|76->46
                   -- GENERATED --
               */
           

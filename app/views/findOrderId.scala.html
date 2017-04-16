@@ -1,4 +1,17 @@
-@(key: String , numberOfOrders: String , listOfOrders: String)
+
+
+@*
+ * This template takes a single argument, a String containing a
+ * message to display.
+ *@
+
+
+
+@import service.UserProvider
+@(userProvider: UserProvider , key: String , numberOfOrders: String , listOfOrders: String)
+
+@main(userProvider, Messages("playauthenticate.index.title")) {
+
       <!-- Main jumbotron for a primary marketing message or call to action -->
  <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,16 +36,7 @@
       <h2 style="border-color: pink ">Welcome to HereThere courier service</h2>
                    
 <body>
- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Home</a></li>
-                        <li class=""><a href="/restricted">Admin page</a></li>
-                        <li class=""><a href="/signup">Sign up</a></li>
-                        <li class=""><a href="/restricted">Contact Us</a></li>
-                        <li class=""><a href="/restricted">About Us</a></li>
-                    </ul>
-                        <a href="/login" class=" navbar-right btn btn-default navbar-btn ">Log in</a>
-                </div>
+ 
   <div class="jumbotron" id='parent_div_1' style="background-color: #FAEEAF ;width: 98%;border-radius: 15px">
       <div>
         <div id='parent_div_1'>
@@ -62,7 +66,7 @@
             </form>
           </div>
           <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px ">
-             <form action="/orderStatus" style="margin: 25px;"  >
+             <form action="/estimatedDate" style="margin: 25px;"  >
                <h5 style="box-shadow: currentColor;">Estimated Date Of Shipment</h5>
                <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number" required  maxlength="24">
                <input  class="form-control" type="Date" name="estimatedDate" required/>
@@ -79,29 +83,8 @@
           </div>
         </div>
       </div>
-      <br/>
-      <br/>
-      
-      <br />
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-xs-6 col-sm-4">
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-          <br>
-        </div>
-        <div class="col-xs-6 col-sm-4">
-          <br>
-          <br>
-          <br>
-       </div>
-        <div class="col-xs-6 col-sm-4">
-          <br>
-          <br>
-          <br>
-        </div>
+      <br>
       </div>
-</body>
+
+
+}

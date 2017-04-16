@@ -78,22 +78,20 @@ public class Application extends Controller {
 	}
 
 	public Result index() {
-		return ok(index.render(this.userProvider,""));
+		return ok(index.render(this.userProvider, ""));
 	}
+
 	public Result termsAndCondition() {
 		return ok(termsAndCondition.render(this.userProvider));
 	}
-	
-	
+
 	public Result contactUs() {
-		return ok(index.render(this.userProvider,""));
+		return ok(contactUs.render(this.userProvider, "amitawinash@gmail.com"));
 	}
+
 	public Result aboutUs() {
-		return ok(index.render(this.userProvider,""));
+		return ok(index.render(this.userProvider, ""));
 	}
-	
-	
-	
 
 	// @Restrict(@Group({Application.USER_ROLE, Application.ADMIN_ROLE}))
 	public Result sendSomething() {
@@ -119,7 +117,7 @@ public class Application extends Controller {
 				System.out.println("inside While loop ::: " + article.containsValue(emailId));
 				if (article.containsValue(emailId) && article.containsValue(password)) {
 
-					return ok(sendSomething.render(this.userProvider,emailId, password));
+					return ok(sendSomething.render(this.userProvider, emailId, password));
 
 				}
 
@@ -130,7 +128,7 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 
-		return ok(hereThereHomePageError.render(this.userProvider,"Email or passord did not matched."));
+		return ok(hereThereHomePageError.render(this.userProvider, "Email or passord did not matched."));
 	}
 
 	public Result findByEmail(play.mvc.Http.Request request) {
@@ -154,7 +152,7 @@ public class Application extends Controller {
 				Document article = cursor.next();
 				List<String> orderId = (List<String>) article.get("listOfOrder");
 				if (!article.containsValue(userEmailId)) {
-					return ok(unSuccess.render(userEmailId + " is not correct."));
+					return ok(unSuccess.render(this.userProvider,userEmailId + " is not correct."));
 				}
 				System.out.println(" Inside else :: " + article.getString("userEmailId"));
 
@@ -170,7 +168,7 @@ public class Application extends Controller {
 		}
 
 		String numberOfOrders = Integer.toString(listOfOrders.size());
-		return ok(findOrderId.render(userEmailId, numberOfOrders, listOfOrders.toString()));
+		return ok(findOrderId.render(this.userProvider, userEmailId, numberOfOrders, listOfOrders.toString()));
 	}
 
 	public Result findByState(play.mvc.Http.Request request) {
@@ -204,10 +202,10 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 		if (orderId.equals(null) || orderId.isEmpty()) {
-			return ok(unSuccess.render("Pincode" + state + " is not correct."));
+			return ok(unSuccess.render(this.userProvider,"Pincode" + state + " is not correct."));
 		}
 		String numberOfOrders = Integer.toString(orderId.size());
-		return ok(findOrderId.render(state, numberOfOrders, orderId.toString()));
+		return ok(findOrderId.render(this.userProvider, state, numberOfOrders, orderId.toString()));
 
 	}
 
@@ -242,10 +240,10 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 		if (orderId.equals(null) || orderId.isEmpty()) {
-			return ok(unSuccess.render("Pincode" + pincode + " is not correct."));
+			return ok(unSuccess.render(this.userProvider,"Pincode" + pincode + " is not correct."));
 		}
 		String numberOfOrders = Integer.toString(orderId.size());
-		return ok(findOrderId.render(pincode, numberOfOrders, orderId.toString()));
+		return ok(findOrderId.render(this.userProvider, pincode, numberOfOrders, orderId.toString()));
 	}
 
 	public Result getAllOrderId() {
@@ -295,7 +293,7 @@ public class Application extends Controller {
 		} finally {
 			mongoClient.close();
 		}
-		return ok(hereThereHomePageError.render(this.userProvider,userEmailId + " is not correct."));
+		return ok(hereThereHomePageError.render(this.userProvider, userEmailId + " is not correct."));
 	}
 
 	public Result success() {
@@ -380,7 +378,7 @@ public class Application extends Controller {
 		} finally {
 			mongoClient.close();
 		}
-		return ok(forgetPasswordError.render(this.userProvider,"Email or Answer did not match."));
+		return ok(forgetPasswordError.render(this.userProvider, "Email or Answer did not match."));
 	}
 
 	public Result forgetPassword() {
@@ -455,7 +453,7 @@ public class Application extends Controller {
 	}
 
 	public Result transactionCancle(play.mvc.Http.Request request) {
-		return ok(successUser.render("transactionCancle"));
+		return ok(hereThereHomePageError.render(this.userProvider, "Your have cancled your Order."));
 	}
 
 	public Result transactions() {
@@ -484,7 +482,7 @@ public class Application extends Controller {
 		} else if (findByKey.equals("findByPincode")) {
 			return findByPincode(request());
 		}
-		return ok(findOrderId.render("yoo", "noo", "poo"));
+		return ok(findOrderId.render(this.userProvider,"yoo", "noo", "poo"));
 
 	}
 
@@ -512,7 +510,8 @@ public class Application extends Controller {
 
 					System.out.println("Id exists");
 
-					return ok(hereThereHomePageError.render(this.userProvider,"User Email ID " + userEmailId + " is already exists."));
+					return ok(hereThereHomePageError.render(this.userProvider,
+							"User Email ID " + userEmailId + " is already exists."));
 
 				}
 
@@ -524,7 +523,7 @@ public class Application extends Controller {
 				senderDetails.insertOne(document);
 
 			} else {
-				return ok(hereThereHomePageError.render(this.userProvider,"Passwords did not match."));
+				return ok(hereThereHomePageError.render(this.userProvider, "Passwords did not match."));
 
 			}
 			cursor.close();
@@ -537,7 +536,7 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 
-		return ok(hereThereHomePageSuccess.render(this.userProvider,"Email id : " + userEmailId + " is added."));
+		return ok(hereThereHomePageSuccess.render(this.userProvider, "Email id : " + userEmailId + " is added."));
 	}
 
 	public Result getEstimatedDate(play.mvc.Http.Request request) {
@@ -564,8 +563,8 @@ public class Application extends Controller {
 					System.out.println("Inside If");
 
 					document.getString("orderStatus");
-					return ok(hereThereHomePageSuccess
-							.render(this.userProvider,"Estimated Date of Delivery is : " + document.getString("estimatedDate")));
+					return ok(hereThereHomePageSuccess.render(this.userProvider,
+							"Estimated Date of Delivery is : " + document.getString("estimatedDate")));
 
 				}
 
@@ -574,13 +573,13 @@ public class Application extends Controller {
 
 		catch (Exception e) {
 			e.printStackTrace();
-			return ok(hereThereHomePageError.render(this.userProvider,"Error Occered "));
+			return ok(hereThereHomePageError.render(this.userProvider, "Error Occered "));
 		} finally {
 			mongoClient.close();
 		}
 
 		System.out.println("Track");
-		return ok(hereThereHomePageError.render(this.userProvider,"Oupps...Order Id is wrong."));
+		return ok(hereThereHomePageError.render(this.userProvider, "Oupps...Order Id is wrong."));
 	}
 
 	public Result estimatedDate() {
@@ -613,12 +612,12 @@ public class Application extends Controller {
 
 						Bson updateOpration = new Document("$set", arg0);
 						orderStatus.updateOne(arg1, updateOpration);
-						return ok(success.render("Order estimated date is updated."));
+						return ok(success.render(this.userProvider,"Shipment date is updated."));
 					}
 
 					else {
 
-						return ok(unSuccess.render("Order Is already delivered"));
+						return ok(unSuccess.render(this.userProvider,"Order Is already delivered"));
 
 					}
 
@@ -628,12 +627,12 @@ public class Application extends Controller {
 
 		catch (Exception e) {
 			e.printStackTrace();
-			return ok(unSuccess.render("Error Occered "));
+			return ok(unSuccess.render(this.userProvider,"Error Occered "));
 		} finally {
 			mongoClient.close();
 		}
 
-		return ok(unSuccess.render("Order Number not found"));
+		return ok(unSuccess.render(this.userProvider,"Order Number not found"));
 	}
 
 	public Result payBill(play.mvc.Http.Request request) {
@@ -665,7 +664,8 @@ public class Application extends Controller {
 					System.out.println("Inside If");
 
 					document.getString("orderStatus");
-					return ok(hereThereHomePageSuccess.render(this.userProvider,"Order Status is : " + document.getString("statusOfOrder")));
+					return ok(hereThereHomePageSuccess.render(this.userProvider,
+							"Order Status is : " + document.getString("statusOfOrder")));
 
 				}
 
@@ -674,13 +674,13 @@ public class Application extends Controller {
 
 		catch (Exception e) {
 			e.printStackTrace();
-			return ok(hereThereHomePageError.render(this.userProvider,"Error Occered "));
+			return ok(hereThereHomePageError.render(this.userProvider, "Error Occered "));
 		} finally {
 			mongoClient.close();
 		}
 
 		System.out.println("Track");
-		return ok(hereThereHomePageError.render(this.userProvider,"Order Id " + orderNumber + " is wrong."));
+		return ok(hereThereHomePageError.render(this.userProvider, "Order Id " + orderNumber + " is wrong."));
 	}
 
 	public Result hereThere() {
@@ -725,12 +725,12 @@ public class Application extends Controller {
 
 						Bson updateOpration = new Document("$set", arg0);
 						orderStatus.updateOne(arg1, updateOpration);
-						return ok(success.render("Order Stauts is updated."));
+						return ok(success.render(this.userProvider,"Order Stauts is updated."));
 					}
 
 					else {
 
-						return ok(unSuccess.render("Order Is already delivered"));
+						return ok(unSuccess.render(this.userProvider,"Order Is already delivered"));
 
 					}
 
@@ -740,12 +740,12 @@ public class Application extends Controller {
 
 		catch (Exception e) {
 			e.printStackTrace();
-			return ok(unSuccess.render("Error Occered "));
+			return ok(unSuccess.render(this.userProvider,"Error Occered "));
 		} finally {
 			mongoClient.close();
 		}
 
-		return ok(unSuccess.render("Order Number not found"));
+		return ok(unSuccess.render(this.userProvider,"Order Number not found"));
 	}
 
 	public Result orderStatus() {
@@ -979,7 +979,7 @@ public class Application extends Controller {
 					JsonElement jsonTree = gson.toJsonTree(list);
 
 					JsonArray productListToJsonArray = jsonTree.getAsJsonArray();
-					return ok(selectCourierService.render(this.userProvider,list, orderId));
+					return ok(selectCourierService.render(this.userProvider, list, orderId));
 
 				}
 
