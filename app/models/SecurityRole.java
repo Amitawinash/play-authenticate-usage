@@ -36,8 +36,8 @@ public class SecurityRole extends Model implements Role {
 
 	public String roleName;
 
-	public static final Finder<Long, SecurityRole> find = new Finder<Long, SecurityRole>(
-			Long.class, SecurityRole.class);
+	public static final Finder<Long, SecurityRole> find = new Finder<Long, SecurityRole>(Long.class,
+			SecurityRole.class);
 
 	@Override
 	public String getName() {
@@ -45,6 +45,9 @@ public class SecurityRole extends Model implements Role {
 	}
 
 	public static SecurityRole findByRoleName(String roleName) {
-		return find.where().eq("roleName", roleName).findUnique();
+		//String adminName = "Amit123";
+		//if (adminName.equals(roleName)) {
+			return find.where().eq("roleName", roleName).findUnique();
+		//}
 	}
 }

@@ -52,7 +52,7 @@ Seq[Any](format.raw/*9.30*/("""
   <div class="jumbotron" id='parent_div_1' style="background-color: #FAEEAF ;width: 100%;">
         <div id='parent_div_1'>
 
-        <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
+        <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px; " >
              <form action="/newUser" style="margin: 25px; margin-bottom: 0%"  >
                <h5 style="box-shadow: currentColor;">New user</h5>
                <input class="form-control" type="email" name="userEmailId" placeholder="Enter User Email Id"  maxlength="29" required / >
@@ -79,17 +79,17 @@ Seq[Any](format.raw/*9.30*/("""
           <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
            <form action="/sendSomething"  style="margin: 25px;"  method="POST">
             <h5 style="box-shadow: currentColor; ">Login</h5>
-            <input class="form-control" type="email" name="emailId" placeholder="Sender email Id"   required/  >
-            <input class="form-control" type="password" name="password" placeholder="Enter password" minlength="8" maxlength="10" required / >
+            <input class="form-control" type="email" name="emailId" placeholder="Sender email Id"  required /  >
+            <input class="form-control" type="password" name="password" placeholder="Enter password"  maxlength="17" required  / >
             <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="" value="Send" >
           </form>
           </div>
           <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
              <form action="/orderStatus" style="margin: 25px;"  >
                <h5 style="box-shadow: currentColor;">Track Your Order</h5>
-               <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number"  maxlength="24" required / >
+               <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number"  maxlength="24"  required  / >
                <br>
-               <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="action" value="Track">
+               <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="action" value="Track" >
                <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="action"  value="Estimated Date">
                
           </form>
@@ -105,27 +105,10 @@ Seq[Any](format.raw/*9.30*/("""
           </div>
         </div>
       </div>
-      <br/>
-      <br/>
-      <br />
+
+      
       <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-xs-6 col-sm-4">
-          <br>
-          <br>
-          <br>
-        </div>
-        <div class="col-xs-6 col-sm-4">
-          <br>
-          <br>
-          <br>
-       </div>
-        <div class="col-xs-6 col-sm-4">
-          <br>
-          <br>
-          <br>
-        </div>
-      </div>
+      
     """)))}))
       }
     }
@@ -147,9 +130,9 @@ Seq[Any](format.raw/*9.30*/("""
 object hereThereHomePage extends hereThereHomePage_Scope0.hereThereHomePage_Scope1.hereThereHomePage
               /*
                   -- GENERATED --
-                  DATE: Mon Apr 03 20:04:16 IST 2017
+                  DATE: Sun Apr 16 05:08:40 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/hereThereHomePage.scala.html
-                  HASH: ecdc346c60745d11fe7f4f39a66352e32bd457a7
+                  HASH: 14ada775ec0379794f14fd0d66a7dbe6d44347bf
                   MATRIX: 843->127|966->155|995->158|1064->218|1104->220|1138->227|1320->381|1349->382|1381->387|1422->401|1450->402|1480->405|1520->417|1549->418|1581->423|1645->460|1673->461|1701->462
                   LINES: 30->9|35->9|37->11|37->11|37->11|38->12|43->17|43->17|44->18|45->19|45->19|46->20|46->20|46->20|47->21|49->23|49->23|50->24
                   -- GENERATED --

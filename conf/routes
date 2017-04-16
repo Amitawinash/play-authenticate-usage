@@ -4,7 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.hereThere
-GET     /temp                           controllers.Application.index
+GET     /temp                       controllers.Application.index
 GET     /restricted                 controllers.Application.restricted
 GET     /assets/javascript/routes.js    controllers.Application.jsRoutes
 
@@ -36,6 +36,11 @@ GET		/changePassword				controllers.Application.changePassword
 GET		/newPassword				controllers.Application.newPassword
 GET		/success					controllers.Application.success
 GET		/getAllOrderId				controllers.Application.getAllOrderId
+GET		/contactUs					controllers.Application.contactUs
+GET		/aboutUs					controllers.Application.aboutUs
+GET		/termsAndCondition			controllers.Application.termsAndCondition
+
+
 
 
 

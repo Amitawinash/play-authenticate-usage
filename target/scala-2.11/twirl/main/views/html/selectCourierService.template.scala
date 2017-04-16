@@ -21,64 +21,69 @@ import play.data._
 import play.api.data.Field
 import play.mvc.Http.Context.Implicit._
 
-class selectCourierService extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template2[List[String],String,play.twirl.api.HtmlFormat.Appendable] {
+     object selectCourierService_Scope1 {
+import service.UserProvider
+
+class selectCourierService extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template3[UserProvider,List[String],String,play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*1.2*/(listOfcourier: List[String] , orderId: String):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*9.2*/(userProvider: UserProvider , listOfcourier: List[String] , orderId: String):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 
 
-Seq[Any](format.raw/*1.49*/("""
-      """),format.raw/*2.7*/("""<!-- Main jumbotron for a primary marketing message or call to action -->
- <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="This page is for Admin">
-        <meta name="author" content="Amit">
+Seq[Any](format.raw/*9.78*/("""
 
-        <script type="text/javascript" src=""""),_display_(/*8.46*/routes/*8.52*/.Assets.versioned("lib/jquery/jquery.js")),format.raw/*8.93*/(""""></script>
-        <script type="text/javascript" src=""""),_display_(/*9.46*/routes/*9.52*/.Assets.versioned("lib/bootstrap/js/bootstrap.js")),format.raw/*9.102*/(""""></script>
-        <script type="text/javascript" src=""""),_display_(/*10.46*/routes/*10.52*/.Application.jsRoutes),format.raw/*10.73*/("""" defer="defer"></script>
-<style type="text/css">
-  #parent_div_1, #parent_div_2, #parent_div_3"""),format.raw/*12.46*/("""{"""),format.raw/*12.47*/("""
-    """),format.raw/*13.5*/("""float:left;
-  """),format.raw/*14.3*/("""}"""),format.raw/*14.4*/("""
-  """),format.raw/*15.3*/(""".child_div_1"""),format.raw/*15.15*/("""{"""),format.raw/*15.16*/("""
+"""),_display_(/*11.2*/main(userProvider, Messages("playauthenticate.index.title"))/*11.62*/ {_display_(Seq[Any](format.raw/*11.64*/("""
+"""),format.raw/*12.1*/("""<style type="text/css">
+        
+
+  #parent_div_1, #parent_div_2, #parent_div_3"""),format.raw/*15.46*/("""{"""),format.raw/*15.47*/("""
     """),format.raw/*16.5*/("""float:left;
+  """),format.raw/*17.3*/("""}"""),format.raw/*17.4*/("""
+  """),format.raw/*18.3*/(""".child_div_1"""),format.raw/*18.15*/("""{"""),format.raw/*18.16*/("""
+    """),format.raw/*19.5*/("""float:left;
     margin-right:55px;
-  """),format.raw/*18.3*/("""}"""),format.raw/*18.4*/("""
-"""),format.raw/*19.1*/("""</style>
-<link rel="stylesheet" href=""""),_display_(/*20.31*/routes/*20.37*/.Assets.versioned("lib/bootstrap/css/bootstrap.css")),format.raw/*20.89*/("""">
-<link href=""""),_display_(/*21.14*/routes/*21.20*/.Assets.versioned("css/main.css")),format.raw/*21.53*/("""" rel="stylesheet">
-      
-     
-                   
-<body style="background-color: #f4511e">
- <h2 style="border-color: pink ">Welcome to HereThere courier service</h2>
- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">Home</a></li>
-                        
-                        
-                    </ul>
-                        
-                </div>
+  """),format.raw/*21.3*/("""}"""),format.raw/*21.4*/("""
+"""),format.raw/*22.1*/("""</style>
+      <h2 style="border-color: pink ">Welcome to <b style="color: #E57196">HereThere</b>  <small style="color: #D6C8CD">courier service</small></h2>
+  <div class="jumbotron" id='parent_div_1' style="background-color: #FAEEAF ;width: 100%;">
+  <div class="child_div_1" style="background-color: #8D8D93  ;border-radius: 10px;margin: 1px;">
+            <form action="getAllOrderId" style="margin: 2px; position: all;">
+              <h4 style="color: white"><b> Your order number is : """),_display_(/*27.68*/orderId),format.raw/*27.75*/("""</b></h4>
+            </form>
+  </div>
+        <div id='parent_div_1'>
+        
 
-  <div class="parent_div_1">
-    <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px ;margin-right: 0%">
-        <h5 style="color: black">Princing</h><br>
-        <h4 style="color: black">DHL = 100 &#x20B9</h4>
-        <h4 style="color: black">DTDC = 200 &#x20B9</h4>
-        <h4 style="color: black">AirPost = 300 &#x20B9</h4>
-        <h4></h4>
-        <h4></h4>
-    </div>
-        <div class="child_div_1" style="margin-left: 15%;background-color: skyblue">
-        <center>
-          <form   action="/payment" method="GET" >
-
-            <h4>These are the courier service provider corporate : </h4>
-           <table id="list" border="1px">
+        <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px; " >
+             <form action="/newUser" style="margin: 25px; margin-bottom: 0%"  >
+               <h5 style="box-shadow: currentColor;">New user</h5>
+               <input class="form-control" type="email" name="userEmailId" placeholder="Enter User Email Id"  maxlength="29" required / >
+               <input class="form-control" type="password" name="password" placeholder="Enter password" minlength="8" maxlength="10" required / >
+               <input class="form-control" type="password" name="confirmPassword" placeholder="Enter Confirm Password" minlength="8" maxlength="10" required / >
+               <h6 style="color: red">Sequrity Question</h6>
+               <h6>In which year you were born ?</h6>
+               
+               <input class="form-control" type="password" name="sequrityAnswer" placeholder="Enter Answer" pattern="[0-9]+" minlength="4" maxlength="4" required / >
+               <br>
+               <input class="form-control" style="background-color: #9FB0F9  " type="submit" name="action" value="Register">
+          </form>
+          <div>
+            <form action="/forgetPassword" style="margin: 25px; margin-top: 0%;margin-bottom: 0%">
+                 <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="action" value="Forget Password">
+            </form>
+          </div>
+          <div>
+            <form action="/changePassword" style="margin: 25px; margin-top: 0%">
+                 <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="action" value="Change Password">
+            </form>
+          </div>
+          </div>
+          <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
+           <form action="/payment"  style="margin: 25px;">
+            <h5 style="box-shadow: currentColor; "><b>Select Courier Service</b></h5>
+              <table id="list" border="1px">
         <thead>
           <tr>
             
@@ -86,69 +91,67 @@ Seq[Any](format.raw/*1.49*/("""
           </tr>
         </thead>
 
-        <tbody >
-
-          """),_display_(/*60.12*/for(listOfOrder <- listOfcourier) yield /*60.45*/ {_display_(Seq[Any](format.raw/*60.47*/("""
-          """),format.raw/*61.11*/("""<center>
-            <tr>
-              <td>"""),_display_(/*63.20*/listOfOrder),format.raw/*63.31*/("""</td> 
+        <tbody>
+          """),_display_(/*69.12*/for(listOfOrder <- listOfcourier) yield /*69.45*/ {_display_(Seq[Any](format.raw/*69.47*/("""
+            """),format.raw/*70.13*/("""<tr>
+              
+                <td>"""),_display_(/*72.22*/listOfOrder),format.raw/*72.33*/("""</td> 
+              
             </tr>
-            </center>
-          """)))}),format.raw/*66.12*/("""
-        """),format.raw/*67.9*/("""</tbody>
+          """)))}),format.raw/*75.12*/("""
+        """),format.raw/*76.9*/("""</tbody>
       </table>
 
             <h6 style="color: red">Please select courier service provider </h6>
-            <select class="btn btn-danger" name="shipmentType"  required="value" />
-              <option value="DHL">DHL</option>
-              <option value="DTDC">DTDC</option>
-              <option value="AirPost">AirPost</option>
-            </select>
-
-            <h3>Your order number is : """),_display_(/*77.41*/orderId),format.raw/*77.48*/("""</h3>
-            
-
-            <br>
-            <button class="btn btn-danger" value=""""),_display_(/*81.52*/orderId),format.raw/*81.59*/("""" name="orderId">Next</button>
+            <center>
+              <select class="form-control" name="shipmentType"  required="value" />
+                <option value="DHL">DHL = 100 &#x20B9</option>
+                <option value="DTDC">DTDC = 200 &#x20B9</option>
+                <option value="AirPost">AirPost = 300 &#x20B9</option>
+              </select>
+            </center>
+            <center>
+              <button class="form-control" style="margin-top: 4%" value=""""),_display_(/*88.75*/orderId),format.raw/*88.82*/("""" name="orderId">Next</button>
+            </center>
            
           </form>
-          </center>
-
+          </div>
+          <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
+             <form action="/orderStatus" style="margin: 25px;"  >
+               <h5 style="box-shadow: currentColor;">Track Your Order</h5>
+               <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number"  maxlength="24"  required  / >
+               <br>
+               <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="action" value="Track" >
+               <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="action"  value="Estimated Date">
+               
+          </form>
+          <div class="child_div_1" style="background-color: #BFD3F0;border-radius: 10px;margin: 15px;">
+             <form action="getAllOrderId" style="margin: 25px;"  >
+               <h5 style="box-shadow: currentColor;">Find order Number</h5>
+               
+               <input class="form-control" type="email" name="userEmailId" placeholder="Enter User Email Id"  maxlength="29" required / >
+              
+               <input class="form-control" style="background-color: #F3EC97  " type="submit" name="action"  value="Get all order Id">
+          </form>
+          </div>
+          </div>
         </div>
+      </div>
 
-            <br/>
-            <br/>
-            
-            <br />
-            <!-- Example row of columns -->
-            <div class="row">
-              <div class="col-xs-6 col-sm-4">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-              </div>
-              <div class="col-xs-6 col-sm-4">
-                <br>
-                <br>
-                <br>
-             </div>
-              <div class="col-xs-6 col-sm-4">
-                <br>
-                <br>
-                <br>
-              </div>
-            </div>
-</body>"""))
+
+""")))}),format.raw/*116.2*/("""
+
+
+
+
+"""))
       }
     }
   }
 
-  def render(listOfcourier:List[String],orderId:String): play.twirl.api.HtmlFormat.Appendable = apply(listOfcourier,orderId)
+  def render(userProvider:UserProvider,listOfcourier:List[String],orderId:String): play.twirl.api.HtmlFormat.Appendable = apply(userProvider,listOfcourier,orderId)
 
-  def f:((List[String],String) => play.twirl.api.HtmlFormat.Appendable) = (listOfcourier,orderId) => apply(listOfcourier,orderId)
+  def f:((UserProvider,List[String],String) => play.twirl.api.HtmlFormat.Appendable) = (userProvider,listOfcourier,orderId) => apply(userProvider,listOfcourier,orderId)
 
   def ref: this.type = this
 
@@ -156,16 +159,17 @@ Seq[Any](format.raw/*1.49*/("""
 
 
 }
+}
 
 /**/
-object selectCourierService extends selectCourierService_Scope0.selectCourierService
+object selectCourierService extends selectCourierService_Scope0.selectCourierService_Scope1.selectCourierService
               /*
                   -- GENERATED --
-                  DATE: Thu Apr 06 19:02:50 IST 2017
+                  DATE: Sun Apr 16 14:11:24 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/selectCourierService.scala.html
-                  HASH: cd4ff396e66d66889a2bc426fe7abf42b268dda5
-                  MATRIX: 788->1|930->48|963->55|1321->387|1335->393|1396->434|1479->491|1493->497|1564->547|1648->604|1663->610|1705->631|1828->726|1857->727|1889->732|1930->746|1958->747|1988->750|2028->762|2057->763|2089->768|2153->805|2181->806|2209->807|2275->846|2290->852|2363->904|2406->920|2421->926|2475->959|3811->2268|3860->2301|3900->2303|3939->2314|4011->2359|4043->2370|4132->2428|4168->2437|4598->2840|4626->2847|4741->2935|4769->2942
-                  LINES: 27->1|32->1|33->2|39->8|39->8|39->8|40->9|40->9|40->9|41->10|41->10|41->10|43->12|43->12|44->13|45->14|45->14|46->15|46->15|46->15|47->16|49->18|49->18|50->19|51->20|51->20|51->20|52->21|52->21|52->21|91->60|91->60|91->60|92->61|94->63|94->63|97->66|98->67|108->77|108->77|112->81|112->81
+                  HASH: 572b033fc5f2c7bb512705ccced45daf3105d1b2
+                  MATRIX: 872->127|1043->203|1072->206|1141->266|1181->268|1209->269|1316->348|1345->349|1377->354|1418->368|1446->369|1476->372|1516->384|1545->385|1577->390|1641->427|1669->428|1697->429|2216->921|2244->928|4502->3159|4551->3192|4591->3194|4632->3207|4700->3248|4732->3259|4814->3310|4850->3319|5427->3869|5455->3876|6909->5299
+                  LINES: 30->9|35->9|37->11|37->11|37->11|38->12|41->15|41->15|42->16|43->17|43->17|44->18|44->18|44->18|45->19|47->21|47->21|48->22|53->27|53->27|95->69|95->69|95->69|96->70|98->72|98->72|101->75|102->76|114->88|114->88|142->116
                   -- GENERATED --
               */
           

@@ -66,66 +66,80 @@ Seq[Any](format.raw/*2.78*/("""
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=""""),_display_(/*37.52*/routes/*37.58*/.Application.hereThere()),format.raw/*37.82*/("""">Here There</a>
+                    <img src="hereThereLogoSmall.jpeg"  height="42" width="42">
                 </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class=""""),_display_(/*43.37*/("active".when(nav == ""))),format.raw/*43.63*/(""""><a href=""""),_display_(/*43.75*/routes/*43.81*/.Application.hereThere()),format.raw/*43.105*/("""">"""),_display_(/*43.108*/Messages("playauthenticate.navigation.home")),format.raw/*43.152*/("""</a></li>
                         <li class=""""),_display_(/*44.37*/("active".when(nav == "restricted"))),format.raw/*44.73*/(""""><a href=""""),_display_(/*44.85*/routes/*44.91*/.Application.restricted()),format.raw/*44.116*/("""">"""),_display_(/*44.119*/Messages("playauthenticate.navigation.restricted")),format.raw/*44.169*/("""</a></li>
+                         <li class=""""),_display_(/*45.38*/("active".when(nav == ""))),format.raw/*45.64*/(""""><a href=""""),_display_(/*45.76*/routes/*45.82*/.Application.contactUs()),format.raw/*45.106*/("""">"""),_display_(/*45.109*/Messages("playauthenticate.navigation.contactUs")),format.raw/*45.158*/("""</a></li>
+                         <li class=""""),_display_(/*46.38*/("active".when(nav == ""))),format.raw/*46.64*/(""""><a href=""""),_display_(/*46.76*/routes/*46.82*/.Application.aboutUs()),format.raw/*46.104*/("""">"""),_display_(/*46.107*/Messages("playauthenticate.navigation.aboutUs")),format.raw/*46.154*/("""</a></li>
 
-                        """),_display_(/*46.26*/subjectNotPresent()/*46.45*/ {_display_(Seq[Any](format.raw/*46.47*/("""
-                            """),format.raw/*47.29*/("""<li class=""""),_display_(/*47.41*/("active".when(nav == "signup"))),format.raw/*47.73*/(""""><a href=""""),_display_(/*47.85*/routes/*47.91*/.Application.signup()),format.raw/*47.112*/("""">"""),_display_(/*47.115*/Messages("playauthenticate.navigation.signup")),format.raw/*47.161*/("""</a></li>
-                        """)))}),format.raw/*48.26*/("""
-                    """),format.raw/*49.21*/("""</ul>
 
-                    """),_display_(/*51.22*/subjectPresentOr()/*51.40*/ {_display_(Seq[Any](format.raw/*51.42*/("""
-                        """),format.raw/*52.25*/("""<ul class="nav navbar-nav navbar-right">
-                        """),_display_(/*53.26*/defining(userProvider.getUser(session()))/*53.67*/ { user =>_display_(Seq[Any](format.raw/*53.77*/("""
-                            """),format.raw/*54.29*/("""<li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> """),_display_(/*55.134*/user/*55.138*/.name),format.raw/*55.143*/(""" """),format.raw/*55.144*/("""<span class="caret"></span></a>
+                        """),_display_(/*49.26*/subjectNotPresent()/*49.45*/ {_display_(Seq[Any](format.raw/*49.47*/("""
+                            """),format.raw/*50.29*/("""<li class=""""),_display_(/*50.41*/("active".when(nav == "signup"))),format.raw/*50.73*/(""""><a href=""""),_display_(/*50.85*/routes/*50.91*/.Application.signup()),format.raw/*50.112*/("""">"""),_display_(/*50.115*/Messages("playauthenticate.navigation.signup")),format.raw/*50.161*/("""</a></li>
+                        """)))}),format.raw/*51.26*/("""
+                    """),format.raw/*52.21*/("""</ul>
+
+                    """),_display_(/*54.22*/subjectPresentOr()/*54.40*/ {_display_(Seq[Any](format.raw/*54.42*/("""
+                        """),format.raw/*55.25*/("""<ul class="nav navbar-nav navbar-right">
+                        """),_display_(/*56.26*/defining(userProvider.getUser(session()))/*56.67*/ { user =>_display_(Seq[Any](format.raw/*56.77*/("""
+                            """),format.raw/*57.29*/("""<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> """),_display_(/*58.134*/user/*58.138*/.name),format.raw/*58.143*/(""" """),format.raw/*58.144*/("""<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li class=""""),_display_(/*57.49*/("active".when(nav == "profile"))),format.raw/*57.82*/(""""><a href=""""),_display_(/*57.94*/routes/*57.100*/.Application.profile()),format.raw/*57.122*/("""">"""),_display_(/*57.125*/Messages("playauthenticate.navigation.profile")),format.raw/*57.172*/("""</a></li>
+                                    <li class=""""),_display_(/*60.49*/("active".when(nav == "profile"))),format.raw/*60.82*/(""""><a href=""""),_display_(/*60.94*/routes/*60.100*/.Application.profile()),format.raw/*60.122*/("""">"""),_display_(/*60.125*/Messages("playauthenticate.navigation.profile")),format.raw/*60.172*/("""</a></li>
                                     
-                                    <li><a href=""""),_display_(/*59.51*/com/*59.54*/.feth.play.module.pa.controllers.routes.Authenticate.logout()),format.raw/*59.115*/(""""><i class="icon-off"></i> """),_display_(/*59.143*/Messages("playauthenticate.navigation.logout")),format.raw/*59.189*/("""</a></li>
+                                    <li><a href=""""),_display_(/*62.51*/com/*62.54*/.feth.play.module.pa.controllers.routes.Authenticate.logout()),format.raw/*62.115*/(""""><i class="icon-off"></i> """),_display_(/*62.143*/Messages("playauthenticate.navigation.logout")),format.raw/*62.189*/("""</a></li>
                                 </ul>
                             </li>
-                        """)))}),format.raw/*62.26*/("""
-                        """),format.raw/*63.25*/("""</ul>
-                    """)))}/*64.22*/ {_display_(Seq[Any](format.raw/*64.24*/("""
-                        """),format.raw/*65.25*/("""<a href=""""),_display_(/*65.35*/routes/*65.41*/.Application.login()),format.raw/*65.61*/("""" class=" navbar-right btn btn-default navbar-btn """),_display_(/*65.112*/("disabled".when(nav == "login"))),format.raw/*65.145*/("""">"""),_display_(/*65.148*/Messages("playauthenticate.navigation.login")),format.raw/*65.193*/("""</a>
-                    """)))}),format.raw/*66.22*/("""
+                        """)))}),format.raw/*65.26*/("""
+                        """),format.raw/*66.25*/("""</ul>
+                    """)))}/*67.22*/ {_display_(Seq[Any](format.raw/*67.24*/("""
+                        """),format.raw/*68.25*/("""<a style=" ; border-radius: 10px" href=""""),_display_(/*68.66*/routes/*68.72*/.Application.login()),format.raw/*68.92*/("""" class=" navbar-right btn btn-default navbar-btn """),_display_(/*68.143*/("disabled".when(nav == "login"))),format.raw/*68.176*/("""">"""),_display_(/*68.179*/Messages("playauthenticate.navigation.login")),format.raw/*68.224*/("""</a>
+                    """)))}),format.raw/*69.22*/("""
 
-                """),format.raw/*68.17*/("""</div><!-- /.navbar-collapse -->
+                """),format.raw/*71.17*/("""</div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
 
 
         <div class="container">
-            """),_display_(/*74.14*/if(flash.contains(Application.FLASH_ERROR_KEY))/*74.61*/ {_display_(Seq[Any](format.raw/*74.63*/("""
-                """),format.raw/*75.17*/("""<div class="alert alert-danger" role="alert">
+            """),_display_(/*77.14*/if(flash.contains(Application.FLASH_ERROR_KEY))/*77.61*/ {_display_(Seq[Any](format.raw/*77.63*/("""
+                """),format.raw/*78.17*/("""<div class="alert alert-danger" role="alert">
                     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">
                         Close</span></button>
-                    """),_display_(/*78.22*/flash()/*78.29*/.get(Application.FLASH_ERROR_KEY)),format.raw/*78.62*/("""
-                """),format.raw/*79.17*/("""</div>
-            """)))}),format.raw/*80.14*/("""
-            """),_display_(/*81.14*/if(flash.contains(Application.FLASH_MESSAGE_KEY))/*81.63*/ {_display_(Seq[Any](format.raw/*81.65*/("""
-                """),format.raw/*82.17*/("""<div class="alert alert-success" role="alert">
+                    """),_display_(/*81.22*/flash()/*81.29*/.get(Application.FLASH_ERROR_KEY)),format.raw/*81.62*/("""
+                """),format.raw/*82.17*/("""</div>
+            """)))}),format.raw/*83.14*/("""
+            """),_display_(/*84.14*/if(flash.contains(Application.FLASH_MESSAGE_KEY))/*84.63*/ {_display_(Seq[Any](format.raw/*84.65*/("""
+                """),format.raw/*85.17*/("""<div class="alert alert-success" role="alert">
                     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">
                         Close</span></button>
-                    """),_display_(/*85.22*/flash()/*85.29*/.get(Application.FLASH_MESSAGE_KEY)),format.raw/*85.64*/("""
-                """),format.raw/*86.17*/("""</div>
-            """)))}),format.raw/*87.14*/("""
-            """),_display_(/*88.14*/content),format.raw/*88.21*/("""
+                    """),_display_(/*88.22*/flash()/*88.29*/.get(Application.FLASH_MESSAGE_KEY)),format.raw/*88.64*/("""
+                """),format.raw/*89.17*/("""</div>
+            """)))}),format.raw/*90.14*/("""
+            """),_display_(/*91.14*/content),format.raw/*91.21*/("""
+                """),format.raw/*92.17*/("""<hr>
 
-            """),format.raw/*90.13*/("""<hr>
-
-            
+            <footer>
+                <p>&copy;
+                    2016-2017 HereThere! Authenticate. Version 2.0. View details <a href="https://github.com/Amitawinash/MVCExampleWithAngularAndPlayFramework">
+                        here</a>.</p>
+                <p>
+                    <small>
+                        Provider icons by <a href="https://github.com/Amitawinash" target="_blank">
+                            Amit Kumar</a></small></p>
+            </footer>
         </div> <!-- /container -->
 
+           
+
+        
     </body>
-</html>"""))
+</html>
+"""))
       }
     }
   }
@@ -146,11 +160,11 @@ Seq[Any](format.raw/*2.78*/("""
 object main extends main_Scope0.main_Scope1.main
               /*
                   -- GENERATED --
-                  DATE: Sat Mar 25 00:31:21 IST 2017
+                  DATE: Sun Apr 16 03:53:01 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/main.scala.html
-                  HASH: 36b1ab31d214ab361aaa9a5d4307e3c3ed549207
-                  MATRIX: 823->30|1096->106|1124->213|1151->214|1206->243|1220->249|1247->256|1304->286|1330->291|1704->638|1719->644|1781->685|1865->742|1880->748|1952->798|2036->855|2051->861|2093->882|2185->947|2200->953|2273->1005|2324->1029|2339->1035|2393->1068|3178->1826|3193->1832|3238->1856|3570->2161|3617->2187|3656->2199|3671->2205|3717->2229|3748->2232|3814->2276|3887->2322|3944->2358|3983->2370|3998->2376|4045->2401|4076->2404|4148->2454|4211->2490|4239->2509|4279->2511|4336->2540|4375->2552|4428->2584|4467->2596|4482->2602|4525->2623|4556->2626|4624->2672|4690->2707|4739->2728|4794->2756|4821->2774|4861->2776|4914->2801|5007->2867|5057->2908|5105->2918|5162->2947|5345->3102|5359->3106|5386->3111|5416->3112|5594->3263|5648->3296|5687->3308|5703->3314|5747->3336|5778->3339|5847->3386|5971->3483|5983->3486|6066->3547|6122->3575|6190->3621|6328->3728|6381->3753|6427->3780|6467->3782|6520->3807|6557->3817|6572->3823|6613->3843|6692->3894|6747->3927|6778->3930|6845->3975|6902->4001|6948->4019|7115->4159|7171->4206|7211->4208|7256->4225|7535->4477|7551->4484|7605->4517|7650->4534|7701->4554|7742->4568|7800->4617|7840->4619|7885->4636|8165->4889|8181->4896|8237->4931|8282->4948|8333->4968|8374->4982|8402->4989|8444->5003
-                  LINES: 30->2|36->2|38->6|39->7|40->8|40->8|40->8|42->10|42->10|49->17|49->17|49->17|50->18|50->18|50->18|51->19|51->19|51->19|53->21|53->21|53->21|54->22|54->22|54->22|69->37|69->37|69->37|75->43|75->43|75->43|75->43|75->43|75->43|75->43|76->44|76->44|76->44|76->44|76->44|76->44|76->44|78->46|78->46|78->46|79->47|79->47|79->47|79->47|79->47|79->47|79->47|79->47|80->48|81->49|83->51|83->51|83->51|84->52|85->53|85->53|85->53|86->54|87->55|87->55|87->55|87->55|89->57|89->57|89->57|89->57|89->57|89->57|89->57|91->59|91->59|91->59|91->59|91->59|94->62|95->63|96->64|96->64|97->65|97->65|97->65|97->65|97->65|97->65|97->65|97->65|98->66|100->68|106->74|106->74|106->74|107->75|110->78|110->78|110->78|111->79|112->80|113->81|113->81|113->81|114->82|117->85|117->85|117->85|118->86|119->87|120->88|120->88|122->90
+                  HASH: b0ca43a9dcfb3fc9bc1e38aee2b5c21d184b02f7
+                  MATRIX: 823->30|1096->106|1124->213|1151->214|1206->243|1220->249|1247->256|1304->286|1330->291|1704->638|1719->644|1781->685|1865->742|1880->748|1952->798|2036->855|2051->861|2093->882|2185->947|2200->953|2273->1005|2324->1029|2339->1035|2393->1068|3494->2142|3541->2168|3580->2180|3595->2186|3641->2210|3672->2213|3738->2257|3811->2303|3868->2339|3907->2351|3922->2357|3969->2382|4000->2385|4072->2435|4146->2482|4193->2508|4232->2520|4247->2526|4293->2550|4324->2553|4395->2602|4469->2649|4516->2675|4555->2687|4570->2693|4614->2715|4645->2718|4714->2765|4778->2802|4806->2821|4846->2823|4903->2852|4942->2864|4995->2896|5034->2908|5049->2914|5092->2935|5123->2938|5191->2984|5257->3019|5306->3040|5361->3068|5388->3086|5428->3088|5481->3113|5574->3179|5624->3220|5672->3230|5729->3259|5912->3414|5926->3418|5953->3423|5983->3424|6161->3575|6215->3608|6254->3620|6270->3626|6314->3648|6345->3651|6414->3698|6538->3795|6550->3798|6633->3859|6689->3887|6757->3933|6895->4040|6948->4065|6994->4092|7034->4094|7087->4119|7155->4160|7170->4166|7211->4186|7290->4237|7345->4270|7376->4273|7443->4318|7500->4344|7546->4362|7713->4502|7769->4549|7809->4551|7854->4568|8133->4820|8149->4827|8203->4860|8248->4877|8299->4897|8340->4911|8398->4960|8438->4962|8483->4979|8763->5232|8779->5239|8835->5274|8880->5291|8931->5311|8972->5325|9000->5332|9045->5349
+                  LINES: 30->2|36->2|38->6|39->7|40->8|40->8|40->8|42->10|42->10|49->17|49->17|49->17|50->18|50->18|50->18|51->19|51->19|51->19|53->21|53->21|53->21|54->22|54->22|54->22|75->43|75->43|75->43|75->43|75->43|75->43|75->43|76->44|76->44|76->44|76->44|76->44|76->44|76->44|77->45|77->45|77->45|77->45|77->45|77->45|77->45|78->46|78->46|78->46|78->46|78->46|78->46|78->46|81->49|81->49|81->49|82->50|82->50|82->50|82->50|82->50|82->50|82->50|82->50|83->51|84->52|86->54|86->54|86->54|87->55|88->56|88->56|88->56|89->57|90->58|90->58|90->58|90->58|92->60|92->60|92->60|92->60|92->60|92->60|92->60|94->62|94->62|94->62|94->62|94->62|97->65|98->66|99->67|99->67|100->68|100->68|100->68|100->68|100->68|100->68|100->68|100->68|101->69|103->71|109->77|109->77|109->77|110->78|113->81|113->81|113->81|114->82|115->83|116->84|116->84|116->84|117->85|120->88|120->88|120->88|121->89|122->90|123->91|123->91|124->92
                   -- GENERATED --
               */
           

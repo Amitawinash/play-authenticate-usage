@@ -78,8 +78,22 @@ public class Application extends Controller {
 	}
 
 	public Result index() {
-		return ok(index.render(this.userProvider));
+		return ok(index.render(this.userProvider,""));
 	}
+	public Result termsAndCondition() {
+		return ok(termsAndCondition.render(this.userProvider));
+	}
+	
+	
+	public Result contactUs() {
+		return ok(index.render(this.userProvider,""));
+	}
+	public Result aboutUs() {
+		return ok(index.render(this.userProvider,""));
+	}
+	
+	
+	
 
 	// @Restrict(@Group({Application.USER_ROLE, Application.ADMIN_ROLE}))
 	public Result sendSomething() {
@@ -105,7 +119,7 @@ public class Application extends Controller {
 				System.out.println("inside While loop ::: " + article.containsValue(emailId));
 				if (article.containsValue(emailId) && article.containsValue(password)) {
 
-					return ok(sendSomething.render(emailId, password));
+					return ok(sendSomething.render(this.userProvider,emailId, password));
 
 				}
 
@@ -116,7 +130,7 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 
-		return ok(hereThereHomePageError.render("Email or passord did not matched."));
+		return ok(hereThereHomePageError.render(this.userProvider,"Email or passord did not matched."));
 	}
 
 	public Result findByEmail(play.mvc.Http.Request request) {
@@ -281,7 +295,7 @@ public class Application extends Controller {
 		} finally {
 			mongoClient.close();
 		}
-		return ok(hereThereHomePageError.render(userEmailId + " is not correct."));
+		return ok(hereThereHomePageError.render(this.userProvider,userEmailId + " is not correct."));
 	}
 
 	public Result success() {
@@ -366,7 +380,7 @@ public class Application extends Controller {
 		} finally {
 			mongoClient.close();
 		}
-		return ok(unSuccessUser.render("Email or Password or Answer did not match the requirement."));
+		return ok(forgetPasswordError.render(this.userProvider,"Email or Answer did not match."));
 	}
 
 	public Result forgetPassword() {
@@ -498,7 +512,7 @@ public class Application extends Controller {
 
 					System.out.println("Id exists");
 
-					return ok(unSuccessUser.render("User Email ID " + userEmailId + " is already exists."));
+					return ok(hereThereHomePageError.render(this.userProvider,"User Email ID " + userEmailId + " is already exists."));
 
 				}
 
@@ -510,7 +524,7 @@ public class Application extends Controller {
 				senderDetails.insertOne(document);
 
 			} else {
-				return ok(unSuccessUser.render("Passwords did not match."));
+				return ok(hereThereHomePageError.render(this.userProvider,"Passwords did not match."));
 
 			}
 			cursor.close();
@@ -523,7 +537,7 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 
-		return ok(successUser.render("Email id : " + userEmailId + " is added."));
+		return ok(hereThereHomePageSuccess.render(this.userProvider,"Email id : " + userEmailId + " is added."));
 	}
 
 	public Result getEstimatedDate(play.mvc.Http.Request request) {
@@ -550,8 +564,8 @@ public class Application extends Controller {
 					System.out.println("Inside If");
 
 					document.getString("orderStatus");
-					return ok(successUser
-							.render("Estimated Date of Delivery is : " + document.getString("estimatedDate")));
+					return ok(hereThereHomePageSuccess
+							.render(this.userProvider,"Estimated Date of Delivery is : " + document.getString("estimatedDate")));
 
 				}
 
@@ -560,13 +574,13 @@ public class Application extends Controller {
 
 		catch (Exception e) {
 			e.printStackTrace();
-			return ok(unSuccessUser.render("Error Occered "));
+			return ok(hereThereHomePageError.render(this.userProvider,"Error Occered "));
 		} finally {
 			mongoClient.close();
 		}
 
 		System.out.println("Track");
-		return ok(unSuccessUser.render("Order Id is wrong."));
+		return ok(hereThereHomePageError.render(this.userProvider,"Oupps...Order Id is wrong."));
 	}
 
 	public Result estimatedDate() {
@@ -651,7 +665,7 @@ public class Application extends Controller {
 					System.out.println("Inside If");
 
 					document.getString("orderStatus");
-					return ok(successUser.render("Order Status is : " + document.getString("statusOfOrder")));
+					return ok(hereThereHomePageSuccess.render(this.userProvider,"Order Status is : " + document.getString("statusOfOrder")));
 
 				}
 
@@ -660,13 +674,13 @@ public class Application extends Controller {
 
 		catch (Exception e) {
 			e.printStackTrace();
-			return ok(hereThereHomePageError.render("Error Occered "));
+			return ok(hereThereHomePageError.render(this.userProvider,"Error Occered "));
 		} finally {
 			mongoClient.close();
 		}
 
 		System.out.println("Track");
-		return ok(hereThereHomePageError.render("Order Id " + orderNumber + " is wrong."));
+		return ok(hereThereHomePageError.render(this.userProvider,"Order Id " + orderNumber + " is wrong."));
 	}
 
 	public Result hereThere() {
@@ -965,7 +979,7 @@ public class Application extends Controller {
 					JsonElement jsonTree = gson.toJsonTree(list);
 
 					JsonArray productListToJsonArray = jsonTree.getAsJsonArray();
-					return ok(selectCourierService.render(list, orderId));
+					return ok(selectCourierService.render(this.userProvider,list, orderId));
 
 				}
 

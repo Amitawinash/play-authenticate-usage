@@ -97,7 +97,7 @@ Seq[Any](format.raw/*1.19*/("""
 object changePassword extends changePassword_Scope0.changePassword
               /*
                   -- GENERATED --
-                  DATE: Mon Mar 27 12:07:12 IST 2017
+                  DATE: Sun Apr 16 05:06:54 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/changePassword.scala.html
                   HASH: ee6958576ba5e41414eebbc121fe6a5a04719bf7
                   MATRIX: 763->1|875->18|908->25|1463->552|1492->553|1529->563|1581->588|1609->589|1644->597|1684->609|1713->610|1749->619|1801->644|1829->645|1864->653|1907->668|1936->669|1972->678|2023->702|2051->703|2086->711|2119->716|2148->717|2184->726|2237->752|2265->753|2296->757|2782->1216|2810->1223|2839->1224|3292->1650|3321->1657

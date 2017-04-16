@@ -34,14 +34,17 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="@routes.Application.hereThere()">Here There</a>
+                    <img src="hereThereLogoSmall.jpeg"  height="42" width="42">
                 </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="@("active".when(nav == ""))"><a href="@routes.Application.hereThere()">@Messages("playauthenticate.navigation.home")</a></li>
                         <li class="@("active".when(nav == "restricted"))"><a href="@routes.Application.restricted()">@Messages("playauthenticate.navigation.restricted")</a></li>
+                         <li class="@("active".when(nav == ""))"><a href="@routes.Application.contactUs()">@Messages("playauthenticate.navigation.contactUs")</a></li>
+                         <li class="@("active".when(nav == ""))"><a href="@routes.Application.aboutUs()">@Messages("playauthenticate.navigation.aboutUs")</a></li>
+
 
                         @subjectNotPresent() {
                             <li class="@("active".when(nav == "signup"))"><a href="@routes.Application.signup()">@Messages("playauthenticate.navigation.signup")</a></li>
@@ -62,7 +65,7 @@
                         }
                         </ul>
                     } {
-                        <a href="@routes.Application.login()" class=" navbar-right btn btn-default navbar-btn @("disabled".when(nav == "login"))">@Messages("playauthenticate.navigation.login")</a>
+                        <a style=" ; border-radius: 10px" href="@routes.Application.login()" class=" navbar-right btn btn-default navbar-btn @("disabled".when(nav == "login"))">@Messages("playauthenticate.navigation.login")</a>
                     }
 
                 </div><!-- /.navbar-collapse -->
@@ -86,11 +89,21 @@
                 </div>
             }
             @content
+                <hr>
 
-            <hr>
-
-            
+            <footer>
+                <p>&copy;
+                    2016-2017 HereThere! Authenticate. Version 2.0. View details <a href="https://github.com/Amitawinash/MVCExampleWithAngularAndPlayFramework">
+                        here</a>.</p>
+                <p>
+                    <small>
+                        Provider icons by <a href="https://github.com/Amitawinash" target="_blank">
+                            Amit Kumar</a></small></p>
+            </footer>
         </div> <!-- /container -->
 
+           
+
+        
     </body>
 </html>
