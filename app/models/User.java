@@ -133,12 +133,14 @@ public class User extends AppModel implements Subject {
 
 	public static User create(final AuthUser authUser) {
 		final User user = new User();
-		user.roles = Collections.singletonList(SecurityRole
+		List<SecurityRole> singletonList = Collections.singletonList(SecurityRole
 				.findByRoleName(controllers.Application.USER_ROLE));
+		System.out.println(singletonList);
+		user.roles = singletonList;
 //		user.roles.add(SecurityRole.findByRoleName(controllers.Application.ADMIN_ROLE));
 		
-		// user.permissions = new ArrayList<UserPermission>();
-		// user.permissions.add(UserPermission.findByValue("printers.edit"));
+//		 user.permissions = new ArrayList<UserPermission>();
+//		 user.permissions.add(UserPermission.findByValue("printers.edit"));
 		user.active = true;
 		user.lastLogin = new Date();
 		user.linkedAccounts = Collections.singletonList(LinkedAccount
@@ -150,6 +152,14 @@ public class User extends AppModel implements Subject {
 			// verified within the application as a security breach there might
 			// break your security as well!
 			user.email = identity.getEmail();
+			
+			// Check for email address and set role as you need
+			if(user.email.equals("xyz@gmail.com")){
+				 singletonList = Collections.singletonList(SecurityRole
+						.findByRoleName(controllers.Application.ADMIN_ROLE));
+				System.out.println(singletonList);
+				user.roles = singletonList;
+			}
 			user.emailValidated = false;
 		}
 
@@ -172,7 +182,6 @@ public class User extends AppModel implements Subject {
 		    user.lastName = lastName;
 		  }
 		}
-
 		user.save();
 		// Ebean.saveManyToManyAssociations(user, "roles");
 		// Ebean.saveManyToManyAssociations(user, "permissions");

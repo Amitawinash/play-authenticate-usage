@@ -90,31 +90,30 @@ public class Application extends Controller {
 	}
 
 	public Result aboutUs() {
-		return ok(index.render(this.userProvider, ""));
+		return ok(aboutUs.render(this.userProvider, ""));
 	}
 
+	// Below line is commnented because it can be use in application for user
+	// ROLE.
 	// @Restrict(@Group({Application.USER_ROLE, Application.ADMIN_ROLE}))
 	public Result sendSomething() {
 
-		String emailId = request().body().asFormUrlEncoded().get("emailId")[0];
-		String password = request().body().asFormUrlEncoded().get("password")[0];
-		System.out.println("Value from UI :" + "  userEmailId : " + emailId);
+		String emailId = request().body().asFormUrlEncoded().get(MyHttpRequests.EMAIL_ID)[0];
+		String password = request().body().asFormUrlEncoded().get(MyHttpRequests.PASSWORD)[0];
 
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
 
-		MongoCollection<Document> senderDetails = hereThere.getCollection("senderDetails");
+		MongoCollection<Document> senderDetails = hereThere.getCollection(MyMongoClient.SENDER_DETAILS);
 		try {
 
-			MongoCursor<Document> cursor = null;
-			cursor = senderDetails.find(new Document("userEmailId", emailId)).iterator();
-			System.out.println("Inside try  : " + cursor);
+			MongoCursor<Document> cursor = senderDetails.find(new Document(MyHttpRequests.USER_EMAIL_ID, emailId))
+					.iterator();
 
 			List<String> listOfOrderId = new LinkedList<>();
 			while (cursor.hasNext()) {
 
 				Document article = cursor.next();
-				System.out.println("inside While loop ::: " + article.containsValue(emailId));
 				if (article.containsValue(emailId) && article.containsValue(password)) {
 
 					return ok(sendSomething.render(this.userProvider, emailId, password));
@@ -133,18 +132,16 @@ public class Application extends Controller {
 
 	public Result findByEmail(play.mvc.Http.Request request) {
 
-		String userEmailId = request().getQueryString("value");
+		String userEmailId = request().getQueryString(MyHttpRequests.VALUE);
 
-		System.out.println("Value from UI :" + "  userEmailId " + userEmailId);
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
 
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoCollection<Document> senderDetails = hereThere.getCollection(MyMongoClient.SENDER_DETAILS);
 
-		MongoCollection<Document> senderDetails = hereThere.getCollection("senderDetails");
+		MongoCursor<Document> cursor = senderDetails.find(new Document(MyHttpRequests.USER_EMAIL_ID, userEmailId))
+				.iterator();
 
-		System.out.println("Outside try  : ");
-		MongoCursor<Document> cursor = null;
-		cursor = senderDetails.find(new Document("userEmailId", userEmailId)).iterator();
 		List<String> listOfOrders = new LinkedList<>();
 
 		try {
@@ -152,14 +149,10 @@ public class Application extends Controller {
 				Document article = cursor.next();
 				List<String> orderId = (List<String>) article.get("listOfOrder");
 				if (!article.containsValue(userEmailId)) {
-					return ok(unSuccess.render(this.userProvider,userEmailId + " is not correct."));
+					return ok(unSuccess.render(this.userProvider, userEmailId + " is not correct."));
 				}
-				System.out.println(" Inside else :: " + article.getString("userEmailId"));
-
-				System.out.println("val :: " + orderId);
 				listOfOrders.clear();
 				listOfOrders.addAll(orderId);
-				System.out.println("Number Of Orders ::" + listOfOrders.size());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -173,18 +166,15 @@ public class Application extends Controller {
 
 	public Result findByState(play.mvc.Http.Request request) {
 
-		String state = request().getQueryString("value");
+		String state = request().getQueryString(MyHttpRequests.VALUE);
 
-		System.out.println("Value from UI :" + "  state " + state);
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
 
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoCollection<Document> orderAddress = hereThere.getCollection(MyMongoClient.ORDER_ADDRESS);
 
-		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
+		MongoCursor<Document> cursor = orderAddress.find(new Document(MyHttpRequests.STATE, state)).iterator();
 
-		System.out.println("Outside try  : ");
-		MongoCursor<Document> cursor = null;
-		cursor = orderAddress.find(new Document("state", state)).iterator();
 		List<String> orderId = new LinkedList<>();
 		try {
 
@@ -202,7 +192,7 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 		if (orderId.equals(null) || orderId.isEmpty()) {
-			return ok(unSuccess.render(this.userProvider,"Pincode" + state + " is not correct."));
+			return ok(unSuccess.render(this.userProvider, "Pincode" + state + " is not correct."));
 		}
 		String numberOfOrders = Integer.toString(orderId.size());
 		return ok(findOrderId.render(this.userProvider, state, numberOfOrders, orderId.toString()));
@@ -211,18 +201,15 @@ public class Application extends Controller {
 
 	public Result findByPincode(play.mvc.Http.Request request) {
 
-		String pincode = request().getQueryString("value");
+		String pincode = request().getQueryString(MyHttpRequests.VALUE);
 
-		System.out.println("Value from UI :" + "  pincode:  " + pincode);
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
 
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoCollection<Document> orderAddress = hereThere.getCollection(MyMongoClient.ORDER_ADDRESS);
 
-		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
+		MongoCursor<Document> cursor = orderAddress.find(new Document(MyHttpRequests.TO_PINCODE, pincode)).iterator();
 
-		System.out.println("Outside try  : ");
-		MongoCursor<Document> cursor = null;
-		cursor = orderAddress.find(new Document("toPincode", pincode)).iterator();
 		List<String> orderId = new LinkedList<>();
 		try {
 
@@ -240,25 +227,22 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 		if (orderId.equals(null) || orderId.isEmpty()) {
-			return ok(unSuccess.render(this.userProvider,"Pincode" + pincode + " is not correct."));
+			return ok(unSuccess.render(this.userProvider, "Pincode" + pincode + " is not correct."));
 		}
 		String numberOfOrders = Integer.toString(orderId.size());
 		return ok(findOrderId.render(this.userProvider, pincode, numberOfOrders, orderId.toString()));
 	}
 
 	public Result getAllOrderId() {
-		String userEmailId = request().getQueryString("userEmailId");
+		String userEmailId = request().getQueryString(MyHttpRequests.USER_EMAIL_ID);
 
-		System.out.println("Value from UI :" + "  userEmailId " + userEmailId);
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
 
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoCollection<Document> senderDetails = hereThere.getCollection(MyMongoClient.SENDER_DETAILS);
 
-		MongoCollection<Document> senderDetails = hereThere.getCollection("senderDetails");
+		MongoCursor<Document> cursor = senderDetails.find().iterator();
 
-		System.out.println("Outside try  : ");
-		MongoCursor<Document> cursor = null;
-		cursor = senderDetails.find().iterator();
 		List<String> listOfOrders = new ArrayList<>();
 
 		try {
@@ -268,21 +252,12 @@ public class Application extends Controller {
 				Document article = cursor.next();
 				List<String> orderId = (List<String>) article.get("listOfOrder");
 				if (article.containsValue(userEmailId)) {
-					System.out.println(" Inside else :: " + article.getString("userEmailId"));
-
-					// List<String> vals = (List<String>)
-					// article.get("dateOfAttendedClasses");
-					System.out.println("val :: " + orderId);
 					listOfOrders.clear();
 					listOfOrders.addAll(orderId);
-					System.out.println("Number Of Orders ::" + listOfOrders.size());
 					String numberOfOrders = Integer.toString(listOfOrders.size());
 					return ok(getAllOrderId.render(userEmailId, numberOfOrders, listOfOrders));
 
 				}
-
-				// String numberOfPresentday =
-				// Integer.toString(dateOfAttendedClasses.size());
 
 			}
 
@@ -298,30 +273,26 @@ public class Application extends Controller {
 
 	public Result success() {
 
-		String userEmailId = request().getQueryString("userEmailId");
-		String newPassword = request().getQueryString("newPassword");
-		String confirmPassword = request().getQueryString("confirmPassword");
+		String userEmailId = request().getQueryString(MyHttpRequests.USER_EMAIL_ID);
+		String newPassword = request().getQueryString(MyHttpRequests.NEW_PASSWORD);
+		String confirmPassword = request().getQueryString(MyHttpRequests.CONFIRM_PASSWORD);
 
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
-		MongoCollection<Document> senderDetails = hereThere.getCollection("senderDetails");
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
+		MongoCollection<Document> senderDetails = hereThere.getCollection(MyMongoClient.SENDER_DETAILS);
 
 		try {
-			MongoCursor<Document> cursor = null;
-			cursor = senderDetails.find().iterator();
-			System.out.println("Inside try  : " + cursor.toString());
+			MongoCursor<Document> cursor = senderDetails.find().iterator();
 
 			while (cursor.hasNext()) {
 
 				Document article = cursor.next();
-				System.out.println("inside While loop ::: " + article);
 				if (article.containsValue(userEmailId)) {
 					if (newPassword.equals(confirmPassword)) {
-						System.out.println("Id exists");
 
-						Bson arg0 = new Document("userEmailId", userEmailId);
+						Bson arg0 = new Document(MyHttpRequests.USER_EMAIL_ID, userEmailId);
 
-						Bson arg1 = new Document("password", newPassword);
+						Bson arg1 = new Document(MyHttpRequests.PASSWORD, newPassword);
 
 						Bson updateOpration = new Document("$set", arg1);
 
@@ -342,29 +313,25 @@ public class Application extends Controller {
 	}
 
 	public Result newPassword() {
-		String userEmailId = request().getQueryString("userEmailId");
-		String oldPassword = request().getQueryString("oldPassword");
-		String sequrityAnswer = request().getQueryString("sequrityAnswer");
+		String userEmailId = request().getQueryString(MyHttpRequests.USER_EMAIL_ID);
+		String oldPassword = request().getQueryString(MyHttpRequests.OLD_PASSWORD);
+		String sequrityAnswer = request().getQueryString(MyHttpRequests.SEQURITY_ANSWER);
 
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
-		MongoCollection<Document> senderDetails = hereThere.getCollection("senderDetails");
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
+		MongoCollection<Document> senderDetails = hereThere.getCollection(MyMongoClient.SENDER_DETAILS);
 
 		try {
-			MongoCursor<Document> cursor = null;
-			cursor = senderDetails.find(new Document("userEmailId", userEmailId)).iterator();
-			System.out.println("Inside try  : " + cursor.toString());
+			MongoCursor<Document> cursor = senderDetails.find(new Document(MyHttpRequests.USER_EMAIL_ID, userEmailId))
+					.iterator();
 
 			while (cursor.hasNext()) {
 
 				Document article = cursor.next();
-				System.out.println("inside While loop ::: " + article);
 				if (article.containsValue(userEmailId) && article.containsValue(oldPassword)) {
-					System.out.println("Id exists");
 					return ok(changePassword.render(userEmailId));
 				}
 				if (article.containsValue(userEmailId) && article.containsValue(sequrityAnswer)) {
-					System.out.println("Id exists");
 					return ok(changePassword.render(userEmailId));
 				}
 			}
@@ -392,16 +359,14 @@ public class Application extends Controller {
 	}
 
 	public Result transactionDetails(play.mvc.Http.Request request) {
-		String orderId = request().getQueryString("orderId");
+		String orderId = request().getQueryString(MyHttpRequests.ORDER_ID);
 
-		System.out.println("Order Number : " + orderId);
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
-		MongoCollection<Document> orderStatusTable = hereThere.getCollection("orderStatus");
-		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
+		MongoCollection<Document> orderStatusTable = hereThere.getCollection(MyMongoClient.ORDER_STATUS);
+		MongoCollection<Document> orderAddress = hereThere.getCollection(MyMongoClient.ORDER_ADDRESS);
 
 		try {
-			System.out.println("Inside try  : ");
 			MongoCursor<Document> orderStatusCursor = orderStatusTable.find().iterator();
 			MongoCursor<Document> orderAddressCursor = orderAddress.find().iterator();
 
@@ -409,29 +374,26 @@ public class Application extends Controller {
 
 				Document document = orderStatusCursor.next();
 				Document documentorderAddress = orderAddressCursor.next();
-				System.out.println("Inside While :" + document.containsValue(orderId));
-				System.out.println("Order Id : " + document.getObjectId("_id"));
 				ObjectId id = document.getObjectId("_id");
 				if (id.toString().equals(orderId)) {
 
-					System.out.println("id : " + orderId);
 					Bson findArgument = new Document("_id", document.getObjectId("_id"));
 					String updatedValue = "Payment has done";
 					Bson updateArgument = new Document("statusOfOrder", updatedValue);
 					Bson updateOpration = new Document("$set", updateArgument);
 					orderStatusTable.updateOne(findArgument, updateOpration);
-
-					System.out.println("Inside If");
-					String fromPincode = documentorderAddress.getString("fromPincode");
-					String toPincode = documentorderAddress.getString("toPincode");
-					String shipmentType = documentorderAddress.getString("shipmentType");
-					String emailId = documentorderAddress.getString("emailId");
-					String reciverName = documentorderAddress.getString("reciverName");
-					String state = documentorderAddress.getString("state");
-					String area = documentorderAddress.getString("area");
-					String street = documentorderAddress.getString("street");
-					String houseNumber = documentorderAddress.getString("houseNumber");
-					String contactNumber = documentorderAddress.getString("contactNumber");
+					// Variables are created but not used because UI is not
+					// ready
+					String fromPincode = documentorderAddress.getString(MyHttpRequests.FROM_PINCODE);
+					String toPincode = documentorderAddress.getString(MyHttpRequests.TO_PINCODE);
+					String shipmentType = documentorderAddress.getString(MyHttpRequests.SHIPMENT_TYPE);
+					String emailId = documentorderAddress.getString(MyHttpRequests.EMAIL_ID);
+					String reciverName = documentorderAddress.getString(MyHttpRequests.RECEIVER_NAME);
+					String state = documentorderAddress.getString(MyHttpRequests.STATE);
+					String area = documentorderAddress.getString(MyHttpRequests.AREA);
+					String street = documentorderAddress.getString(MyHttpRequests.STATE);
+					String houseNumber = documentorderAddress.getString(MyHttpRequests.HOUSE_NUMBER);
+					String contactNumber = documentorderAddress.getString(MyHttpRequests.CONTACT_NUMBER);
 					String orderStatus = document.getString("orderStatus");
 					return ok(transactions.render(document.getString("statusOfOrder"), fromPincode, toPincode,
 							shipmentType));
@@ -457,8 +419,7 @@ public class Application extends Controller {
 	}
 
 	public Result transactions() {
-		String action = request().getQueryString("action");
-		System.out.println("action value : " + action);
+		String action = request().getQueryString(MyHttpRequests.ACTION);
 		if (action.equals("Make Payment")) {
 
 			return transactionDetails(request());
@@ -473,7 +434,7 @@ public class Application extends Controller {
 	}
 
 	public Result findOrderId() {
-		String findByKey = request().getQueryString("findByKey");
+		String findByKey = request().getQueryString(MyHttpRequests.FIND_BY_KEY);
 		if (findByKey.equals("findByEmail")) {
 
 			return findByEmail(request());
@@ -482,33 +443,29 @@ public class Application extends Controller {
 		} else if (findByKey.equals("findByPincode")) {
 			return findByPincode(request());
 		}
-		return ok(findOrderId.render(this.userProvider,"yoo", "noo", "poo"));
+		return ok(findOrderId.render(this.userProvider, "", "", ""));
 
 	}
 
 	public Result newUser() {
-		String userEmailId = request().getQueryString("userEmailId");
-		String password = request().getQueryString("password");
-		String confirmPassword = request().getQueryString("confirmPassword");
-		String sequrityAnswer = request().getQueryString("sequrityAnswer");
+		String userEmailId = request().getQueryString(MyHttpRequests.USER_EMAIL_ID);
+		String password = request().getQueryString(MyHttpRequests.PASSWORD);
+		String confirmPassword = request().getQueryString(MyHttpRequests.CONFIRM_PASSWORD);
+		String sequrityAnswer = request().getQueryString(MyHttpRequests.SEQURITY_ANSWER);
 
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
 
-		MongoCollection<Document> senderDetails = hereThere.getCollection("senderDetails");
+		MongoCollection<Document> senderDetails = hereThere.getCollection(MyMongoClient.SENDER_DETAILS);
 
 		try {
-			MongoCursor<Document> cursor = null;
-			cursor = senderDetails.find(new Document("userEmailId", userEmailId)).iterator();
-			System.out.println("Inside try  : " + cursor.toString());
+			MongoCursor<Document> cursor = senderDetails.find(new Document(MyHttpRequests.USER_EMAIL_ID, userEmailId))
+					.iterator();
 
 			while (cursor.hasNext()) {
 
 				Document article = cursor.next();
-				System.out.println("inside While loop ::: " + article);
 				if (article.containsValue(userEmailId)) {
-
-					System.out.println("Id exists");
 
 					return ok(hereThereHomePageError.render(this.userProvider,
 							"User Email ID " + userEmailId + " is already exists."));
@@ -517,8 +474,9 @@ public class Application extends Controller {
 
 			}
 			if (password.equals(confirmPassword)) {
-				Document document = new Document("userEmailId", userEmailId).append("password", password)
-						.append("sequrityAnswer", sequrityAnswer);
+				Document document = new Document(MyHttpRequests.USER_EMAIL_ID, userEmailId)
+						.append(MyHttpRequests.PASSWORD, password)
+						.append(MyHttpRequests.SEQURITY_ANSWER, sequrityAnswer);
 
 				senderDetails.insertOne(document);
 
@@ -541,22 +499,17 @@ public class Application extends Controller {
 
 	public Result getEstimatedDate(play.mvc.Http.Request request) {
 
-		String orderNumber = request().getQueryString("orderNumber");
-
-		System.out.println("Order Number : " + orderNumber);
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
-		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
+		String orderNumber = request().getQueryString(MyHttpRequests.ORDER_NUMBER);
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
+		MongoCollection<Document> orderStatus = hereThere.getCollection(MyMongoClient.ORDER_STATUS);
 
 		try {
-			System.out.println("Inside try  : ");
 			MongoCursor<Document> orderStatusCursor = orderStatus.find().iterator();
 
 			while (orderStatusCursor.hasNext()) {
 
 				Document document = orderStatusCursor.next();
-				System.out.println("Inside While :" + document.containsValue(orderNumber));
-				System.out.println("Order Id : " + document.getObjectId("_id"));
 				ObjectId id = document.getObjectId("_id");
 				if (id.toString().equals(orderNumber)) {
 
@@ -578,46 +531,40 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 
-		System.out.println("Track");
 		return ok(hereThereHomePageError.render(this.userProvider, "Oupps...Order Id is wrong."));
 	}
 
 	public Result estimatedDate() {
-		String orderNumber = request().getQueryString("orderNumber");
-		String estimatedDate = request().getQueryString("estimatedDate");
+		String orderNumber = request().getQueryString(MyHttpRequests.ORDER_NUMBER);
+		String estimatedDate = request().getQueryString(MyHttpRequests.ESTIMATED_DATE);
 
-		System.out.println("Order Number : " + orderNumber);
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
-		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
+		MongoCollection<Document> orderStatus = hereThere.getCollection(MyMongoClient.ORDER_STATUS);
 
 		try {
-			System.out.println("Inside try  : ");
 			MongoCursor<Document> orderStatusCursor = orderStatus.find().iterator();
 
 			while (orderStatusCursor.hasNext()) {
 
 				Document document = orderStatusCursor.next();
-				System.out.println("Inside While :" + document.containsValue(orderNumber));
-				System.out.println("Order Id : " + document.getObjectId("_id"));
 				ObjectId id = document.getObjectId("_id");
 
 				if (id.toString().equals(orderNumber)) {
 
 					if (!document.containsValue("delivered")) {
-						System.out.println("Inside If");
 						Bson arg1 = new Document("_id", document.getObjectId("_id"));
 
 						Bson arg0 = new Document("estimatedDate", estimatedDate);
 
 						Bson updateOpration = new Document("$set", arg0);
 						orderStatus.updateOne(arg1, updateOpration);
-						return ok(success.render(this.userProvider,"Shipment date is updated."));
+						return ok(success.render(this.userProvider, "Shipment date is updated."));
 					}
 
 					else {
 
-						return ok(unSuccess.render(this.userProvider,"Order Is already delivered"));
+						return ok(unSuccess.render(this.userProvider, "Order Is already delivered"));
 
 					}
 
@@ -627,37 +574,32 @@ public class Application extends Controller {
 
 		catch (Exception e) {
 			e.printStackTrace();
-			return ok(unSuccess.render(this.userProvider,"Error Occered "));
+			return ok(unSuccess.render(this.userProvider, "Error Occered "));
 		} finally {
 			mongoClient.close();
 		}
 
-		return ok(unSuccess.render(this.userProvider,"Order Number not found"));
+		return ok(unSuccess.render(this.userProvider, "Order Number not found"));
 	}
 
 	public Result payBill(play.mvc.Http.Request request) {
-		System.out.println("Pay Bill");
 		return ok(successUser.render("Pay Bill"));
 	}
 
 	public Result track(play.mvc.Http.Request request) {
 
-		String orderNumber = request().getQueryString("orderNumber");
+		String orderNumber = request().getQueryString(MyHttpRequests.ORDER_NUMBER);
 
-		System.out.println("Order Number : " + orderNumber);
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
-		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
+		MongoCollection<Document> orderStatus = hereThere.getCollection(MyMongoClient.ORDER_STATUS);
 
 		try {
-			System.out.println("Inside try  : ");
 			MongoCursor<Document> orderStatusCursor = orderStatus.find().iterator();
 
 			while (orderStatusCursor.hasNext()) {
 
 				Document document = orderStatusCursor.next();
-				System.out.println("Inside While :" + document.containsValue(orderNumber));
-				System.out.println("Order Id : " + document.getObjectId("_id"));
 				ObjectId id = document.getObjectId("_id");
 				if (id.toString().equals(orderNumber)) {
 
@@ -679,7 +621,6 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 
-		System.out.println("Track");
 		return ok(hereThereHomePageError.render(this.userProvider, "Order Id " + orderNumber + " is wrong."));
 	}
 
@@ -688,21 +629,22 @@ public class Application extends Controller {
 		return ok(hereThereHomePage.render(this.userProvider));
 	}
 
-	@Restrict(@Group(Application.USER_ROLE))
+	// will be use in application for user or admin role/access.
+	@Restrict(@Group(Application.ADMIN_ROLE))
 	public Result shipment() {
 		return ok(shipment.render(this.userProvider));
 	}
 
 	public Result updateOrderStatus() {
 
-		String orderNumber = request().getQueryString("orderNumber");
-		String shipmentStatus = request().getQueryString("shipmentStatus");
+		String orderNumber = request().getQueryString(MyHttpRequests.ORDER_NUMBER);
+		String shipmentStatus = request().getQueryString(MyHttpRequests.SHIPMENT_STATUS);
 
 		System.out.println("Order Number : " + orderNumber + " Order Status : " + shipmentStatus);
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
-		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
-		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
+		MongoCollection<Document> orderAddress = hereThere.getCollection(MyMongoClient.ORDER_ADDRESS);
+		MongoCollection<Document> orderStatus = hereThere.getCollection(MyMongoClient.ORDER_STATUS);
 
 		try {
 			System.out.println("Inside try  : ");
@@ -711,26 +653,23 @@ public class Application extends Controller {
 			while (orderStatusCursor.hasNext()) {
 
 				Document document = orderStatusCursor.next();
-				System.out.println("Inside While :" + document.containsValue(orderNumber));
-				System.out.println("Order Id : " + document.getObjectId("_id"));
 				ObjectId id = document.getObjectId("_id");
 
 				if (id.toString().equals(orderNumber)) {
 
 					if (!document.containsValue("delivered")) {
-						System.out.println("Inside If");
 						Bson arg1 = new Document("_id", document.getObjectId("_id"));
 
 						Bson arg0 = new Document("statusOfOrder", shipmentStatus);
 
 						Bson updateOpration = new Document("$set", arg0);
 						orderStatus.updateOne(arg1, updateOpration);
-						return ok(success.render(this.userProvider,"Order Stauts is updated."));
+						return ok(success.render(this.userProvider, "Order Stauts is updated."));
 					}
 
 					else {
 
-						return ok(unSuccess.render(this.userProvider,"Order Is already delivered"));
+						return ok(unSuccess.render(this.userProvider, "Order Is already delivered"));
 
 					}
 
@@ -740,17 +679,17 @@ public class Application extends Controller {
 
 		catch (Exception e) {
 			e.printStackTrace();
-			return ok(unSuccess.render(this.userProvider,"Error Occered "));
+			return ok(unSuccess.render(this.userProvider, "Error Occered "));
 		} finally {
 			mongoClient.close();
 		}
 
-		return ok(unSuccess.render(this.userProvider,"Order Number not found"));
+		return ok(unSuccess.render(this.userProvider, "Order Number not found"));
 	}
 
 	public Result orderStatus() {
 
-		String action = request().getQueryString("action");
+		String action = request().getQueryString(MyHttpRequests.ACTION);
 
 		if (action.equals("Track")) {
 
@@ -763,31 +702,26 @@ public class Application extends Controller {
 			return getEstimatedDate(request());
 		}
 
-		// return ok(unSuccess.render("To do "));
 	}
 
 	public Result payment() {
 
-		String shipmentType = request().getQueryString("shipmentType");
-		String orderId = request().getQueryString("orderId");
+		String shipmentType = request().getQueryString(MyHttpRequests.SHIPMENT_TYPE);
+		String orderId = request().getQueryString(MyHttpRequests.ORDER_ID);
 		String price = null;
 		if (shipmentType.equals("DHL")) {
-			System.out.println(shipmentType == "DHL");
 			price = "100";
 		}
 		if (shipmentType.equals("DTDC")) {
-			System.out.println(shipmentType == "DTDC");
 			price = "200";
 		}
 		if (shipmentType.equals("AirPost")) {
-			System.out.println(shipmentType == "AirPost");
 			price = "300";
 		}
-		System.out.println("value of ID " + " shipmentType: " + shipmentType);
 
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
-		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
+		MongoCollection<Document> orderAddress = hereThere.getCollection(MyMongoClient.ORDER_ADDRESS);
 		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
 		ObjectId orderNumber = null;
 
@@ -802,9 +736,6 @@ public class Application extends Controller {
 
 				if (!document.containsValue("delivered")) {
 
-					System.out.println("Order Id : " + document.getObjectId("_id"));
-
-					System.out.println("Inside If");
 					Bson arg1 = new Document("_id", document.getObjectId("_id"));
 
 					Bson arg0 = new Document("reciverName", shipmentType);
@@ -829,25 +760,25 @@ public class Application extends Controller {
 	@SuppressWarnings("unchecked")
 	public Result checkAvailability() {
 
-		String fromPincode = request().getQueryString("fromPincode");
-		String toPincode = request().getQueryString("toPincode");
-		String shipmentType = request().getQueryString("shipmentType");
-		String emailId = request().getQueryString("emailId");
-		String password = request().getQueryString("password");
-		String reciverName = request().getQueryString("reciverName");
-		String state = request().getQueryString("state");
-		String area = request().getQueryString("area");
-		String street = request().getQueryString("street");
-		String houseNumber = request().getQueryString("houseNumber");
-		String contactNumber = request().getQueryString("contactNumber");
+		String fromPincode = request().getQueryString(MyHttpRequests.FROM_PINCODE);
+		String toPincode = request().getQueryString(MyHttpRequests.TO_PINCODE);
+		String shipmentType = request().getQueryString(MyHttpRequests.SHIPMENT_TYPE);
+		String emailId = request().getQueryString(MyHttpRequests.EMAIL_ID);
+		String password = request().getQueryString(MyHttpRequests.PASSWORD);
+		String reciverName = request().getQueryString(MyHttpRequests.RECEIVER_NAME);
+		String state = request().getQueryString(MyHttpRequests.STATE);
+		String area = request().getQueryString(MyHttpRequests.AREA);
+		String street = request().getQueryString(MyHttpRequests.STREET);
+		String houseNumber = request().getQueryString(MyHttpRequests.HOUSE_NUMBER);
+		String contactNumber = request().getQueryString(MyHttpRequests.CONTACT_NUMBER);
 
-		MongoClient mongoClient = new MongoClient("localhost", 27017);
-		MongoDatabase hereThere = mongoClient.getDatabase("hereThere");
+		MongoClient mongoClient = new MongoClient(MyMongoClient.LOCALHOST, 27017);
+		MongoDatabase hereThere = mongoClient.getDatabase(MyMongoClient.HERE_THERE);
 
-		MongoCollection<Document> pinCodes = hereThere.getCollection("pincodes");
-		MongoCollection<Document> orderAddress = hereThere.getCollection("orderAddress");
-		MongoCollection<Document> orderStatus = hereThere.getCollection("orderStatus");
-		MongoCollection<Document> senderDetails = hereThere.getCollection("senderDetails");
+		MongoCollection<Document> pinCodes = hereThere.getCollection(MyMongoClient.PINCODES);
+		MongoCollection<Document> orderAddress = hereThere.getCollection(MyMongoClient.ORDER_ADDRESS);
+		MongoCollection<Document> orderStatus = hereThere.getCollection(MyMongoClient.ORDER_STATUS);
+		MongoCollection<Document> senderDetails = hereThere.getCollection(MyMongoClient.SENDER_DETAILS);
 		ObjectId orderNumber = null;
 
 		BsonDocument queryJson = new BsonDocument();
@@ -856,19 +787,10 @@ public class Application extends Controller {
 		BsonDocument queryJson1 = new BsonDocument();
 		queryJson1.append("pincode", new BsonString(toPincode));
 
-		FindIterable<Document> findIterable = pinCodes.find(queryJson);
-		FindIterable<Document> findIterable2 = pinCodes.find(queryJson1);
+		FindIterable<Document> senderDoc = pinCodes.find(queryJson);
+		FindIterable<Document> receiverDoc = pinCodes.find(queryJson1);
 
-		findIterable.forEach(new Block<Document>() {
-
-			@Override
-			public void apply(final Document document) {
-				System.out.println(document);
-
-			}
-		});
-
-		findIterable2.forEach(new Block<Document>() {
+		senderDoc.forEach(new Block<Document>() {
 
 			@Override
 			public void apply(final Document document) {
@@ -877,21 +799,30 @@ public class Application extends Controller {
 			}
 		});
 
-		List<String> list = new ArrayList<>();
-		for (Document document : findIterable) {
+		receiverDoc.forEach(new Block<Document>() {
 
-			List<String> productList = new ArrayList<>();
-			productList = document.get("products", productList.getClass());
+			@Override
+			public void apply(final Document document) {
+				System.out.println(document);
 
-			for (Document document2 : findIterable2) {
-				List<String> productList2 = new ArrayList<>();
-				productList2 = document2.get("products", productList.getClass());
+			}
+		});
 
-				for (String p1 : productList) {
+		List<String> matchedProducts = new ArrayList<>();
+		for (Document senderOprator : senderDoc) {
 
-					for (String p2 : productList2) {
-						if (p1.equals(p2)) {
-							list.add(p1);
+			List<String> senderProducts = new ArrayList<>();
+			senderProducts = senderOprator.get("products", senderProducts.getClass());
+
+			for (Document receiverOperator : receiverDoc) {
+				List<String> receiverProduct = new ArrayList<>();
+				receiverProduct = receiverOperator.get("products", senderProducts.getClass());
+
+				for (String senderProductName : senderProducts) {
+
+					for (String receiverProductName : receiverProduct) {
+						if (senderProductName.equals(receiverProductName)) {
+							matchedProducts.add(senderProductName);
 						}
 
 					}
@@ -902,29 +833,21 @@ public class Application extends Controller {
 
 		}
 
-		if (list.equals(null) || list.isEmpty()) {
+		if (matchedProducts.equals(null) || matchedProducts.isEmpty()) {
 
 			return ok(unSuccessUser.render("No Service For Given Pincode."));
 		}
 		String orderId = null;
 		try {
 
-			MongoCursor<Document> cursor = null;
-			cursor = senderDetails.find(new Document("userEmailId", emailId)).iterator();
-			System.out.println("Inside try  : " + cursor);
-
+			MongoCursor<Document> cursor = senderDetails.find(new Document(MyHttpRequests.USER_EMAIL_ID, emailId)).iterator();
 			List<String> listOfOrderId = new LinkedList<>();
 			while (cursor.hasNext()) {
 
 				Document article = cursor.next();
-				System.out.println("inside While loop ::: " + article.containsValue(emailId));
 				if (article.containsValue(emailId) && article.containsValue(password)) {
 
-					System.out.println("Id exists " + article.containsValue(emailId));
-
-					System.out.println("Inside try  : ");
-
-					Document document = new Document("fromPincode", fromPincode).append("toPincode", toPincode)
+					Document document = new Document(MyHttpRequests.FROM_PINCODE, fromPincode).append("toPincode", toPincode)
 							.append("shipmentType", shipmentType).append("emailId", emailId)
 							.append("reciverName", reciverName).append("state", state).append("area", area)
 							.append("street", street).append("houseNumber", houseNumber)
@@ -933,18 +856,14 @@ public class Application extends Controller {
 					orderAddress.insertOne(document);
 					String statusOfOrder = "Payment has not completed";
 					String estimatedDate = "under process";
-					System.out.println("_id " + document.getObjectId("_id"));
 					orderStatus.insertOne(new Document("_id", document.getObjectId("_id"))
 							.append("statusOfOrder", statusOfOrder).append("estimatedDate", estimatedDate));
 
 					if (!article.containsKey("listOfOrder")) {
-						System.out.println("Inside 2nd if ::" + article.containsKey("listOfOrder"));
 						listOfOrderId.add(document.getObjectId("_id").toString());
-						System.out.println("Id value ::" + document.getObjectId("_id").toString());
-						Bson arg1 = new Document("userEmailId", emailId);
+						Bson arg1 = new Document(MyHttpRequests.USER_EMAIL_ID, emailId);
 
 						Bson arg0 = new Document("listOfOrder", listOfOrderId);
-						System.out.println("value of listOfOrderId " + listOfOrderId);
 						Bson updateOpration = new Document("$set", arg0);
 						senderDetails.updateOne(arg1, updateOpration);
 
@@ -954,17 +873,11 @@ public class Application extends Controller {
 
 						List<String> vals = (List<String>) article.get("listOfOrder");
 
-						// List<String> vals = new ArrayList<>();
-						// vals.add(article.get("listOfOrder"));
-						System.out.println("inside Else Value of vals ::  " + vals);
-
 						listOfOrderId.add(document.getObjectId("_id").toString());
 						vals.addAll(listOfOrderId);
-						System.out.println("Number Of Order ::" + listOfOrderId.size());
 
-						Bson arg0 = new Document("userEmailId", emailId);
+						Bson arg0 = new Document(MyHttpRequests.USER_EMAIL_ID, emailId);
 						Bson arg1 = new Document("listOfOrder", vals);
-						System.out.println("Final value of vals:: " + vals);
 						Bson updateOpration = new Document("$set", arg1);
 
 						senderDetails.updateOne(arg0, updateOpration);
@@ -973,13 +886,13 @@ public class Application extends Controller {
 
 					orderId = document.getObjectId("_id").toString();
 
-					System.out.println("productList : " + list);
+					System.out.println("productList : " + matchedProducts);
 
 					Gson gson = new GsonBuilder().create();
-					JsonElement jsonTree = gson.toJsonTree(list);
+					JsonElement jsonTree = gson.toJsonTree(matchedProducts);
 
 					JsonArray productListToJsonArray = jsonTree.getAsJsonArray();
-					return ok(selectCourierService.render(this.userProvider, list, orderId));
+					return ok(selectCourierService.render(this.userProvider, matchedProducts, orderId));
 
 				}
 
@@ -993,10 +906,10 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 
-		System.out.println("productList : " + list);
+		System.out.println("productList : " + matchedProducts);
 
 		Gson gson = new GsonBuilder().create();
-		JsonElement jsonTree = gson.toJsonTree(list);
+		JsonElement jsonTree = gson.toJsonTree(matchedProducts);
 
 		JsonArray productListToJsonArray = jsonTree.getAsJsonArray();
 
@@ -1004,13 +917,13 @@ public class Application extends Controller {
 
 	}
 
-	@Restrict(@Group(Application.USER_ROLE))
+	@Restrict(@Group(Application.ADMIN_ROLE))
 	public Result restricted() {
 		final User localUser = this.userProvider.getUser(session());
 		return ok(restricted.render(this.userProvider, localUser));
 	}
 
-	@Restrict(@Group(Application.USER_ROLE))
+	@Restrict(@Group(Application.ADMIN_ROLE))
 	public Result profile() {
 		final User localUser = userProvider.getUser(session());
 		return ok(profile.render(this.auth, this.userProvider, localUser));
@@ -1024,10 +937,8 @@ public class Application extends Controller {
 		com.feth.play.module.pa.controllers.Authenticate.noCache(response());
 		final Form<MyLogin> filledForm = this.provider.getLoginForm().bindFromRequest();
 		if (filledForm.hasErrors()) {
-			// User did not fill everything properly
 			return badRequest(login.render(this.auth, this.userProvider, filledForm));
 		} else {
-			// Everything was filled
 			return this.provider.handleLogin(ctx());
 		}
 	}
@@ -1046,12 +957,9 @@ public class Application extends Controller {
 		com.feth.play.module.pa.controllers.Authenticate.noCache(response());
 		final Form<MySignup> filledForm = this.provider.getSignupForm().bindFromRequest();
 		if (filledForm.hasErrors()) {
-			// User did not fill everything properly
 			return badRequest(signup.render(this.auth, this.userProvider, filledForm));
 		} else {
-			// Everything was filled
-			// do something with your part of the form before handling the user
-			// signup
+
 			return this.provider.handleSignup(ctx());
 		}
 	}

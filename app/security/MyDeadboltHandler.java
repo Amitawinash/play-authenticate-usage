@@ -62,6 +62,6 @@ public class MyDeadboltHandler extends AbstractDeadboltHandler {
 		// if the user has a cookie with a valid user and the local user has
 		// been deactivated/deleted in between, it is possible that this gets
 		// shown. You might want to consider to sign the user out in this case.
-        return CompletableFuture.completedFuture(forbidden("Forbidden"));
+        return CompletableFuture.completedFuture(forbidden("Only Admin have access to this page."));
 	}
 }

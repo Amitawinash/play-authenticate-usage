@@ -48,7 +48,23 @@ Seq[Any](format.raw/*9.30*/("""
     margin-right:55px;
   """),format.raw/*23.3*/("""}"""),format.raw/*23.4*/("""
 """),format.raw/*24.1*/("""</style>
-      <h2 style="border-color: pink ">Welcome to <b style="color: #E57196">HereThere</b>  <small style="color: #D6C8CD">courier service</small></h2>
+      <h2 style="border-color: pink ">Welcome to 
+        <b style="color: #E57196">HereThere</b>
+        <small style="color: #D6C8CD">courier service
+          <a href="https://www.facebook.com/amit.awinash">
+            <img src="/assets/icons/facebook-24x24.png" >
+          </a>
+          <a href="https://plus.google.com/+AmitAwinashLab">
+            <img src="/assets/icons/google-24x24.png" >
+          </a>
+          <a href="https://twitter.com/amitawinash007">
+            <img src="/assets/icons/twitter-24x24.png" >
+          </a>
+          <a href="https://www.linkedin.com/in/amitawinash/">
+            <img src="/assets/icons/linkedin-24x24.png" >
+          </a>
+        </small>
+      </h2>
   <div class="jumbotron" id='parent_div_1' style="background-color: #FAEEAF ;width: 100%;">
         <div id='parent_div_1'>
 
@@ -130,9 +146,9 @@ Seq[Any](format.raw/*9.30*/("""
 object hereThereHomePage extends hereThereHomePage_Scope0.hereThereHomePage_Scope1.hereThereHomePage
               /*
                   -- GENERATED --
-                  DATE: Sun Apr 16 05:08:40 IST 2017
+                  DATE: Thu Apr 20 23:22:38 IST 2017
                   SOURCE: /home/amit/workspaceTest/play-authenticate-master/samples/java/play-authenticate-usage/app/views/hereThereHomePage.scala.html
-                  HASH: 14ada775ec0379794f14fd0d66a7dbe6d44347bf
+                  HASH: 35d8e23df2d29bed61e61cc5cda9fa865129d159
                   MATRIX: 843->127|966->155|995->158|1064->218|1104->220|1138->227|1320->381|1349->382|1381->387|1422->401|1450->402|1480->405|1520->417|1549->418|1581->423|1645->460|1673->461|1701->462
                   LINES: 30->9|35->9|37->11|37->11|37->11|38->12|43->17|43->17|44->18|45->19|45->19|46->20|46->20|46->20|47->21|49->23|49->23|50->24
                   -- GENERATED --
