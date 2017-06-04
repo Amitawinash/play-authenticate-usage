@@ -1,0 +1,98 @@
+@import service.UserProvider
+@(userProvider: UserProvider , message : String)
+
+
+
+@main(userProvider, Messages("playauthenticate.index.title")) {
+<style type="text/css">
+        
+
+  #parent_div_1, #parent_div_2, #parent_div_3{
+    float:left;
+  }
+  .child_div_1{
+    float:left;
+    margin-right:15px;
+  }
+  #child_div_2{
+    float:left;
+    margin-right:15px;
+  }
+</style>
+<link rel="stylesheet" href="@routes.Assets.versioned("lib/bootstrap/css/bootstrap.css")">
+<link href="@routes.Assets.versioned("css/main.css")" rel="stylesheet">
+<body style="padding-top: 0%">
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+  <ul class="nav navbar-nav" style="background-color:#E0FDF7 ">
+      <li class=""><a href="/">Home</a></li>
+      <li class=""><a href="/restricted">Admin</a></li>
+      
+  </ul>
+ </div>
+      <h2 style="border-color: pink ">Welcome to <b style="color: #E57196">HereThere</b>  <small style="color: #D6C8CD">courier service</small></h2>
+   <div class="jumbotron" id='parent_div_1' style="background-color: #FAEEAF ;width: 100%;padding-top: 5px;padding-bottom: 10px;margin-bottom: 10px">
+  <div class="child_div_1" style="background-color: #FB2773  ;border-radius: 10px;margin: 1px;">
+            <form action="getAllOrderId" style="margin: 2px; position: all;">
+              <h4 style="color: white"><b>@message</b></h4>
+            </form>
+          </div>
+        <div id='parent_div_1'>
+
+        <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
+             <form action="/newUser" style="margin: 25px; margin-bottom: 0%"  >
+               <h5 style="box-shadow: currentColor;">New user</h5>
+               <input class="form-control" type="email" name="userEmailId" placeholder="Enter User Email Id"  maxlength="29" required / >
+               <input class="form-control" type="password" name="password" placeholder="Enter password" minlength="8" maxlength="10" required / >
+               <input class="form-control" type="password" name="confirmPassword" placeholder="Enter Confirm Password" minlength="8" maxlength="10" required / >
+               <h6 style="color: red">Sequrity Question</h6>
+               <h6>In which year you were born ?</h6>
+               
+               <input class="form-control" type="password" name="sequrityAnswer" placeholder="Enter Answer" pattern="[0-9]+" minlength="4" maxlength="4" required / >
+               <br>
+               <input class="form-control" style="background-color: #9FB0F9  " type="submit" name="action" value="Register">
+          </form>
+          <div>
+            <form action="/forgetPassword" style="margin: 25px; margin-top: 0%;margin-bottom: 0%">
+                 <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="action" value="Forget Password">
+            </form>
+          </div>
+          <div>
+            <form action="/changePassword" style="margin: 25px; margin-top: 0%">
+                 <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="action" value="Change Password">
+            </form>
+          </div>
+          </div>
+          <div class="child_div_1" style="background-color: #BFD3F0 ;border-radius: 10px ">
+           <form action="/sendSomething"  style="margin: 25px;"  method="POST">
+            <h5 style="box-shadow: currentColor; ">Login</h5>
+            <input class="form-control" type="email" name="emailId" placeholder="Sender email Id"   required/  >
+            <input class="form-control" type="password" name="password" placeholder="Enter password" minlength="8" maxlength="10" required / >
+            <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="" value="Send" >
+          </form>
+          
+
+          </div>
+          <div class="child_div_1" style="background-color: #E0FDF7 ;border-radius: 10px " >
+             <form action="/orderStatus" style="margin: 25px;"  >
+               <h5 style="box-shadow: currentColor;">Track Your Order</h5>
+               <input class="form-control" type="text-center" name="orderNumber" placeholder="Enter Order Number"  maxlength="24" required / >
+               <br>
+               <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="action" value="Track">
+               <input class="form-control" style="background-color: #F3EC97  "  type="submit" name="action"  value="Estimated Date">
+               
+          </form>
+          <div class="child_div_1" style="background-color: #BFD3F0;border-radius: 10px;margin: 15px;">
+             <form action="getAllOrderId" style="margin: 25px;"  >
+               <h5 style="box-shadow: currentColor;">Find Order Number</h5>
+               
+               <input class="form-control" type="email" name="userEmailId" placeholder="Enter User Email Id"  maxlength="29" required / >
+              
+               <input class="form-control" style="background-color: #F3EC97 ;" type="submit" name="action"  value="Get all order Id">
+          </form>
+          </div>
+          </div>
+        </div>
+      </div>
+     
+</body>
+}

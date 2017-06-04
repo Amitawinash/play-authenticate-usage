@@ -1,0 +1,79 @@
+@(userEmailId: String , numberOfOrders: String , listOfOrders: List[String])
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+<!doctype html>
+<html ng-app>
+<head>
+  <meta charset="utf-8">
+  <title>Here There</title>
+  <script>
+      document.write('<base href="' + document.location + '" />');
+    </script>
+  <link rel="stylesheet" href="style.css">
+  <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+  <script src="http://code.angularjs.org/1.1.5/angular.js"></script>
+  <style type="text/css">
+    
+      #inputId{
+
+        margin-left: 22px;
+      }
+
+      #selectTagId{
+        margin-left: 22px;
+      }
+
+      #submitButtonId{
+        margin-left: 29%;
+      }
+
+      #h4Id{
+        margin-left: 22px;
+
+      }
+
+  </style>
+  <script type="text/javascript">
+    
+
+    
+  </script>
+</head>
+<body  >
+  <div class="well" style="margin-top: 2%; size: 50%; width: 55%; height: 50%; overflow: hidden; margin-right:  10%; margin-left: 10%;  float:left;  "   >
+    <div  class="well" style="margin-top: 10px; width: 50%%; overflow: hidden; margin-left: 1%; background: white ;  float:left; margin-right:5px;  ">
+      <form class="form-search" style="margin-left: 10px;" action="/hereThere"> 
+          
+
+          <h3 style="color: black  " id="h1" > User with email id " @userEmailId " has Ordered @numberOfOrders  orders </h3>
+          <h4>They are :- </h4>
+          <div id="orderTable">
+			<table id="list" border="1px">
+				<thead>
+					<tr>
+						<td>Order Id</td>
+						<td>Tracking link</td>
+					</tr>
+				</thead>
+
+				<tbody>
+					@for(listOfOrder <- listOfOrders) {
+						<tr>
+							<td>@listOfOrder</td>
+							<td><a href="orderStatus?orderNumber=@listOfOrder&action=Track">@listOfOrder</td>
+	
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+
+       
+      
+     <input  class="btn btn-danger" style="background-color: red"  type="submit" value="Back" name="back" style="color: red">
+      </form>
+    </div>
+
+
+ </div>
+</body>
+</html>

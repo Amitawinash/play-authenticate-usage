@@ -379,7 +379,7 @@ public class Application extends Controller {
 
 					Bson findArgument = new Document("_id", document.getObjectId("_id"));
 					String updatedValue = "Payment has done";
-					Bson updateArgument = new Document("statusOfOrder", updatedValue);
+					Bson updateArgument = new Document(MyMongoClient.STATUS_OF_ORDER, updatedValue);
 					Bson updateOpration = new Document("$set", updateArgument);
 					orderStatusTable.updateOne(findArgument, updateOpration);
 					// Variables are created but not used because UI is not
