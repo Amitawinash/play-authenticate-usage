@@ -135,7 +135,7 @@ public class Application extends Controller {
 			mongoClient.close();
 		}
 
-		return ok(hereThereHomePageError.render(this.userProvider, "Email or passord did not matched."));
+		return ok(hereThereHomePageError.render(this.userProvider, "Email or password did not matched."));
 	}
 
 	public Result findByEmail(play.mvc.Http.Request request) {
